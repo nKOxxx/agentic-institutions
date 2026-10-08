@@ -75,3 +75,19 @@
   in NUMBER_SNAPSHOT.json supplement_v1_4. Drift policy: frozen values are cited
   in the manuscript; live values carry timestamps.
 - Lesson: a measurement is a query + its provenance, never a remembered number.
+
+## INC-006 — T-measurement anchor unverified (2026-10-08, round 4)
+**What:** v1.4's INC-005 fix published a reproducible SQL for the T count but froze
+its output (277) without re-running the query at freeze; the 13:18 anchor was
+carried from a round-3 reviewer footnote without primary verification. Round-4
+reviewers (A, B independently) ran the published query verbatim: 266 ≠ 277, and
+the parenthetical "(monotone in hub lifetime)" — hub-authored — is false.
+**Root cause:** the store compacts (evicts superseded turns; 10-07 rows in the
+qualifying set no longer exist), so the count is a floor and can DECREASE; and
+the anchor timestamp was never primary-verified. Remembered-number failure,
+one level deeper than INC-005: this time the number came from a reviewer.
+**Fix (v1.4.2):** freeze the measured output with timestamp; strike the monotone
+clause; compacting-store receipt in §III.3; banner demoted; snapshot carries
+monotone=false. Conclusion robust: every re-freeze clears T > 119.5.
+**Lesson:** primary-verify every anchor — reviewer citations are provenance
+leads, not provenance.

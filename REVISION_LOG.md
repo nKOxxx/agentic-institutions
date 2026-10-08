@@ -97,3 +97,30 @@ Scope: minor-class residuals named inside the r3 reviews' tables, outside their 
 | C N6 | 185× denominator-window caveat missing | abstract now points to §III.6 window caveat |
 | C T4 | part3 "≈5.9" echo | replaced with wave-range pointer |
 Gate: v14_gate.py extended (+13 residual checks), PASS.
+
+
+# ROUND 4 PANEL — v1.4.2 (2026-10-08, free-lane deepseek x3, $0)
+
+Panel: A methods 6->**7** MINOR-REVISE | B econ 8->**7** MINOR-REVISE (pre-commitment
+flip: a verified new MAJOR drops the ACCEPT floor, exactly as pledged) | C MAS 5->**8**
+flat (MAJOR caps at 8, not 9).
+
+Convergent verdict: every r3 minor/mechanical finding confirmed dead with verbatim
+evidence; both A and B re-derived the quantitative core (breakeven surface, CP bound,
+frozen median, T=40 alive-set) to the third decimal from raw files; regression hunts
+CLEAN (A: "no previously-correct cell, sentence, or figure was damaged"); zero
+INC-004-siblings.
+
+| Src | Sev | Finding | Fix (v1.4.2) |
+|---|---|---|---|
+| A+B+C | MAJOR | T=277 fails reproduction from the paper's own published query (A: 266; B: 266 x3 stable); "(monotone in hub lifetime)" is false — the store compacts and the count walks (hub same-evening re-runs: 320->331); the 13:18 anchor was carried from a reviewer footnote, never primary-verified -> INC-006 | III.3 receipt: measured re-freeze (331 @ 2026-10-08 22:01) + compacting-store warning; monotone struck; banner demoted to "asserted-with-receipt (T)"; snapshot monotone=false; conclusion robust (331 >> 119.5 max threshold) |
+| A | MINOR | "16 serial dispatches, 16/16" stale vs live instrument | stamped "at the v1.3 freeze" |
+| A | MINOR | "all seven briefs" counts a connectivity probe | "6 briefs + 1 connectivity probe" |
+| B | MINOR | part3 side-file still says "optimal control law / cost-optimal policy" | "cost-rationalized control law / policy" |
+| B | MINOR | IV.2 running example could be mistaken for instrument data | "(illustrative, not instrument data)" |
+
+Accepted-as-scope (carried, not defects): p endogeneity, free-tier shadow price,
+no formal numbered reference list (flagged for the human read-through).
+Gate: v14_gate.py v1.4.2 — 36 absence + 25 presence/structure, PASS (DRAFT 79,836).
+Ops note: C needed 1200s (attempt 1 timed out at 900s mid-verification, no verdict
+written; attempt 2 completed with needle, review archived from the worker's file).

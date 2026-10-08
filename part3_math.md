@@ -80,7 +80,7 @@ bandwidth — αS per artifact against a finite K. When cognition is free, the
 scarce factor is not model price; it is the hub's attention.
 
 This is the paper's structural claim. Ration a hub's attention and the
-optimal control law that falls out of (★) is exactly the institutional
+cost-rationalized control law that falls out of (★) is exactly the institutional
 anatomy of Part II:
 
   mandate      = the brief          (what may be attempted, at what size S)
@@ -89,7 +89,7 @@ anatomy of Part II:
   escalation   = retry → slice-read → brief-rewrite   (raise ε only as needed)
 
 The four-layer anatomy is not borrowed from human sociology and then mapped
-onto agents by analogy. It is re-derived here as the cost-optimal policy for
+onto agents by analogy. It is re-derived here as the cost-rationalized policy for
 delegated cognition under persistent attention. Institutions are coordination
 technology; the math says machine coordination needs them for the same reason
 firms exist: because verification, not production, is the rationed factor.
