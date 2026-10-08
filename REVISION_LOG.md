@@ -6,7 +6,7 @@ Reviews: reviews/reviewer_{A,B,C}_*.md. This file: finding -> disposition.
 | # | Severity | Finding | Disposition |
 |---|---|---|---|
 | B1 | BLOCKER | retracted 75x still in abstract | abstract rewritten (also INC-003) |
-| B2 | BLOCKER | 3 irreconciled dominance formulas | unified on (star); IV.5 term unit-normalized |
+| B2 | BLOCKER | 3 irreconciled dominance formulas | unified on (star); IV.5 ε-term stated as heuristic overlay w/ exact term (superseded-by r2 row ⑧) |
 | B3 | BLOCKER | breakeven table fails reproduction | recomputed from (star) in part3_math.md (p=.3,w/h=20 -> T>=79; p=.7,w/h=30 -> T>=51) |
 | B4 | BLOCKER | alpha not recomputable from instrument | instrument patched: admitted chars auto-logged from next dispatch; paper downgraded to 'bounded first-pass estimates' |
 | B5 | BLOCKER | VIII omitted own MOST-DANGEROUS prior art (2610.06069) | added as II.3 lead + VIII verdict-table row |
@@ -79,3 +79,21 @@ All found 3 issues each; every finding dispositioned below.
 Gate: v14_gate.py — 23 absence + 12 presence/structure, PASS 2026-10-08.
 Panel method note: 3rd round fully free-lane (hf_dispatch deepseek ×3, ~25 min, $0);
 worker mandate discipline held (INC-001 rules: single-file writes, DRAFT read-only).
+
+---
+
+# ROUND 4 — v1.4.1 residual sweep (2026-10-08, hub-applied; no new panel)
+
+Scope: minor-class residuals named inside the r3 reviews' tables, outside their ≤3 caps.
+| Src | Residual | Fix |
+|---|---|---|
+| A R2-6 | RESULTS not revision-controlled | paper dir git-init'd (4f7b8e8 = v1.4 baseline); RESULTS header states provenance |
+| A R2-6 | F2 bare 7/7 without wave label | already in v1.4 ("wave-1 calibration; cumulative 14/14") |
+| B tbl | 2603.22367 called "paging" | "static-context executor architectures (O(1) window, no paging)" — title live-verified |
+| B tbl | Contracting ID missing | arXiv:2608.18232 added (title live-verified) |
+| B tbl | "cannot lose" ×2, no floor | low-ε floor cited at both III.2 corollary + III.3(1) |
+| B tbl | figure draws K as the bottleneck | K relabeled "hub context; III.4"; band reads "verification bandwidth = the real scarcity" |
+| B NEW-MAJOR#2 | r1 B2 row "unit-normalized" not struck | struck, superseded-by pointer to r2 row ⑧ |
+| C N6 | 185× denominator-window caveat missing | abstract now points to §III.6 window caveat |
+| C T4 | part3 "≈5.9" echo | replaced with wave-range pointer |
+Gate: v14_gate.py extended (+13 residual checks), PASS.

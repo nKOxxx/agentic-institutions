@@ -8,7 +8,7 @@ across every remaining turn of a persistent session, while delegated work costs 
 plus acceptance overhead — so delegation dominates whenever (w/h) < p(1+T)(1−α), where
 p is per-dispatch acceptance probability, T remaining turns, and α the fraction of worker
 output admitted back into hub context. Three consequences follow: free-lane delegation
-cannot lose (w/h = 0); context management becomes a session-lifespan multiplier 1/α
+cannot lose (w/h = 0; low-ε floor of §III.3 applies); context management becomes a session-lifespan multiplier 1/α
 rather than a cost saving; and as dispatch volume explodes under near-zero marginal
 cost, verification bandwidth — not inference — becomes the binding constraint, a
 mechanism-level dual of recently observed evaluation-abundance phenomena. Mandate,
@@ -19,7 +19,7 @@ is instantiated by the system that wrote this paper: a single human-supervised h
 free-lane workers produced the manuscript across 14 instrumented dispatches, with
 measured admission ratio α ∈ [0.09, 0.19] across four task waves, first-try acceptance
 p̂ = 14/14 via machine-checkable needles, a 2× hub:worker traffic asymmetry (185× against deliverable
-artifacts) in the institution's own logs, and one live mandate-violation incident —
+artifacts; denominators' window caveat in §III.6) in the institution's own logs, and one live mandate-violation incident —
 caught not by the escalation ladder it describes but by post-wave integrity scanning,
 an honest datum the paper reports as such (INC-001). First-try acceptance carries a
 Clopper–Pearson 95% CI of [0.77, 1.00] at n=14; α and p are bounded first-pass
@@ -120,7 +120,7 @@ with human-subject validation; our (★) is the machine-institution analogue and
 two should be read together (per-attention tradeoff vs. session-amortized dominance;
 human attention market vs. free-lane worker supply). Further: Governing AI Agents
 (2501.07913) and When Does Agent Governance Help (2609.05531) on governance-by-design;
-Principal-Agent RL (2407.18074) on delegated control; Contracting for LLM Delegation
+Principal-Agent RL (2407.18074) on delegated control; Contracting for LLM Delegation (arXiv:2608.18232)
 on contract structure; and Jensen & Meckling (1976) as the classical anchor whose
 moral-hazard channel our first-pass model deliberately brackets (INC-001 is the
 empirical existence proof that the channel is real; §IV.6 reports the escalation
@@ -174,7 +174,7 @@ runs):
 Three regimes, all measured or bounded:
 
 (1) FREE LANE — w/h = 0. Then (★) holds for every p > 0 and every T ≥ 0.
-    Free-lane delegation cannot lose. Not "usually wins" — cannot lose.
+    Free-lane delegation cannot lose for any p > 0 (given the low-ε floor above — no losses to escalation costs). Not "usually wins" — cannot lose.
 
 (2) PAID WORKERS — breakeven surface (★) at α = 0.17:
 
@@ -314,8 +314,8 @@ The market design we have described is not speculative. Mandate marketplaces exi
         artifact S ──▶ workers (w → 0, paid once)
             │ only αS ≈ 17% admitted
             ▼
-        HUB ATTENTION  [ K = the binding budget ]  ◀── verification
-        re-paid every turn             bandwidth = the scarcity
+        HUB ATTENTION  [ K = hub context; III.4 ]  ◀── verification
+        re-paid every turn             verification bandwidth = the real scarcity
 ```
 One figure: left column is the institution, right column shows it is not
 analogy but isomorphism; the bottom band carries the cost law — workers
@@ -379,7 +379,7 @@ strike (DeepSeek, 25 tool calls, instructed to KILL the claims, $0). Full logs:
 |---|---|---|
 | C1 dominance (persistent attention) | FrugalGPT 2305.05176; RouteLLM 2406.18665; cascade/routing 2024–26 lane | they optimize per-query price among PAID tiers; nobody models per-char re-payment across remaining session turns → threshold inequality (★) is ours |
 | C2 free-lane degeneracy | cascade literature | degenerate w/h=0 corollary unclaimed |
-| C3 1/α lifespan law | context-extension (paging, O(1)-context archs 2603.22367) | they extend one agent's window; lifespan-as-budget multiplier for the INSTITUTION is unclaimed |
+| C3 1/α lifespan law | static-context executor architectures (O(1) window, no paging; 2603.22367) | they extend one agent's window; lifespan-as-budget multiplier for the INSTITUTION is unclaimed |
 | C4a per-step attention tradeoff | **2610.06069 Attention/Handoff Tax — our own strike's MOST-DANGEROUS paper; formalizes the same tradeoff with human-subject validation (added v1.2 after external review caught its omission)** | per-attention pricing vs our session-amortized dominance; human attention market vs free-lane worker supply — complementary, cite-first |
 | C4 verification scarcity + Jevons | 2503.05816 (labor-market rebound); **2610.01231 "Age of Jev"** (org-level evaluation abundance) | Jev paper = evaluation consumption rises at org scale, no mechanism; ours = hub admission αS vs hard K binds — dual claim, cite it, state the asymmetry |
 | C5 institutions as control law | Governing AI Agents 2501.07913; Principal-Agent RL 2407.18074; When Agent Governance Helps 2609.05531 (crowded!) | governance-by-design exists; cost-RATIONALIZED anatomy (consistent with ★; derivation partial) is ours — do NOT claim the anatomy itself as new |
@@ -587,7 +587,9 @@ v1.3: second review (5/5/5) → breakeven sync, p-semantics, control-law demotio
 INC-004 withdrawn. v1.4: T-figure made reproducible (query published, 277 @ freeze),
 T=40 alive-set corrected, ladder demoted to policy, IV.5 units clause dropped,
 appendix tokens + typo stripped, VII.a moved under VII, F1 provenance note,
-snapshot primary alpha_waves fixed, INC-005 logged. v1.1: assembled + 26/26 cites. v1.2: first external
+snapshot primary alpha_waves fixed, INC-005 logged. v1.4.1 residual sweep: corollary floor-condition, 185×
+window caveat, 2603.22367 de-paged, 2608.18232 ID added, figure K-label fixed,
+REVISION_LOG B2 struck, RESULTS under git, part3 5.9 residue killed. v1.1: assembled + 26/26 cites. v1.2: first external
 review (4/4/5) → all round-1 findings dispositioned. v1.3: second external review
 (5/5/5) → breakeven table propagated into §III.3, abstract p-semantics fixed,
 control-law claims demoted per §VIII directive 3, chrome strip completed, and

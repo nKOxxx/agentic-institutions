@@ -1,4 +1,4 @@
-# RESULTS — measured 2026-10-07 (single hub, one day of operation). F1/F4 corrected v1.3 after round-2 review; Table 1/F2/F3 frozen v1.1.
+# RESULTS — measured 2026-10-07 (single hub, one day of operation). F1/F4 corrected v1.3 after round-2 review; Table 1/F2/F3 frozen v1.1. RESULTS is revision-controlled from v1.4 (paper dir under git; commit 4f7b8e8 carries the F2 wave label + F1 provenance note).
 
 All numbers from `~/.hermes/state.db` + `hf_stats.tsv`. [M] = measured,
 [B] = bounded estimate, stated method inline.

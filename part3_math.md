@@ -65,7 +65,7 @@ failed external reproduction — old entries T≥15 @ w/h=20,p=.3 and T≈61
     consumes S of budget; delegated, each consumes only αS. Yield per
     session-lifetime:
 
-      N_in = K/S      vs      N_del = K/(αS)      →      N_del/N_in = 1/α ∈ [5.3, 11.1] (≈5.9 at α≈0.17)
+      N_in = K/S      vs      N_del = K/(αS)      →      N_del/N_in = 1/α ∈ [5.3, 11.1] (hub-policy α; wave range in DRAFT §III.3)
 
     more institutional work per session at the central α. Delegation is not primarily a
     cost saving. It is lifespan extension of the coordinating mind.
