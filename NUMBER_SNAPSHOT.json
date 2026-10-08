@@ -1,0 +1,24 @@
+{
+ "frozen": "2026-10-08",
+ "source": "hf_stats.tsv+hf_paper_stats.py",
+ "n_dispatches": 14,
+ "phat": "14/14",
+ "phat_cp95": "[0.77, 1.00]",
+ "median_dur_s": 31.5,
+ "dur_range_s": "7-525",
+ "alpha_waves": "w1 [0.17,0.19]; w2 0.14; w3(N=6) 0.09; w4(reviews) 0.09 \u2014 pooled 0.137 (hub-audited wave-level; per-dispatch instrumentation began 2026-10-08)",
+ "asymmetry": "2x traffic / 185x artifact (dual denominator, hf_paper_stats.py)",
+ "supplement_v1_3": {
+  "date": "2026-10-08",
+  "note": "wave taxonomy corrected (4 waves, not 3); TSV hash added for drift detection",
+  "alpha_waves_corrected": "w1 0.169/0.190; w2 0.138; w3(N=6) 0.087 (wave-rounded 0.17/0.19/0.14/0.09)",
+  "tsv_sha256_16": "b53083046664e514",
+  "live_instrument": "n=16, 16/16 (2 probe rows post-freeze)"
+ },
+ "supplement_v1_4": {
+  "date": "2026-10-08",
+  "t_measurement_query": "SELECT COUNT(*) FROM messages WHERE session_id='20260725_131848_6f3bc9c8' AND role='assistant' AND timestamp >= strftime('%s','2026-10-07 13:18:00')",
+  "t_measurement_count_at_v14": 277,
+  "round3_scores": "A 6, B 8 (ACCEPT-WITH-MINORS), C 8"
+ }
+}
