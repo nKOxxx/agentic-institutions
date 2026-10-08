@@ -241,7 +241,11 @@ The free-lane result (1) is robust to all of these — it needs only w/h = 0 and
 First 14 dispatches: p̂ = 14/14 = 1.00 (Clopper–Pearson 95% CI [0.77, 1.00]; n includes one connectivity probe — excluding it, 13/13), duration 7–525 s (median 31.5 s (frozen at the v1.2 snapshot, n=14; the live-TSV median drifts as rows accrue)), message
 counts 2–70 (deepseek research sweeps make heavy internal tool use — msgs is
 our attempt-level signal). Honest caveat: n is small and briefs self-selected;
-this is an accumulating instrument, not a result. Every future dispatch
+this is an accumulating instrument, not a result. Window caveat for the traffic ratios:
+the paper's two asymmetries (2× raw traffic, 185× artifacts-only) use different
+denominator windows — hub lifetime since 2026-07-25 vs worker artifacts from the
+2026-10-07 measurement day (F3 in RESULTS.md) — so 185× is window-sensitive and is
+cited as a frozen value, never a live one. Every future dispatch
 (paper-related or operational) grows the measured distribution of p and T for
 free; III.3's bounded estimates will be replaced by empirical quantiles once n
 is meaningful.
