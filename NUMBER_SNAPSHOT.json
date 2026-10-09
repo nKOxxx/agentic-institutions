@@ -20,9 +20,10 @@
     "t_measurement_query": "SELECT COUNT(*) FROM messages WHERE session_id='20260725_131848_6f3bc9c8' AND role='assistant' AND timestamp >= strftime('%s','2026-10-07 13:18:00')",
     "t_measurement_count_at_v14": 277,
     "round3_scores": "A 6, B 8 (ACCEPT-WITH-MINORS), C 8",
-    "t_measurement_refreeze_value": 331,
-    "t_measurement_refreeze_at": "2026-10-08 22:02",
+    "t_measurement_refreeze_value": 343,
+    "t_measurement_refreeze_at": "2026-10-09 04:16",
     "t_measurement_monotone": false,
-    "t_measurement_note": "store compacts; count is a floor and can decrease; see INC-006"
+    "t_measurement_note": "store compacts; count walks; the in-repo archive is the frozen basis; see INC-006",
+    "t_measurement_archive": "data/t_freeze_2026-10-09T0416.csv"
   }
 }
