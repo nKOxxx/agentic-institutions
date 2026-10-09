@@ -54,7 +54,7 @@ failed external reproduction — old entries T≥15 @ w/h=20,p=.3 and T≈61
   p=0.3: w/h=15 → T ≥ 60 | w/h=20 → T ≥ 80 | w/h=30 → T ≥ 120   (ceilings; T > 59.2/79.3/119.5)
   p=0.7: w/h=15 → T ≥ 25 | w/h=20 → T ≥ 34 | w/h=30 → T ≥ 51   (ceilings; T > 24.8/33.4/50.6)
 
-    A working session in our logs is long-lived: the hub logged 277 further
+    A working session in our logs is long-lived: the hub logged 343 further
     assistant turns after its first accepted artifact (query published in
     DRAFT §III.3). So yes: a worker can cost ~15× the hub per char and
     delegation still wins — because hub chars are amortized over the session's
@@ -97,7 +97,7 @@ firms exist: because verification, not production, is the rationed factor.
 ### III.5 Threats to validity
 
 Uniform in/out pricing; T as expected remaining turns (heavy-tailed — sessions
-die early, which *helps* delegation since inline cost scales with T);
+die early, which hurts the paid-lane case since the inline alternative then looks cheaper);
 acceptance probability p measured on needle-checked drafts only; ε assumed
 small (held in our runs: failure tails were hundreds of chars, not thousands).
 The free-lane result (1) is robust to all of these — it needs only w/h = 0 and
