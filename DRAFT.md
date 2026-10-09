@@ -227,7 +227,7 @@ firms exist: because verification, not production, is the rationed factor.
 ### III.5 Threats to validity
 
 Uniform in/out pricing; T as expected remaining turns (heavy-tailed — sessions
-die early, which *helps* delegation since inline cost scales with T);
+die early, which hurts the paid-lane case since the inline alternative then looks cheaper);
 acceptance probability p measured on needle-checked drafts only; ε assumed
 small (held in our runs: failure tails were hundreds of chars, not thousands).
 The free-lane result (1) is robust to all of these — it needs only w/h = 0 and

@@ -124,3 +124,7 @@ no formal numbered reference list (flagged for the human read-through).
 Gate: v14_gate.py v1.4.2 — 36 absence + 25 presence/structure, PASS (DRAFT 79,836).
 Ops note: C needed 1200s (attempt 1 timed out at 900s mid-verification, no verdict
 written; attempt 2 completed with needle, review archived from the worker's file).
+
+## POST-R4 HUB AUDIT (2026-10-09)
+
+Hub arithmetic pass, independent of the panel: every cell re-derived exact (alpha 0.1688; 6/6 breakeven cells; T=40 alive-set boundary 33.4<40<50.6; CP 0.768; 1/alpha endpoints 5.26/11.11 + disclosed 11.5; eps-corner 8x margin; T=343 clears worst threshold 2.9x). One new defect found and fixed: III.5 claimed early session death *helps* delegation - backwards, since d(dominance)/dT = p(1-alpha) > 0, so early death shrinks the paid-lane advantage. Free-lane and budget results unaffected (need only w/h = 0, alpha < 1).
