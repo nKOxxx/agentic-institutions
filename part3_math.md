@@ -43,7 +43,7 @@ runs):
 
       (w/h)  <  p · (1 + T) · (1 − α)        … (★)
 
-Three regimes, all measured or bounded:
+Three regimes: measured, bounded, or asserted-with-receipt (T — see the III.3 receipt):
 
 (1) FREE LANE — w/h = 0. Then (★) holds for every p > 0 and every T ≥ 0.
     Free-lane delegation cannot lose. Not "usually wins" — cannot lose.

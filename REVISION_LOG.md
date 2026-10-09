@@ -128,3 +128,7 @@ written; attempt 2 completed with needle, review archived from the worker's file
 ## POST-R4 HUB AUDIT (2026-10-09)
 
 Hub arithmetic pass, independent of the panel: every cell re-derived exact (alpha 0.1688; 6/6 breakeven cells; T=40 alive-set boundary 33.4<40<50.6; CP 0.768; 1/alpha endpoints 5.26/11.11 + disclosed 11.5; eps-corner 8x margin; T=343 clears worst threshold 2.9x). One new defect found and fixed: III.5 claimed early session death *helps* delegation - backwards, since d(dominance)/dT = p(1-alpha) > 0, so early death shrinks the paid-lane advantage. Free-lane and budget results unaffected (need only w/h = 0, alpha < 1).
+
+## ROUND 5 PANEL + v1.4.6 CLEAN SWEEP (2026-10-09)
+
+R5 scores: A 7->**8**, B 7->**8** (pre-commitment honored in reverse: "My round-4 ACCEPT condition is satisfied"; re-verified all 343 ids against the DB predicate at content level), C **8** flat (r4 cap lifted). All three ACCEPT-WITH-MINORS; all named the same 3 minors: count-only verifier, stale snapshot stamping, bookkeeping (part3 banner sibling, wave-label, stale changelog, B typo). C additionally found INC-004 residue in sections/sec_s3c.md (borders MAJOR). v1.4.6 closes all of it: verifier SHA-256 content pin (tamper test: same-count rewrite now FAILS loudly), snapshot frozen-date + 277 superseded-mark, part3 banner demoted (four-round flag), INC-004 quarantine banner (hub re-swept sections/ independently: only s3c affected), wave-label uncollided, changelog current, typo dead.

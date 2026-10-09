@@ -91,3 +91,7 @@ clause; compacting-store receipt in §III.3; banner demoted; snapshot carries
 monotone=false. Conclusion robust: every re-freeze clears T > 119.5.
 **Lesson:** primary-verify every anchor — reviewer citations are provenance
 leads, not provenance.
+
+## INC-004 ADDENDUM (2026-10-09, found by r5 panel)
+
+The fabricated worked example withdrawn in INC-004 survived VERBATIM in the git-tracked worker-stage archive sections/sec_s3c.md (147 briefs / 142-147 / four concurrent / 24-hour / 30-second windows), unmarked. Found by reviewer C's round-5 sweep; hub re-swept all of sections/ independently (only sec_s3c affected). Disposition: quarantine banner prepended (DO NOT CITE, INC-004 pointer, real-record pointer), no archive text altered. Lesson: withdrawal notes must chase every copy of a fabrication, including raw stage archives — the manuscript being clean is necessary but not sufficient.

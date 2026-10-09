@@ -27,7 +27,7 @@ retired after external review — four waves, 2.1× range) — and 1/α spans 5.
    and is NOT per-dispatch TSV-recomputable for the frozen waves. Hub-side
    figures derive from ~/.hermes/state.db, session 20260725_131848_6f3bc9c8.*
 
-**F2 [M] — p-hat = 1.00 (7/7 first-try needle accepts).** Acceptance needles (wave-1 calibration; cumulative frozen rate 14/14 — see §III.6)
+**F2 [M] — p-hat = 1.00 (7/7 first-try needle accepts).** Acceptance needles (opening calibration run; cumulative frozen rate 14/14 — see §III.6)
 + structure counts accepted every dispatch, including 27- and 70-tool-call
 research sweeps. n small; instrument now accumulates continuously (§III.6).
 

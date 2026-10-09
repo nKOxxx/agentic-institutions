@@ -1,5 +1,5 @@
 {
-  "frozen": "2026-10-08",
+  "frozen": "2026-10-09 (T re-freeze 04:16; stats snapshot 2026-10-08)",
   "source": "hf_stats.tsv+hf_paper_stats.py",
   "n_dispatches": 14,
   "phat": "14/14",
@@ -24,6 +24,7 @@
     "t_measurement_refreeze_at": "2026-10-09 04:16",
     "t_measurement_monotone": false,
     "t_measurement_note": "store compacts; count walks; the in-repo archive is the frozen basis; see INC-006",
-    "t_measurement_archive": "data/t_freeze_2026-10-09T0416.csv"
+    "t_measurement_archive": "data/t_freeze_2026-10-09T0416.csv",
+    "t_measurement_count_at_v14_status": "SUPERSEDED-BY t_measurement_refreeze_value=343 @ 2026-10-09T04:16 (INC-006); retained as historical receipt"
   }
 }
