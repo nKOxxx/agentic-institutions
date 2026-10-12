@@ -1,4 +1,4 @@
-# REVISION LOG — v1.2 (2026-10-08, post-external-review)
+# REVISION LOG, v1.2 (2026-10-08, post-external-review)
 
 Reviewers: A methods 4/10, B econ 4/10, C MAS 5/10 (unanimous MAJOR REVISION).
 Reviews: reviews/reviewer_{A,B,C}_*.md. This file: finding -> disposition.
@@ -25,7 +25,7 @@ under load; n=1 institution; no external replication. These are v2 scope.
 
 ---
 
-# ROUND 2 — v1.3 (2026-10-08, post-second-external-review)
+# ROUND 2, v1.3 (2026-10-08, post-second-external-review)
 
 Reviews: reviews/reviewer_{A,B,C}_*_r2.md. Scores 5/5/5 (A MINOR REVISE, B MAJOR
 REVISE, C 5/10). Round-1 dispositions as verified by reviewers themselves:
@@ -36,7 +36,7 @@ FIXED: B1, B2-core, B5, M1, M2, M3, M5, M7 | PARTIAL: B3, B4, M4, M6, M8.
 | # | Source | Finding | Disposition in v1.3 |
 |---|---|---|---|
 | N1 | B (MAJOR) | corrected breakeven table never reached §III.3; stale "T ≈ 61" + garbled "T ≥ 57/15/…" while §IX.b claims all resolved | table propagated into §III.3 (ceilings, measured-T note); stale rows ABSENT (gate) |
-| N2 | B (MAJOR) | abstract defined p as failure probability; body uses acceptance — inverts paid-worker regime | abstract now "p is per-dispatch acceptance probability"; "failure probability" ABSENT (gate) |
+| N2 | B (MAJOR) | abstract defined p as failure probability; body uses acceptance, inverts paid-worker regime | abstract now "p is per-dispatch acceptance probability"; "failure probability" ABSENT (gate) |
 | ③ | A+B+C | §IX.b / preamble overclaim "All BLOCKER findings are resolved" | rewritten to disposition-truth (round-2 recurrence stated) |
 | ① | B items 1-2 (non-negotiable) | = N1 + N2 | both done |
 | ② | A items | PARTIAL round-1 items: M4 chrome (A2A misattribution, dangling cites, "plain text draft", needle tokens) | stripped: A2A→Google, dangling cites removed, INTRO-OK/RELATED-WORK-OK/"plain text draft" ABSENT (gate) |
@@ -47,7 +47,7 @@ FIXED: B1, B2-core, B5, M1, M2, M3, M5, M7 | PARTIAL: B3, B4, M4, M6, M8.
 | ⑧ | A items 4b/6 | IV.5 κ-term sold as derived; 1/α endpoints; 15× unconditional; 17% wave label | κ-form = heuristic overlay (exact term stated); endpoints convention added; 15× conditional on T; 17% wave-labeled |
 | ⑨ | A items 3/9 | false sentences (routing/insurance) + VIII human-pass caveat | both re-phrased; caveat appended to VIII verdict |
 
-Hub-discovered (no reviewer flagged): **INC-004** — §IV.4 worked example
+Hub-discovered (no reviewer flagged): **INC-004**, §IV.4 worked example
 (147 briefs / 142 hit / 4 concurrent / 24h / 30s windows) is worker-fabricated
 fiction; instrument record = 16 serial dispatches, 16/16, zero retries. Replaced
 with the real record + withdrawal note; ABSENT-checks in gate.
@@ -58,7 +58,7 @@ Lesson encoded: absence-checks on stale content, not just presence on new.
 
 ---
 
-# ROUND 3 — v1.4 (2026-10-08, free-lane deepseek re-review: hf_dispatch ×3, $0)
+# ROUND 3, v1.4 (2026-10-08, free-lane deepseek re-review: hf_dispatch ×3, $0)
 
 Reviews: reviews/reviewer_{A,B,C}_*_r3.md. Scores A 6/10 MINOR REVISE, B 8/10
 ACCEPT-WITH-MINORS (pre-commitment verified then honored), C 8/10 MINOR-REVISE.
@@ -76,20 +76,20 @@ All found 3 issues each; every finding dispositioned below.
 | 8 | C MAJOR | F1 α table provenance gap | 9-line PROVENANCE note (wave-3 exact, waves 1/2/4 divergences quantified, admitted hub-audited, state.db source) |
 | 9 | C MINOR | median staleness; §VII stub; uncited mandate marketplaces | frozen n=14 qualifier; VII.a moved under VII header; §II survey anchor added |
 
-Gate: v14_gate.py — 23 absence + 12 presence/structure, PASS 2026-10-08.
+Gate: v14_gate.py, 23 absence + 12 presence/structure, PASS 2026-10-08.
 Panel method note: 3rd round fully free-lane (hf_dispatch deepseek ×3, ~25 min, $0);
 worker mandate discipline held (INC-001 rules: single-file writes, DRAFT read-only).
 
 ---
 
-# ROUND 4 — v1.4.1 residual sweep (2026-10-08, hub-applied; no new panel)
+# ROUND 4, v1.4.1 residual sweep (2026-10-08, hub-applied; no new panel)
 
 Scope: minor-class residuals named inside the r3 reviews' tables, outside their ≤3 caps.
 | Src | Residual | Fix |
 |---|---|---|
 | A R2-6 | RESULTS not revision-controlled | paper dir git-init'd (4f7b8e8 = v1.4 baseline); RESULTS header states provenance |
 | A R2-6 | F2 bare 7/7 without wave label | already in v1.4 ("wave-1 calibration; cumulative 14/14") |
-| B tbl | 2603.22367 called "paging" | "static-context executor architectures (O(1) window, no paging)" — title live-verified |
+| B tbl | 2603.22367 called "paging" | "static-context executor architectures (O(1) window, no paging)", title live-verified |
 | B tbl | Contracting ID missing | arXiv:2608.18232 added (title live-verified) |
 | B tbl | "cannot lose" ×2, no floor | low-ε floor cited at both III.2 corollary + III.3(1) |
 | B tbl | figure draws K as the bottleneck | K relabeled "hub context; III.4"; band reads "verification bandwidth = the real scarcity" |
@@ -99,7 +99,7 @@ Scope: minor-class residuals named inside the r3 reviews' tables, outside their 
 Gate: v14_gate.py extended (+13 residual checks), PASS.
 
 
-# ROUND 4 PANEL — v1.4.2 (2026-10-08, free-lane deepseek x3, $0)
+# ROUND 4 PANEL, v1.4.2 (2026-10-08, free-lane deepseek x3, $0)
 
 Panel: A methods 6->**7** MINOR-REVISE | B econ 8->**7** MINOR-REVISE (pre-commitment
 flip: a verified new MAJOR drops the ACCEPT floor, exactly as pledged) | C MAS 5->**8**
@@ -113,7 +113,7 @@ INC-004-siblings.
 
 | Src | Sev | Finding | Fix (v1.4.2) |
 |---|---|---|---|
-| A+B+C | MAJOR | T=277 fails reproduction from the paper's own published query (A: 266; B: 266 x3 stable); "(monotone in hub lifetime)" is false — the store compacts and the count walks (hub same-evening re-runs: 320->331); the 13:18 anchor was carried from a reviewer footnote, never primary-verified -> INC-006 | III.3 receipt: measured re-freeze (331 @ 2026-10-08 22:01) + compacting-store warning; monotone struck; banner demoted to "asserted-with-receipt (T)"; snapshot monotone=false; conclusion robust (331 >> 119.5 max threshold) |
+| A+B+C | MAJOR | T=277 fails reproduction from the paper's own published query (A: 266; B: 266 x3 stable); "(monotone in hub lifetime)" is false, the store compacts and the count walks (hub same-evening re-runs: 320->331); the 13:18 anchor was carried from a reviewer footnote, never primary-verified -> INC-006 | III.3 receipt: measured re-freeze (331 @ 2026-10-08 22:01) + compacting-store warning; monotone struck; banner demoted to "asserted-with-receipt (T)"; snapshot monotone=false; conclusion robust (331 >> 119.5 max threshold) |
 | A | MINOR | "16 serial dispatches, 16/16" stale vs live instrument | stamped "at the v1.3 freeze" |
 | A | MINOR | "all seven briefs" counts a connectivity probe | "6 briefs + 1 connectivity probe" |
 | B | MINOR | part3 side-file still says "optimal control law / cost-optimal policy" | "cost-rationalized control law / policy" |
@@ -121,7 +121,7 @@ INC-004-siblings.
 
 Accepted-as-scope (carried, not defects): p endogeneity, free-tier shadow price,
 no formal numbered reference list (flagged for the human read-through).
-Gate: v14_gate.py v1.4.2 — 36 absence + 25 presence/structure, PASS (DRAFT 79,836).
+Gate: v14_gate.py v1.4.2, 36 absence + 25 presence/structure, PASS (DRAFT 79,836).
 Ops note: C needed 1200s (attempt 1 timed out at 900s mid-verification, no verdict
 written; attempt 2 completed with needle, review archived from the worker's file).
 

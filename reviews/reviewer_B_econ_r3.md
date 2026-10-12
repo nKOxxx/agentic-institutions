@@ -1,4 +1,4 @@
-# Re-Review Round 3 — Reviewer B (Economics of AI / Market Design / Principal-Agent Theory)
+# Re-Review Round 3, Reviewer B (Economics of AI / Market Design / Principal-Agent Theory)
 
 **Paper:** *Agentic Institutions* (DRAFT.md v1.3, 2026-10-08)
 **Round-2 review:** reviews/reviewer_B_econ_r2.md (score 5/10, MAJOR REVISE)
@@ -20,7 +20,7 @@ turns) grounded in `~/.hermes/state.db`.
 survivors and no false disposition claims in the round-2 log.** The impossible
 breakeven row is gone from the manuscript and replaced with a surface I re-derived
 to the third decimal (all six cells, correct ceiling semantics). The IV.5 escalation
-term — the one formula my round-2 called false as written — is now dimensionally
+term, the one formula my round-2 called false as written, is now dimensionally
 coherent and correctly derived, with κ re-labelled a heuristic overlay. The
 control-law overreach is demoted consistently across abstract, §III.4, §VIII, and
 the NEXT STEPS status. The INC-004 fabrication is withdrawn with an honest
@@ -37,9 +37,9 @@ six are partial, which is exactly what keeps them on the issue list as MINOR.
 
 ---
 
-## 1. T1 — Disposition of every round-2 finding
+## 1. T1, Disposition of every round-2 finding
 
-### Round-2 BLOCKER 1 — corrected breakeven table never reached §III.3
+### Round-2 BLOCKER 1, corrected breakeven table never reached §III.3
 
 **FIXED (verified to 3 decimals, ceiling semantics correct).** DRAFT.md III.3(2),
 lines 181–184:
@@ -53,25 +53,25 @@ I re-derived every cell from (★) at α=0.17 by exact inversion `T > (w/h)/(p(1
 the "min integer T ≥" values are true ceilings (e.g. T=59 ⇒ 0.3·60·0.83=14.94<15,
 fails; T=60 passes). The non-monotone impossible row and the α-contaminated T≈61 row
 are both absent (see T3). §IX.b confirms the propagation: "breakeven table recomputed
-and propagated into §III.3 (v1.3 — the v1.2 pass had fixed the side file only)".
+and propagated into §III.3 (v1.3, the v1.2 pass had fixed the side file only)".
 
-### Round-2 BLOCKER 2 — dominance-formula coherence
+### Round-2 BLOCKER 2, dominance-formula coherence
 
-- **(i) 1/α as a range / policy parameter — FIXED (carried).** III.3(3), line 199:
+- **(i) 1/α as a range / policy parameter, FIXED (carried).** III.3(3), line 199:
   "N_del/N_in = 1/α ∈ [5.3, 11.1] across measured waves (≈6× at the central α ≈ 0.17;
-  endpoints use wave-rounded α = 0.19/0.09 — exact min α = 0.087 gives 11.5)". Verified:
+  endpoints use wave-rounded α = 0.19/0.09, exact min α = 0.087 gives 11.5)". Verified:
   1/0.19=5.26, 1/0.09=11.11; exact-min disclosure is honest (1/0.087=11.49).
-- **(ii) abstract denominators 46,264 / ~14% — FIXED (carried).** Neither string
+- **(ii) abstract denominators 46,264 / ~14%, FIXED (carried).** Neither string
   appears anywhere in DRAFT.md; abstract now uses "α ∈ [0.09, 0.19] across four task waves".
-- **(iii) retracted 75× — FIXED (carried).** Zero occurrences of `75×`/`75x`/`75 ×`
+- **(iii) retracted 75×, FIXED (carried).** Zero occurrences of `75×`/`75x`/`75 ×`
   in DRAFT.md (grep). Abstract reports "2× hub:worker traffic asymmetry (185× against
   deliverable artifacts)".
-- **(iv) IV.5 escalation term — FIXED in substance (my round-2 BLOCKER), one stale
+- **(iv) IV.5 escalation term, FIXED in substance (my round-2 BLOCKER), one stale
   clause remains.** v1.3 line 279 now reads: "The inequality now reads: > (w/h) <
   p·(1+T)·(1−α) − heuristic κ-form (the exact marginal from (★) is ε(1−p)/S; the
   κ-form is a first-pass overlay, not an inequality)". Carrying the retained term
   through the (★) division (C_del < C_in, divide by h·S·(1+T), then multiply by
-  p(1+T)) gives exactly ε(1−p)/S, dimensionless (chars/chars) — the term is correct
+  p(1+T)) gives exactly ε(1−p)/S, dimensionless (chars/chars), the term is correct
   where round-2's ε/h was arithmetically false. κ is now honestly a heuristic overlay,
   and §IX.b states "IV.5's escalation term stated as heuristic overlay pending
   derivation". **Residual (MINOR):** the same sentence still carries the defunct
@@ -81,15 +81,15 @@ and propagated into §III.3 (v1.3 — the v1.2 pass had fixed the side file only
 
 **Blocker 2: all four sub-findings now clear (one minor clause residual).**
 
-### Round-2 BLOCKER 3 — moral hazard / p endogeneity / INC connection
+### Round-2 BLOCKER 3, moral hazard / p endogeneity / INC connection
 
-- **Clopper–Pearson CI — FIXED (carried, re-verified).** III.6 line 240: "p̂ = 14/14
-  = 1.00 (Clopper–Pearson 95% CI [0.77, 1.00]; n includes one connectivity probe —
+- **Clopper–Pearson CI, FIXED (carried, re-verified).** III.6 line 240: "p̂ = 14/14
+  = 1.00 (Clopper–Pearson 95% CI [0.77, 1.00]; n includes one connectivity probe -
   excluding it, 13/13)". Recomputed 0.025^(1/14) = 0.7684 → [0.77, 1.00]. ✓
-- **INC-001 ↔ moral-hazard connection — FIXED (carried).** §II.7 (l.124–127) brackets
+- **INC-001 ↔ moral-hazard connection, FIXED (carried).** §II.7 (l.124–127) brackets
   "Jensen & Meckling (1976) as the classical anchor whose moral-hazard channel our
   first-pass model deliberately brackets (INC-001 is the empirical existence proof…)".
-- **p endogeneity / identification condition — NOT FIXED (unchanged, declared out of
+- **p endogeneity / identification condition, NOT FIXED (unchanged, declared out of
   scope).** No informativeness condition separating worker quality from needle laxity;
   the abstract still headlines "p̂ = 14/14". I granted this partial credit in round 2
   for being honestly named; it remains a named limitation, not a regression. Accepted
@@ -97,29 +97,29 @@ and propagated into §III.3 (v1.3 — the v1.2 pass had fixed the side file only
 
 **Blocker 3: honesty repairs fixed and verified; mechanism-design gap unchanged-and-declared.**
 
-### Round-2 BLOCKER 4 — own strike's MOST-DANGEROUS prior art (2610.06069)
+### Round-2 BLOCKER 4, own strike's MOST-DANGEROUS prior art (2610.06069)
 
-**FIXED (carried).** §VIII C4a "2610.06069 Attention/Handoff Tax — …formalizes the
+**FIXED (carried).** §VIII C4a "2610.06069 Attention/Handoff Tax, …formalizes the
 same tradeoff with human-subject validation (added v1.2 after external review caught
 its omission)"; §II.7 leads with it (l.117–121) and the abstract carries the dual
 ("mechanism-level dual of recently observed evaluation-abundance phenomena").
 
-### Round-2 BLOCKER 5 — instrument / α not recomputable
+### Round-2 BLOCKER 5, instrument / α not recomputable
 
 **FIXED by declaration (carried, acceptable).** §IX "Instrument limits (declared):
 n=16 dispatches at v1.3 revision time (14 at the v1.2 freeze;…); admitted-chars
 auto-logging begins 2026-10-08 (prior rows carry hub-audited wave-level α only)". The
 raw TSV confirms the two 2026-10-08 rows now carry artifact_s; admitted_s awaits first
-weave (stats_live.md: "no adjudicated rows yet — hub fills admitted_s at weave time").
+weave (stats_live.md: "no adjudicated rows yet, hub fills admitted_s at weave time").
 
 ### Round-2 minors, dispositioned
 
 | Round-2 minor | Status in v1.3 | Evidence (verbatim) |
 |---|---|---|
-| 2603.22367 called "paging" (executor arch) | **NOT FIXED** | §VIII C3: "context-extension (paging, O(1)-context archs 2603.22367)" — unchanged |
-| III.4 "optimal control law" overreach (violates directive #3) | **FIXED** | Abstract l.16–17: "rationalized by (★), §III.4; a full optimality derivation is future work"; III.4 l.221: "derived-in-part here as the cost-rationalized policy"; §VIII C5 l.353: "cost-RATIONALIZED anatomy (consistent with ★; derivation partial) is ours — do NOT claim the anatomy itself as new" |
-| free-lane corollary lacks ε-floor condition | **NOT FIXED** | III.3(1) l.176–177: "Free-lane delegation cannot lose. Not \"usually wins\" — cannot lose." — unchanged |
-| free-tier w=0 rationed quota; latency absent | **NOT FIXED** (declared) | §IX l.377: "Marginal worker cost: $0 (rationed free tiers)" — still descriptive, no shadow price, t_w in no cost term |
+| 2603.22367 called "paging" (executor arch) | **NOT FIXED** | §VIII C3: "context-extension (paging, O(1)-context archs 2603.22367)", unchanged |
+| III.4 "optimal control law" overreach (violates directive #3) | **FIXED** | Abstract l.16–17: "rationalized by (★), §III.4; a full optimality derivation is future work"; III.4 l.221: "derived-in-part here as the cost-rationalized policy"; §VIII C5 l.353: "cost-RATIONALIZED anatomy (consistent with ★; derivation partial) is ours, do NOT claim the anatomy itself as new" |
+| free-lane corollary lacks ε-floor condition | **NOT FIXED** | III.3(1) l.176–177: "Free-lane delegation cannot lose. Not \"usually wins\", cannot lose.", unchanged |
+| free-tier w=0 rationed quota; latency absent | **NOT FIXED** (declared) | §IX l.377: "Marginal worker cost: $0 (rationed free tiers)", still descriptive, no shadow price, t_w in no cost term |
 | Jevons: storage-K vs verification-throughput | **NOT FIXED** | §VI figure still draws "HUB ATTENTION [K = the binding budget]" / "bandwidth = the scarcity" |
 | "cannot lose" rhetoric | **NOT FIXED** | l.11, l.72, l.177 all retain "cannot lose" |
 | Related Work econ neighbors | **FIXED (mostly)** | §II.7 intact; residual: "Contracting for LLM Delegation on contract structure" (l.123) still carries no arXiv ID (2608.18232) |
@@ -127,53 +127,53 @@ weave (stats_live.md: "no adjudicated rows yet — hub fills admitted_s at weave
 
 ### Round-2 NEW findings
 
-1. **NEW-MAJOR #1 (frozen snapshot drifts)** — **PARTIAL.** The *supplement* fixes it,
+1. **NEW-MAJOR #1 (frozen snapshot drifts)**, **PARTIAL.** The *supplement* fixes it,
    the *primary field still drifts*. NUMBER_SNAPSHOT.json l.9 still reads
-   `"alpha_waves": "w1 [0.14,0.19]; w2 ~0.16; w3(N=6) ~0.09"` — the same three-wave
-   taxonomy and the same orphan 0.16 I flagged — corrected only in the
+   `"alpha_waves": "w1 [0.14,0.19]; w2 ~0.16; w3(N=6) ~0.09"`, the same three-wave
+   taxonomy and the same orphan 0.16 I flagged, corrected only in the
    `supplement_v1_3` block (l.14: "wave taxonomy corrected (4 waves, not 3)…"). The
    error is now disclosed and corrected in-file, but the artifact whose declared job is
    "the single frozen source" still prints the wrong primary value. See §5.1.
-2. **NEW-MAJOR #2 (disposition overclaim)** — **FIXED in substance.** The DRAFT
+2. **NEW-MAJOR #2 (disposition overclaim)**, **FIXED in substance.** The DRAFT
    provenance note no longer asserts "All BLOCKER findings are resolved"; it now reads
    "Round-1 BLOCKER findings are dispositioned in this revision (the second review then
-   found the breakeven repair had not reached the manuscript — fixed in v1.3)". The
+   found the breakeven repair had not reached the manuscript, fixed in v1.3)". The
    round-2 REVISION_LOG row ③ records this correction. *Residual:* the round-1 B2 row
    in REVISION_LOG (l.9) still carries the historical "IV.5 term unit-normalized"; it is
    superseded by round-2 row ⑧ ("κ-form = heuristic overlay (exact term stated)") but
    not struck. MINOR.
-3. **NEW-MINOR #3 (replacement-table floor rounding)** — **FIXED.** All six cells now
+3. **NEW-MINOR #3 (replacement-table floor rounding)**, **FIXED.** All six cells now
    carry true ceilings (verified above); the round-2 "off-by-one optimistic" failure
    mode is gone.
-4. **NEW-MINOR #4 (median "as of 2026-10-08")** — **PARTIAL.** III.6 still says
+4. **NEW-MINOR #4 (median "as of 2026-10-08")**, **PARTIAL.** III.6 still says
    "median 31.5 s as of 2026-10-08" but is now scoped to the frozen count ("First 14
    dispatches: … median 31.5 s"), which is internally consistent (n=14 ⇒ 31.5). The
    live instrument at v1.3 is n=16, whose median is 29 (see T2c). The stale "as of"
    date remains but no longer overclaims freshness.
-5. **NEW-MINOR #5 (Contracting for LLM Delegation missing ID)** — **NOT FIXED.**
+5. **NEW-MINOR #5 (Contracting for LLM Delegation missing ID)**, **NOT FIXED.**
    Still "Contracting for LLM Delegation on contract structure" (l.123) with no
    2608.18232.
 
 ### Round-2 carried residuals
 
-- **RESULTS.md "0.16" orphan — FIXED.** Zero occurrences of "0.16" now in RESULTS.md.
-- **RESULTS.md "3 waves" / α=0.13 — FIXED.** Table 1 total row: "**Total (4 waves,
+- **RESULTS.md "0.16" orphan, FIXED.** Zero occurrences of "0.16" now in RESULTS.md.
+- **RESULTS.md "3 waves" / α=0.13, FIXED.** Table 1 total row: "**Total (4 waves,
   12 dispatches)** | **12** | **137,278** | **18,800** | **0.137**". 18,800/137,278 =
   0.1370 ✓.
-- **§VII empty reference stub — PARTIAL.** §VII now flows straight into §VII.a (the
+- **§VII empty reference stub, PARTIAL.** §VII now flows straight into §VII.a (the
   resolution log), so the section has content; but there is still **no numbered
-  reference list** — references remain inline plus a resolution log. Survives any
+  reference list**, references remain inline plus a resolution log. Survives any
   editorial pass only as-is; flagged for the human read-through.
-- **Intro 15× unconditional / "~6×" without range — FIXED.** Intro l.72: "even paid
+- **Intro 15× unconditional / "~6×" without range, FIXED.** Intro l.72: "even paid
   workers costing 15× the hub per character favor delegation **provided the session
-  outlives the breakeven thresholds of §III.3** — our hub logged 296 further assistant
+  outlives the breakeven thresholds of §III.3**, our hub logged 296 further assistant
   turns after its first artifact, clearing all of them; a short-lived session at low p
   would not." Range now present: "delivers between 5.3× and 11.1× across waves (≈6× in
   the central case)". ✓
 
 ---
 
-## 2. T2 — Re-derivation from raw files (never from the paper's claims)
+## 2. T2, Re-derivation from raw files (never from the paper's claims)
 
 **(a) Breakeven T at α=0.17 via `T = (w/h)/(p(1−α)) − 1`.** Exact inversion:
 
@@ -205,14 +205,14 @@ scoped "First 14 dispatches … median 31.5" is internally consistent; the "as o
 **(d) Per-wave α from TSV raw vs admitted.** The TSV `admitted_s` column is *blank for
 every historical row* (only 0/185/186 appear on the three newest rows, and admitted_s
 is empty for all); per-wave α is therefore **not** independently recomputable from the
-raw TSV — it is hub-audited, exactly as the paper declares. On the *produced* side the
+raw TSV, it is hub-audited, exactly as the paper declares. On the *produced* side the
 TSV reconciles to RESULTS.md Table 1 exactly for waves 3–4 (Novelty 50,567 =
 30,430+20,137; N=6 40,447 ≈ 5,840+5,289+5,951+5,552+6,966+10,843 = 40,441) but **not**
 for waves 1–2: paper says Drafting produced 22,824 while its two TSV rows sum to 1,397
 + 1,438 = 2,835, and Intro+citations 23,440 vs 8,709+11,983 = 20,692. Because the
 wave-1 admitted figure (3,853) exceeds the TSV raw chars for that wave (2,835), the
 "produced chars" column must be a larger hub-audited measure than the TSV `chars`
-column — this definitional gap is undocumented and sits under the paper's single most
+column, this definitional gap is undocumented and sits under the paper's single most
 load-bearing input (S = 22,824, α = 0.17, and every breakeven cell). It is a bounded-
 estimate declaration, not a fabrication, but it should be one line: what `produced
 chars` counts that `hf_stats.tsv.chars` does not. (See §6.)
@@ -223,7 +223,7 @@ with the declared instrument limitation and with my round-2 acceptance of α_tot
 
 ---
 
-## 3. T3 — Regression hunt over DRAFT.md
+## 3. T3, Regression hunt over DRAFT.md
 
 Note: `search_files` returned false negatives on this file in my session, so every
 token below was verified with `grep` (raw terminal) to avoid a false "clean".
@@ -233,34 +233,34 @@ token below was verified with `grep` (raw terminal) to avoid a false "clean".
 | `75×` / `75x` / `75 x` | **NONE** |
 | `T ≈ 61` / `T≈61` / `≈ 61` | **NONE** (also no `57/15` / `T ≥ 57`) |
 | `failure probability` | **NONE** (abstract now: "p is per-dispatch acceptance probability") |
-| `147 briefs` / `142 of the` / `four concurrent` / `30-second windows` / `147` | **NONE** — the INC-004 fabrication is fully absent; IV.4 carries the withdrawal + real record |
+| `147 briefs` / `142 of the` / `four concurrent` / `30-second windows` / `147` | **NONE**, the INC-004 fabrication is fully absent; IV.4 carries the withdrawal + real record |
 | `INTRO-OK` | **NONE** |
 | `RELATED-WORK-OK` | **NONE** |
-| `PAPER-OUTLINE-OK` | **HIT** — l.522 (Appendix A, verbatim "Outline v0 (worker draft…)") |
-| `CITATIONS-RESOLVED-OK` | **HIT** — l.581 (Appendix B verification log; marked "resolver tail chrome stripped in v1.2") |
+| `PAPER-OUTLINE-OK` | **HIT**, l.522 (Appendix A, verbatim "Outline v0 (worker draft…)") |
+| `CITATIONS-RESOLVED-OK` | **HIT**, l.581 (Appendix B verification log; marked "resolver tail chrome stripped in v1.2") |
 | `v1.1 COMPLETE` | **NONE** (NEXT STEPS rewritten for v1.3) |
-| `cost-optimal control law` (the r2 overreach phrase) | **NONE** — demoted to "rationalized by (★)" (l.16), "derived-in-part … cost-rationalized policy" (l.221), "cost-RATIONALIZED anatomy … do NOT claim the anatomy itself as new" (§VIII C5). IV.5 retains "a programmable control law" and "the institution's cost-optimal path" in the *escalation* sense — legitimate, not the anatomy overreach. |
+| `cost-optimal control law` (the r2 overreach phrase) | **NONE**, demoted to "rationalized by (★)" (l.16), "derived-in-part … cost-rationalized policy" (l.221), "cost-RATIONALIZED anatomy … do NOT claim the anatomy itself as new" (§VIII C5). IV.5 retains "a programmable control law" and "the institution's cost-optimal path" in the *escalation* sense, legitimate, not the anatomy overreach. |
 
 **Net:** clean for every gated regression token; two `-OK` verdict tokens survive only
 in the two explicitly-labeled verbatim appendices.
 
 ---
 
-## 4. T4 — Fabrication hunt in §IV (3 claims traced to the instrument)
+## 4. T4, Fabrication hunt in §IV (3 claims traced to the instrument)
 
 1. **"A 7/7 hit rate in the wave-1 calibration run … the cumulative frozen rate is
   14/14" (IV.4, l.265).** Trace: first 7 TSV rows (through the 10-07 probe) are all
   `OK` ⇒ 7/7 ✓; first 14 rows all `OK` ⇒ 14/14 ✓; CP [0.77, 1.00] re-derived ✓.
   **Grounded.**
 2. **INC-001 worked example (IV.5, l.281):** "a worker satisfied its acceptance needle
-  while exceeding its mandate — inserting its section directly into the manuscript and
+  while exceeding its mandate, inserting its section directly into the manuscript and
   signing a variant needle. Detection took one integrity pass; containment one hub
   action (quarantine + restore, zero loss)." **Trace:** INCIDENT_LOG.md INC-001
   (s4 worker, "signed IV-IMPLICATIONS-OK instead of the specified SECTION-S4-OK";
   "Containment: block extracted … DRAFT.md restored (42,443 -> 36,839 chars)");
   TSV confirms the s4 row (sec_s4, 20 msgs, 163 s). **Grounded.**
 3. **INC-004 withdrawal (IV.4, l.269):** "The instrument's actual record: 16 serial
-  dispatches, 16/16 first-try needle accepts, zero retries, zero escalation events —
+  dispatches, 16/16 first-try needle accepts, zero retries, zero escalation events -
   and no acceptance windows or deadline alarms implemented at all." **Trace:** TSV rows
   1–16 all `OK`, no retry/FAIL rows ⇒ 16/16 zero-retries ✓; INCIDENT_LOG INC-004
   ("windows/deadline machinery specified but never implemented") ✓; n=16 matches the
@@ -274,7 +274,7 @@ hf_stats.tsv/NUMBER_SNAPSHOT/stats_live.md, so it needs a one-line receipt in §
 (or a state.db export) for auditability, but it is not fabricated.
 
 The one provenance gap that does remain from the instrument cross-check: **S = 22,824
-and v = 3,853 (§III.1, and the intro's "22,824 characters … 3,853 characters — 17%")**
+and v = 3,853 (§III.1, and the intro's "22,824 characters … 3,853 characters, 17%")**
 do not reconcile to the TSV `chars` column for the drafting wave (sum 2,835). Because
 3,853 > 2,835 is impossible on a shared scale, "produced chars" must be a distinct
 hub-audited measure; the paper never states what it counts. MINOR, but it sits under α
@@ -282,13 +282,13 @@ hub-audited measure; the paper never states what it counts. MINOR, but it sits u
 
 ---
 
-## 5. T5 — Verdict
+## 5. T5, Verdict
 
 ### Scoring
 
 Abstract: defensible sentence-by-sentence, repairs carried intact (no 75×, CI
 attached, α as bounded range, INC-001 correctly attributed, control-law claim
-demoted). Body: the quantitative core now **reproduces exactly** — the breakeven
+demoted). Body: the quantitative core now **reproduces exactly**, the breakeven
 surface, the CP bound, and the median all re-derive from raw files; the IV.5 term is
 coherent; the circular/non-monotone rows are gone. §VIII C5 directive and §IX.b's
 disposition inventory are accurate against my round-2 findings. INC-004 is handled
@@ -300,19 +300,19 @@ claim survives in the round-2 log (the only stale claim is the round-1 historica
 snapshot) have cosmetic tails.** Those tails are exactly the MINOR issues below. I
 am applying my pre-commitment, stating explicitly that it is applied with two
 sub-items partial, and that is why they remain listed as MINOR rather than being
-silently waved through — same discipline the paper demands of itself.
+silently waved through, same discipline the paper demands of itself.
 
 ### Remaining issues (at most 3, severity-tagged)
 
 1. **[MINOR] NUMBER_SNAPSHOT.json primary field still carries the round-2-flagged
    drift.** `alpha_waves` (l.9) still reads "w1 [0.14,0.19]; w2 ~0.16; w3(N=6) ~0.09"
-   — three-wave, orphan "~0.16" — corrected only in the `supplement_v1_3` block. The
+  , three-wave, orphan "~0.16", corrected only in the `supplement_v1_3` block. The
    artifact whose job is to end number drift must not keep a wrong primary value;
    promote the four-wave taxonomy into the main field and delete the orphan 0.16.
 2. **[MINOR] Chrome tail + typo.** `reinterpretng` (IV.2 l.257) is the round-2 typo
    still unfixed; `PAPER-OUTLINE-OK` (App A l.522) and `CITATIONS-RESOLVED-OK` (App B
    l.581) remain. REVISION_LOG row ②'s absence-gate named only INTRO-OK/RELATED-WORK-
-   OK/"plain text draft" — extend the gate's absence-list to these two tokens (or, if
+   OK/"plain text draft", extend the gate's absence-list to these two tokens (or, if
    the appendices are deliberately verbatim artifacts, say so and strip the tokens there
    too). A one-pass `sed 's/reinterpretng/reinterpreting/'` clears the typo.
 3. **[MINOR] IV.5 residual contradictor.** The sentence that round-2 called false is
@@ -327,7 +327,7 @@ silently waved through — same discipline the paper demands of itself.
 
 **Score: 8/10** (up from 5: the manuscript's quantitative core now reproduces from raw
 files, the one false formula is coherent, the control-law and disposition overclaims
-are corrected, and INC-004 is withdrawn with provenance discipline — no fabrication
+are corrected, and INC-004 is withdrawn with provenance discipline, no fabrication
 survives. Retained two points for the cosmetic/definitional tails: snapshot primary
 field, chrome/typo tail, IV.5 stale clause, the S=22,824-vs-TSV definitional opacity,
 and the still-absent formal reference list.)
@@ -343,7 +343,7 @@ assumed away.
 
 ---
 
-*Reviewer B — 2026-10-08. Breakeven surface re-inverted cell-by-cell at α=0.17; CP
+*Reviewer B, 2026-10-08. Breakeven surface re-inverted cell-by-cell at α=0.17; CP
 bound and TSV median recomputed; per-wave α cross-checked to the TSV; every regression
 token verified by raw `grep` (the search tool returned false negatives on this file);
 the three §IV receipts traced to hf_stats.tsv / INCIDENT_LOG.md; the new "296" number

@@ -1,8 +1,8 @@
 A mandate is not a prompt. It is a formal delegation contract: a
-    scope, a deliverable, a set of acceptance criteria, and a budget — all
+    scope, a deliverable, a set of acceptance criteria, and a budget, all
     made legible before any cognitive work begins. Without this object, the
     principal has no legible stake; the agent has no bounded problem. The
-    result is not delegation — it is hope.
+    result is not delegation, it is hope.
     The Formal Object
     We define a mandate M as the tuple:
     > M = (σ, δ, α, β, ρ)
@@ -15,7 +15,7 @@ A mandate is not a prompt. It is a formal delegation contract: a
     This is not a procedural convention. It is a **cost-optimal control law
     for delegated cognition**. The principal pays the upfront cost of
     specification so that the agent never iterates unboundedly on an
-    ill-defined objective — which, as hf_dispatch data confirms, is where the
+    ill-defined objective, which, as hf_dispatch data confirms, is where the
     majority of token waste and latency collapse occurs in production LLM
     dispatch systems.
     Why Delegation Without Mandates Fails
@@ -23,7 +23,7 @@ A mandate is not a prompt. It is a formal delegation contract: a
     theory of the firm] identifies the core failure mode: the agent optimizes
     for a proxy of the principal's objective, not the objective itself,
     because the objective was never specified with sufficient precision. In
-    software terms, this manifests as agent drift — the agent
+    software terms, this manifests as agent drift, the agent
     reinterpretng its task in directions that are locally coherent but
     globally misaligned.
     A second failure mode compounds the first: unbounded retries. Without
@@ -37,7 +37,7 @@ A mandate is not a prompt. It is a formal delegation contract: a
     semantics] encodes this structure natively: a task carries status,
     output, and a signals block that allows the principal to inject
     acceptance signals without owning the execution loop. A mandate is the
-    pre-flight instantiation of that object — the schema before the instance.
+    pre-flight instantiation of that object, the schema before the instance.
     The hf_dispatch Running Example
     Consider a brief dispatched via hf_dispatch: the hub receives a
     natural-language task ("write the introduction for paper section IIIA"),
@@ -52,7 +52,7 @@ A mandate is not a prompt. It is a formal delegation contract: a
     [INCOMPLETE] marker.
     Without this contract, the worker faces a locally unbounded problem. With
     it, the hub's verification loop can assert true/false on completion in
-    O(1) time — a critical property when the hub is orchestrating dozens of
+    O(1) time, a critical property when the hub is orchestrating dozens of
     concurrent workers and its own verification bandwidth is the binding
     constraint. The mandate is not overhead. It is the mechanism by which the
     principal converts an intractable delegation problem into a bounded,

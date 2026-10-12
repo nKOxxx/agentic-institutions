@@ -1,4 +1,4 @@
-## PART III — THE ECONOMICS OF DELEGATED COGNITION (hub-derived, 2026-10-07)
+## PART III, THE ECONOMICS OF DELEGATED COGNITION (hub-derived, 2026-10-07)
 
 ### III.1 Setup and measurements
 
@@ -43,13 +43,13 @@ runs):
 
       (w/h)  <  p · (1 + T) · (1 − α)        … (★)
 
-Three regimes: measured, bounded, or asserted-with-receipt (T — see the III.3 receipt):
+Three regimes: measured, bounded, or asserted-with-receipt (T, see the III.3 receipt):
 
-(1) FREE LANE — w/h = 0. Then (★) holds for every p > 0 and every T ≥ 0.
-    Free-lane delegation cannot lose. Not "usually wins" — cannot lose.
+(1) FREE LANE, w/h = 0. Then (★) holds for every p > 0 and every T ≥ 0.
+    Free-lane delegation cannot lose. Not "usually wins", cannot lose.
 
 breakeven surface recomputed from (★) at α = 0.17 (v1.2; replaces table that
-failed external reproduction — old entries T≥15 @ w/h=20,p=.3 and T≈61
+failed external reproduction, old entries T≥15 @ w/h=20,p=.3 and T≈61
 @ p=.7,w/h=30 were arithmetically impossible / α-contaminated):
   p=0.3: w/h=15 → T ≥ 60 | w/h=20 → T ≥ 80 | w/h=30 → T ≥ 120   (ceilings; T > 59.2/79.3/119.5)
   p=0.7: w/h=15 → T ≥ 25 | w/h=20 → T ≥ 34 | w/h=30 → T ≥ 51   (ceilings; T > 24.8/33.4/50.6)
@@ -57,10 +57,10 @@ failed external reproduction — old entries T≥15 @ w/h=20,p=.3 and T≈61
     A working session in our logs is long-lived: the hub logged 343 further
     assistant turns after its first accepted artifact (query published in
     DRAFT §III.3). So yes: a worker can cost ~15× the hub per char and
-    delegation still wins — because hub chars are amortized over the session's
+    delegation still wins, because hub chars are amortized over the session's
     remaining life while the artifact exists, and worker chars are paid once.
 
-(3) FIXED CONTEXT BUDGET — the result we consider the most important. A hub
+(3) FIXED CONTEXT BUDGET, the result we consider the most important. A hub
     session dies when its context budget K fills. Inline, each artifact
     consumes S of budget; delegated, each consumes only αS. Yield per
     session-lifetime:
@@ -76,7 +76,7 @@ Jevons (1865) observed that efficiency in coal use increased total coal
 consumption. The same rebound governs cognition: as the marginal price of
 worker cognition → 0, dispatch volume expands until a different constraint
 binds. That constraint is (★)'s right side and (3)'s budget: hub verification
-bandwidth — αS per artifact against a finite K. When cognition is free, the
+bandwidth, αS per artifact against a finite K. When cognition is free, the
 scarce factor is not model price; it is the hub's attention.
 
 This is the paper's structural claim. Ration a hub's attention and the
@@ -96,9 +96,9 @@ firms exist: because verification, not production, is the rationed factor.
 
 ### III.5 Threats to validity
 
-Uniform in/out pricing; T as expected remaining turns (heavy-tailed — sessions
+Uniform in/out pricing; T as expected remaining turns (heavy-tailed, sessions
 die early, which hurts the paid-lane case since the inline alternative then looks cheaper);
 acceptance probability p measured on needle-checked drafts only; ε assumed
 small (held in our runs: failure tails were hundreds of chars, not thousands).
-The free-lane result (1) is robust to all of these — it needs only w/h = 0 and
+The free-lane result (1) is robust to all of these, it needs only w/h = 0 and
 α < 1.

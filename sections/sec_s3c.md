@@ -1,15 +1,15 @@
-> **[ARCHIVE — QUARANTINED STAGE OUTPUT. DO NOT CITE.]** Raw worker-stage draft, preserved for provenance only. It contains the FABRICATED worked example withdrawn as INC-004 (see INCIDENT_LOG.md): the "147 briefs / 142-147 / four concurrent workers / 24-hour run" figures have NO instrument record and appear nowhere in the manuscript. The live, corrected text is DRAFT.md §IV.4 (real record: 14/14, hf_stats.tsv). — hub, 2026-10-09 (v1.4.6)
+> **[ARCHIVE, QUARANTINED STAGE OUTPUT. DO NOT CITE.]** Raw worker-stage draft, preserved for provenance only. It contains the FABRICATED worked example withdrawn as INC-004 (see INCIDENT_LOG.md): the "147 briefs / 142-147 / four concurrent workers / 24-hour run" figures have NO instrument record and appear nowhere in the manuscript. The live, corrected text is DRAFT.md §IV.4 (real record: 14/14, hf_stats.tsv)., hub, 2026-10-09 (v1.4.6)
 
 Delegation without verifiable acceptance is delegation without a floor.
     An institution that cannot observe whether a delegated task was accepted
-    — let alone completed — bears the full variance of the agent's behaviour,
+   , let alone completed, bears the full variance of the agent's behaviour,
     collapsing the cost-optimal argument for delegation into plain
     outsourcing. We argue that **machine-checkable acceptance criteria are
     not a UX refinement; they are the structural prerequisite for bounded
     delegation**.
     What acceptance must do
     An acceptance signal carries information that the agent has committed to
-    a specific payload — the needle, in our framing — and that the
+    a specific payload, the needle, in our framing, and that the
     institution can verify commitment independently. This transforms the
     delegation from a probabilistic trust relationship into a monitored one.
     The parameter *p*, the institution's confidence in the agent's
@@ -19,13 +19,13 @@ Delegation without verifiable acceptance is delegation without a floor.
     convergence estimate. Retries stop being open-loop: a missed acceptance
     or a timeout triggers a bounded retry budget, not indefinite re-dispatch.
     We distinguish three instrument types:
-    - Needles — discrete acceptance events: the agent must signal
+    - Needles, discrete acceptance events: the agent must signal
     ACCEPT before a deadline or the slot is returned to the institution's
     pool. A 7/7 hit rate (all seven dispatched briefs accepted within their
     windows) is not a performance metric; it is a calibration signal. It
-    tells the institution that its needle design — the statement of what
-    "accepted" means — is correctly parsed by the agent.
-    - Budgets — spending caps that define the maximum scope of a
+    tells the institution that its needle design, the statement of what
+    "accepted" means, is correctly parsed by the agent.
+    - Budgets, spending caps that define the maximum scope of a
     delegation session. Analogous to ERC-4337 session keys [CITE], which
     embed atomic permission boundaries directly into a transaction context
     rather than relying on off-chain agreement. A session key with a 0.1 ETH
@@ -33,16 +33,16 @@ Delegation without verifiable acceptance is delegation without a floor.
     bundler rejects overflow. Our institution analogously caps agent spend
     per brief, and the hub refuses to dispatch a brief whose budget envelope
     would be exceeded.
-    - Alarms — threshold crossings that invoke escalation or rollback.
+    - Alarms, threshold crossings that invoke escalation or rollback.
     Where a needle is binary (accepted / not accepted) and a budget is
     cumulative (spend vs. cap), an alarm fires when a monitored variable
     crosses a configured boundary: latency exceeds a SLA, error rate breaches
     a tolerance, or a needle remains unresolved past its deadline. Alarms
-    close the retry loop — they trigger a bounded retry or surface the
+    close the retry loop, they trigger a bounded retry or surface the
     failure to the institution's oversight layer.
     Verifiable acceptance as the enabling primitive
-    The key theorem in our framework — dominance inequality (w/h) <
-    p(1+T)(1−α) — requires *p* to be bounded below 1. Without verifiable
+    The key theorem in our framework, dominance inequality (w/h) <
+    p(1+T)(1−α), requires *p* to be bounded below 1. Without verifiable
     acceptance, *p* is unknown and potentially time-varying. With it, the
     institution runs a hypothesis test after each needle window. After *n*
     independent dispatches, the Wald confidence interval on *p* narrows, and
@@ -56,7 +56,7 @@ Delegation without verifiable acceptance is delegation without a floor.
     cycles per needle. Unacknowledged briefs after the first timeout are
     re-queued; a second timeout closes the delegation slot and surfaces the
     failure to the operator. The 7/7 needle-hit rate we observe in
-    steady-state runs is the output of this discipline — not an assumption,
+    steady-state runs is the output of this discipline, not an assumption,
     but a measured outcome of a correctly calibrated acceptance protocol.
     The worked example in context
     In a representative 24-hour run across four concurrent worker agents, our
@@ -67,7 +67,7 @@ Delegation without verifiable acceptance is delegation without a floor.
     142/147, with 5 misses attributable to worker-side deserialisation errors
     that were independently diagnosed and corrected within the same run.
     Critically, every miss triggered an alarm, the retry budget was consumed,
-    and the hub recovered the slot — no brief was lost, and no retry cycle
+    and the hub recovered the slot, no brief was lost, and no retry cycle
     was unbounded. This is the operationalised version of bounded rational
     delegation: verifiable acceptance makes the bound legible to the
     institution in real time.
