@@ -1,61 +1,61 @@
 #!/bin/bash
-# hf_dispatch.sh, one-shot Hyperfusion worker dispatch (FREE lane, zero main-model burn per worker turn)
-# usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [accept-grep-needle] [budget_seconds]
-#   brief-file : file containing the full task brief (deliverables + acceptance + trailer instruction)
-#   worker     : deepseek (default, fast) | minimax (deep reasoning)
-#   needle     : optional string that MUST appear in output, else exit 1 (acceptance grep)
-#   budget     : worker alarm budget in seconds (default 850; keep --timeout above it)
+# hf_dispatch.sh v2 (2026-10-13): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
+# v1 (as run for all 26 rows of hf_stats.tsv) is preserved verbatim as hf_dispatch_v1_as_run.sh.
+# Changes from v1, each answering a finding of the 2026-10-13 external review:
+#   - row is written AFTER the acceptance grep; verdict is OK / NEEDLE-MISS / TIMEOUT / ERROR and the numeric rc is logged
+#   - needle must be the last non-empty line of the worker's final message; its line position is logged
+#   - timestamps are UTC (date -u) with a Z suffix
+#   - every dispatch keeps its own raw output and stderr under $HF_OUT_DIR (no shared /tmp file)
+#   - brief bytes and dispatch-output bytes are logged (the b and o terms of the cost model)
+#   - the append is serialised with flock; the header is created once under the same lock
+#   - v2 rows go to hf_stats_v2.tsv; the v1 table is frozen under its snapshot hash
+# usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]
 set -u
 BRIEF="${1:?usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]}"
 WORKER="${2:-deepseek}"; NEEDLE="${3:-}"; BUDGET="${4:-850}"
 case "$WORKER" in
   deepseek) MODEL="deepseek-ai/DeepSeek-V4-Flash-0731"; PROV="hyper-deepseek" ;;
   minimax)  MODEL="MiniMaxAI/MiniMax-M2.7";             PROV="hyper-minimax" ;;
-  *) MODEL="$WORKER"; PROV="hyper-deepseek" ;;
+  *) echo "HF FAIL: unknown worker '$WORKER' (no registry; add it here explicitly)"; exit 2 ;;
 esac
-OUT_FILE="${5:-/tmp/hf_last_out.txt}"
+STATS="${HF_STATS:-$HOME/.hermes/scripts/hf_stats_v2.tsv}"
+OUT_DIR="${HF_OUT_DIR:-$HOME/.hermes/scripts/hf_out}"; mkdir -p "$OUT_DIR"
+STAMP="$(date -u +%Y%m%dT%H%M%SZ)"; KEY="${STAMP}_$(basename "$BRIEF" .md)_$$"
+OUT_FILE="$OUT_DIR/$KEY.out"; ERR_FILE="$OUT_DIR/$KEY.err"
+BRIEF_B=$(wc -c < "$BRIEF" | tr -d ' ')
 T0=$SECONDS
-OUT=$(perl -e 'alarm shift @ARGV; exec @ARGV' "$BUDGET" \
-  hermes chat -m "$MODEL" --provider "$PROV" -q "$(cat "$BRIEF")" 2>/dev/null)
+perl -e 'alarm shift @ARGV; exec @ARGV' "$BUDGET" \
+  hermes chat -m "$MODEL" --provider "$PROV" -q "$(cat "$BRIEF")" > "$OUT_FILE" 2> "$ERR_FILE"
 RC=$?
 DUR=$((SECONDS - T0))
-printf '%s\n' "$OUT" > "$OUT_FILE"   # full raw output preserved for hub extraction
-# p/T instrumentation: one row per attempt (paper dataset, p-hat = OK/total over the log)
-# v1.2: + artifact_s (cleaned deliverable chars: text after last needle occurrence, chrome
-# stripped) + admitted_s (chars hub actually admitted; filled post-adjudication, else empty).
-# alpha = admitted_s / artifact_s becomes recomputable per row (reviewer finding B4).
-STATS="${HF_STATS:-$HOME/.hermes/scripts/hf_stats.tsv}"
-[ -f "$STATS" ] || printf 'date\tworker\tbrief\tbudget_s\tdur_s\tchars\tmsgs\tverdict\tartifact_s\tadmitted_s\n' >> "$STATS"
-MSGS=$(printf '%s' "$OUT" | grep -o 'Messages:[[:space:]]*[0-9]*' | tail -1 | grep -o '[0-9]*$')
-ARTIFACT_S=""
+OUT_B=$(wc -c < "$OUT_FILE" | tr -d ' ')
+MSGS=$(grep -o 'Messages:[[:space:]]*[0-9]*' "$OUT_FILE" | tail -1 | grep -o '[0-9]*$')
+SESSION=$(grep -o 'session_id:[[:space:]]*[A-Za-z0-9_]*' "$ERR_FILE" | tail -1 | awk '{print $2}')
+# needle gate: strip CLI box chrome, take the last non-empty line, compare to NEEDLE exactly
+NEEDLE_STATUS="none"; NEEDLE_POS=""
 if [ -n "$NEEDLE" ]; then
-  ARTIFACT_S=$(printf '%s' "$OUT" | awk -v nd="$NEEDLE" '
-    { buf[NR]=$0 }
-    END {
-      start=0
-      for (i=1;i<=NR;i++) if (index(buf[i], nd) > 0) start=i
-      if (start==0) { print ""; exit }
-      out=""
-      for (i=start;i<=NR;i++) {
-        line=buf[i]
-        sub(/^[│╭╮╰╯├┤┬┴─ \t]+/, "", line)
-        sub(/─+[ \t]*$/, "", line)
-        gsub(/^[ \t]+|[ \t]+$/, "", line)
-        if (line != "" && line !~ /^[A-Z][a-z]+: [0-9]/) out = out line "\n"
-      }
-      printf "%d", length(out)
-    }')
+  LAST=$(sed -e 's/^[│╭╮╰╯├┤┬┴─ \t]*//' -e 's/[│─ \t]*$//' "$OUT_FILE" | grep -v '^[A-Z][a-z]*: [0-9]' | grep -v '^$' | tail -1)
+  TOTAL=$(wc -l < "$OUT_FILE" | tr -d ' ')
+  POS=$(grep -n -F -- "$NEEDLE" "$OUT_FILE" | tail -1 | cut -d: -f1)
+  NEEDLE_POS="${POS:-0}/$TOTAL"
+  if [ "$LAST" = "$NEEDLE" ]; then NEEDLE_STATUS="hit"; else NEEDLE_STATUS="miss"; fi
 fi
-printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
-  "$(date +%FT%T)" "$WORKER" "$(basename "$BRIEF")" "$BUDGET" "$DUR" "$(printf '%s' "$OUT" | wc -c | tr -d ' ')" \
-  "${MSGS:-?}" \
-  "$([ $RC -eq 0 ] && echo OK || echo TIMEOUT)" \
-  "${ARTIFACT_S:-}" \
-  "${HF_ADMITTED:-}" >> "$STATS"
-# worker's report = tail of its final message (CLI box-draws output; never line-anchor greps)
-echo "$OUT" | tail -25
-if [ -n "$NEEDLE" ]; then
-  echo "$OUT" | grep -q "$NEEDLE" || { echo "HF FAIL: acceptance '$NEEDLE' not in output (rc=$RC)"; exit 1; }
+if   [ "$RC" -eq 142 ] || [ "$RC" -eq 14 ]; then VERDICT="TIMEOUT"
+elif [ "$RC" -ne 0 ];   then VERDICT="ERROR"
+elif [ "$NEEDLE_STATUS" = "miss" ]; then VERDICT="NEEDLE-MISS"
+else VERDICT="OK"; fi
+ARTIFACT_B=""
+if [ "$NEEDLE_STATUS" = "hit" ]; then
+  # artifact = cleaned text of the final message up to and including the needle line
+  ARTIFACT_B=$(sed -e 's/^[│╭╮╰╯├┤┬┴─ \t]*//' -e 's/[│─ \t]*$//' "$OUT_FILE" | grep -v '^[A-Z][a-z]*: [0-9]' | grep -v '^$' | wc -c | tr -d ' ')
 fi
-[ "$RC" -eq 0 ] || { echo "HF FAIL: worker rc=$RC"; exit 1; }
-echo "HF OK ($WORKER, budget ${BUDGET}s)"
+(
+  flock 9
+  [ -s "$STATS" ] || printf 'date_utc\tworker\tbrief\tbudget_s\tdur_s\tout_bytes\tmsgs\trc\tverdict\tneedle\tneedle_pos\tartifact_bytes\tbrief_bytes\tadmitted_chars\tsession_id\tout_file\n' >> "$STATS"
+  printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
+    "$STAMP" "$WORKER" "$(basename "$BRIEF")" "$BUDGET" "$DUR" "$OUT_B" "${MSGS:-?}" "$RC" "$VERDICT" \
+    "$NEEDLE_STATUS" "$NEEDLE_POS" "${ARTIFACT_B:-}" "$BRIEF_B" "" "${SESSION:-}" "$KEY" >> "$STATS"
+) 9>"$STATS.lock"
+# hf_admit.sh <out_file key> <admitted_chars> fills admitted_chars after hub adjudication (same lock).
+tail -25 "$OUT_FILE"
+[ "$VERDICT" = "OK" ] || { echo "HF FAIL: verdict=$VERDICT rc=$RC needle=$NEEDLE_STATUS"; exit 1; }

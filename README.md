@@ -1,6 +1,6 @@
 # Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors
 
-Companion repository for the paper by Nikola Stojanow (v1.5, October 13, 2026).
+Companion repository for the paper by Nikola Stojanow (v1.6, October 13, 2026).
 
 The paper studies institutions for AI agents: a cost model for delegated cognition
 and the mandate / capability-registry / constraints / escalation anatomy it
@@ -14,17 +14,20 @@ are computed from the instruments in this repository.
 
 | Path | What it is |
 |---|---|
-| `DRAFT.md` | Full paper source (Markdown), v1.5 |
+| `DRAFT.md` | Full paper source (Markdown), v1.6 |
 | `latex/` | Pandoc + tectonic build pipeline (`build.sh`), figure source (`figure.tex`), built `paper.pdf` (14 pp) |
 | `RESULTS.md` | Measured results as recorded during the run: Table 1 (delegation waves), findings F1-F5. The paper's Table 1 and Appendix A derive from it |
-| `instrument/hf_dispatch.sh` | The dispatch script: one-shot worker call with budget alarm, acceptance-needle gate, per-attempt TSV logging |
-| `instrument/hf_stats.tsv` | The instrument table: all 26 dispatch attempts, one row per attempt (the paper's frozen snapshot is the first 16 rows; rows 17-26 are review-round dispatches, two of them TIMEOUT) |
+| `instrument/hf_dispatch.sh` | Dispatch script v2 (2026-10-13): row written after the needle gate, verdict OK/NEEDLE-MISS/TIMEOUT/ERROR plus numeric rc, needle position, UTC stamps, per-dispatch output files, flock. Writes `hf_stats_v2.tsv` |
+| `instrument/hf_dispatch_v1_as_run.sh` | The v1 script exactly as it ran for all 26 rows of `hf_stats.tsv`. Its verdict column records exit status only; the needle outcome was not logged |
+| `instrument/hf_admit.sh` | Records the hub's admitted character count against a v2 row after adjudication |
+| `instrument/hf_stats.tsv` | The v1 instrument table, frozen: 26 attempts, one row per attempt. The paper's snapshot is the first 16 rows (13 briefs, 3 probes), all exit-zero; rows 17-26 are review-round dispatches, two of them TIMEOUT. `verdict` = exit status; `admitted_s` is empty in every row |
 | `instrument/hf_paper_stats.py` | Regenerates the paper's derived stats from the TSV |
 | `data/t_freeze_2026-10-09T0416.csv` | Frozen message-id archive: the 343 qualifying assistant turns behind the paper's T figure (SHA-256 receipt in Section III.3) |
-| `scripts/verify_t.sh` | Recounts the frozen archive against the stored hash; run it |
+| `scripts/verify_t.sh` | Recounts the frozen archive (343 raw rows) against the stored hash; run it |
+| `scripts/dedup_t.sh` | Removes the 122 compaction-rewrite rows (four single-second bursts) and prints the 221 distinct turns the paper uses |
 | `INCIDENT_LOG.md` | INC-001 through INC-006 and the INC-004 addendum (paper Appendix B) |
 | `REVISION_LOG.md` | Every reviewer finding and its disposition across five review rounds |
-| `reviews/` | Full reviewer transcripts: three personas (methods, econ, multi-agent systems), five rounds, from 4/10 scores to 8/8/8 |
+| `reviews/` | Full transcripts of the five rounds of hub-dispatched LLM reviewer agents (three personas; rounds 3-5 ran on the same DeepSeek worker as the drafting). Not peer review; the scores inside are uncalibrated self-reports |
 | `sections/` | Section-level source files and the assembly log |
 | `figure/stack.svg` | The v1.4.6 ASCII-era figure, superseded by `latex/figure.tex` |
 | `NUMBER_SNAPSHOT.json`, `stats_live.md`, `prior_art_trawl.md`, `novelty_strike.md`, `part3_math.md` | Frozen numbers snapshot, live stats readout, prior-art trawl, novelty audit, math part source |
@@ -42,11 +45,16 @@ python3 instrument/hf_paper_stats.py
 cd latex && ./build.sh
 ```
 
-Key measured quantities (all from `instrument/hf_stats.tsv` + hub log, see
-`RESULTS.md` for provenance): first-try needle acceptance 14/14 (Clopper-Pearson
-95% CI [0.77, 1.00]); pooled admission ratio alpha = 0.137 across 4 waves /
-12 dispatches; hub:worker traffic asymmetry 2x (185x against deliverable
-artifacts); T = 343 frozen assistant turns, clearing every breakeven threshold.
+Key measured quantities (from `instrument/hf_stats.tsv`, the frozen archive, and the
+hub log; see `NUMBER_SNAPSHOT.json` supplement_v1_6): 16/16 exit-zero completions
+at the frozen 16-row snapshot (the v1 verdict column records exit status, not the
+needle outcome; needle status is hub-attested at 12/13 briefs and mandate-compliant
+first-try acceptance is at most 11/13 given INC-001 and INC-004); hub-audited
+admission fraction alpha in [0.09, 0.19] across 4 drafting waves, 0.137 pooled, with
+no admitted count instrument-logged; hub:worker traffic asymmetry 2.3x (185x against
+deliverable artifacts), from the private hub store; T = 343 raw archived rows of
+which 221 are distinct turns (122 are compaction rewrites; `scripts/dedup_t.sh`),
+both clearing every breakeven horizon in the paper's grid.
 
 ## Provenance note
 
