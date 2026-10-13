@@ -1,0 +1,27 @@
+date	worker	brief	budget_s	dur_s	chars	msgs	verdict	artifact_s	admitted_s
+2026-10-07T11:58	minimax	hf_paper_outline_brief.md	560	37	1397	2	OK		
+2026-10-07T11:59	deepseek	hf_paper_related_brief.md	560	43	1438	2	OK		
+2026-10-07T12:27	minimax	intro_brief.md	560	24	8709	2	OK		
+2026-10-07T12:27	deepseek	cites_brief.md	560	109	11983	18	OK		
+2026-10-07T12:53	deepseek	priorart_brief.md	560	479	30430	70	OK		
+2026-10-07T12:54	deepseek	strike_brief.md	560	525	20137	27	OK		
+2026-10-07T13:08:31	deepseek	hf_probe2.txt	90	7	835	2	OK		
+2026-10-07T13:16:15	minimax	sec_s2_brief.md	560	24	5840	2	OK		
+2026-10-07T13:16:16	minimax	sec_s3d_brief.md	560	25	5289	2	OK		
+2026-10-07T13:16:16	minimax	sec_s3b_brief.md	560	25	5951	2	OK		
+2026-10-07T13:16:16	minimax	sec_s3a_brief.md	560	25	5552	2	OK		
+2026-10-07T13:16:17	minimax	sec_s3c_brief.md	560	26	6966	2	OK		
+2026-10-07T13:18:34	minimax	sec_s4_brief.md	560	163	10843	20	OK		
+2026-10-07T13:34:28	deepseek	resolve_brief.md	560	234	19759	40	OK		
+2026-10-08T12:20:51	deepseek	probe2_brief.md	90	11	901	2	OK	0	
+2026-10-08T12:22:00	deepseek	probe2_brief.md	90	32	902	2	OK	185	
+2026-10-08T18:35:28	deepseek	review3_A.md	900	453	24625	41	OK	186	
+2026-10-08T18:45:15	deepseek	review3_B.md	900	587	26598	66	OK	2480	
+2026-10-08T18:51:29	deepseek	review3_C.md	900	374	25304	32	OK	2965	
+2026-10-08T21:11:57	deepseek	review4_A.md	900	620	29305	46	OK	187	
+2026-10-08T21:19:23	deepseek	review4_B.md	900	446	30092	40	OK	186	
+2026-10-08T21:34:23	deepseek	review4_C.md	900	900	17507	?	TIMEOUT	10497	
+2026-10-08T21:55:38	deepseek	review4_C.md	1200	1200	21035	?	TIMEOUT	14302	
+2026-10-09T07:53:01	deepseek	review5_A.md	900	333	29239	43	OK	186	
+2026-10-09T07:58:02	deepseek	review5_B.md	900	301	31309	50	OK	186	
+2026-10-09T08:05:45	deepseek	review5_C.md	1200	463	32222	66	OK	186	

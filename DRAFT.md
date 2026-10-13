@@ -1,4 +1,7 @@
 # Agentic Institutions
+
+**Companion repository**: all instruments (dispatch script, instrument table, frozen message-id archive, incident log, reviewer transcripts) are public at [github.com/nKOxxx/agentic-institutions](https://github.com/nKOxxx/agentic-institutions).
+
 ## ABSTRACT
 
 Delegated cognition is becoming the dominant mode of knowledge production, yet the
