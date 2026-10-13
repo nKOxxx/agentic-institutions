@@ -6,7 +6,7 @@ cd "$(dirname "$0")"
 pandoc ../DRAFT.md -f gfm+implicit_figures -t latex -s --shift-heading-level-by=-1 \
   --metadata title="Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors" \
   --metadata author="Nikola Stojanow" \
-  --metadata date="October 13, 2026 (v1.6)" -o DRAFT.tex
+  --metadata date="October 13, 2026 (v1.7)" -o DRAFT.tex
 python3 postprocess.py DRAFT.tex paper.tex
 tectonic paper.tex
 echo "OK: $(pdfinfo paper.pdf | grep Pages)"

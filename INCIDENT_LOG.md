@@ -44,8 +44,8 @@
 ## INC-004 (2026-10-08), worker-fabricated worked example survived 2 review rounds [RESOLVED]
 - What: §IV.4 carried a "worked example": 147 briefs, 142/147 first-try accepts,
   four concurrent workers, 24-hour run, 30-second acceptance windows. None of it
-  exists. The institution's actual record at that point: 16 serial dispatches,
-  16/16 first-try accepts, zero retries, no windows (windows/deadline machinery
+  exists. The institution's actual record at that point: 16 parallel-dispatched rows,
+  16/16 exit-zero completions, zero retries, no windows (windows/deadline machinery
   specified but never implemented).
 - Detection: NONE by the panel, 6 hostile reviewer-passes (3+3) missed it. Caught
   by hub-side record check (state.db turns-after-artifact + TSV cross-grep) after
@@ -95,3 +95,28 @@ leads, not provenance.
 ## INC-004 ADDENDUM (2026-10-09, found by r5 panel)
 
 The fabricated worked example withdrawn in INC-004 survived VERBATIM in the git-tracked worker-stage archive sections/sec_s3c.md (147 briefs / 142-147 / four concurrent / 24-hour / 30-second windows), unmarked. Found by reviewer C's round-5 sweep; hub re-swept all of sections/ independently (only sec_s3c affected). Disposition: quarantine banner prepended (DO NOT CITE, INC-004 pointer, real-record pointer), no archive text altered. Lesson: withdrawal notes must chase every copy of a fabrication, including raw stage archives, the manuscript being clean is necessary but not sufficient.
+
+## INC-006 ADDENDUM (2026-10-13, found by the v1.5 external panel, round 1)
+Two further receipt errors in the same measurement: the freeze time was labelled UTC when it was local
+(04:16 +04 = 00:16 UTC; commit cd46a7e), and 122 of the 343 archived rows are single-second bursts
+(48/18/26/30 rows, ids stepping by two) that are compaction rewrites, not turns. Distinct turns: 221
+(scripts/dedup_t.sh). Conclusion unchanged (221 > 119.5). Fix (v1.6): both stated in §3.3; raw and
+de-duplicated counts reported; the de-duplication is labelled an inference from id spacing.
+
+## INC-007 (2026-10-13), reviewer-sourced total transcribed without recomputation [RESOLVED]
+- What: v1.6 Table 1 printed the wall-clock total as 860. The four per-wave maxima (43/109/525/163) sum to
+  840. The 860 was an arithmetic error in a round-1 reviewer's text that the author copied into the table.
+- Detection: the same panel, round 2 (reviewers A and C independently).
+- Root cause: INC-006's lesson (a reviewer's number is a provenance lead, not provenance) was not applied
+  to a derived cell in the first table of the revision that reported INC-006 as fixed.
+- Fix (v1.7): 840; scripts/check_table1.sh recomputes every Table 1 cell from instrument/hf_stats.tsv and
+  the build fails on mismatch.
+
+## INC-008 (2026-10-13), v1 needle test satisfiable by the CLI's echo of the brief [RECORDED]
+- What: hermes `chat -q` prints the full brief to stdout ("Query: ...") before the response. Every brief
+  carried its needle in a trailer instruction. v1's whole-transcript grep could therefore pass without the
+  worker emitting anything. Found by the v1.6 panel (reviewer D) by reading the CLI source; confirmed by
+  the author against cli.py (query label = full query; _print_exit_summary on stdout).
+- Consequence: needle status for the 26 v1 rows is hub-attested only; the v1 gate attested nothing.
+- Fix (v2.1 dispatcher): the transcript is cut at the exit summary and the echo dropped before the gate;
+  needle must be the last non-empty response line; fixture test in instrument/test/.

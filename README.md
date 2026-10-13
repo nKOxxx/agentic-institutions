@@ -1,6 +1,6 @@
 # Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors
 
-Companion repository for the paper by Nikola Stojanow (v1.6, October 13, 2026).
+Companion repository for the paper by Nikola Stojanow (v1.7, October 13, 2026).
 
 The paper studies institutions for AI agents: a cost model for delegated cognition
 and the mandate / capability-registry / constraints / escalation anatomy it
@@ -14,15 +14,17 @@ are computed from the instruments in this repository.
 
 | Path | What it is |
 |---|---|
-| `DRAFT.md` | Full paper source (Markdown), v1.6 |
-| `latex/` | Pandoc + tectonic build pipeline (`build.sh`), figure source (`figure.tex`), built `paper.pdf` (14 pp) |
-| `RESULTS.md` | Measured results as recorded during the run: Table 1 (delegation waves), findings F1-F5. The paper's Table 1 and Appendix A derive from it |
-| `instrument/hf_dispatch.sh` | Dispatch script v2 (2026-10-13): row written after the needle gate, verdict OK/NEEDLE-MISS/TIMEOUT/ERROR plus numeric rc, needle position, UTC stamps, per-dispatch output files, flock. Writes `hf_stats_v2.tsv` |
+| `DRAFT.md` | Full paper source (Markdown), v1.7 |
+| `latex/` | Pandoc + tectonic build pipeline (`build.sh`), figure source (`figure.tex`), built `paper.pdf` (18 pp) |
+| `RESULTS.md` | Measured results as recorded during the run (v1.4.6), superseded by the paper's Table 1 and Appendix A; kept for provenance with a banner |
+| `instrument/hf_dispatch.sh` | Dispatch script v2.1 (2026-10-13): cuts the CLI's brief echo and exit summary before the gate, row written after the gate, verdict OK/NEEDLE-MISS/TIMEOUT/ERROR plus numeric rc, needle position, UTC stamps, per-dispatch output files, portable lock, b and o bytes. Writes `hf_stats_v2.tsv`. Tested against `instrument/test/fixture_q_path.txt` (`instrument/test/test_gate.sh`); not yet run against a live worker |
 | `instrument/hf_dispatch_v1_as_run.sh` | The v1 script exactly as it ran for all 26 rows of `hf_stats.tsv`. Its verdict column records exit status only; the needle outcome was not logged |
 | `instrument/hf_admit.sh` | Records the hub's admitted character count against a v2 row after adjudication |
 | `instrument/hf_stats.tsv` | The v1 instrument table, frozen: 26 attempts, one row per attempt. The paper's snapshot is the first 16 rows (13 briefs, 3 probes), all exit-zero; rows 17-26 are review-round dispatches, two of them TIMEOUT. `verdict` = exit status; `admitted_s` is empty in every row |
-| `instrument/hf_paper_stats.py` | Regenerates the paper's derived stats from the TSV |
-| `data/t_freeze_2026-10-09T0416.csv` | Frozen message-id archive: the 343 qualifying assistant turns behind the paper's T figure (SHA-256 receipt in Section III.3) |
+| `instrument/hf_paper_stats.py` | Regenerates TSV-derived stats from the repo copy by default (`python3 instrument/hf_paper_stats.py [TSV [DB [OUT]]]`); the store-derived figures (Appendix A F3) need the hub's private `state.db` and are skipped without it |
+| `reviews/citation_check_2026-10-13.md` | Citation verification transcript for the 34 references |
+| `scripts/check_table1.sh` | Recomputes every Table 1 cell from the instrument table and fails if DRAFT.md disagrees (added after INC-007) |
+| `data/t_freeze_2026-10-09T0416.csv` | Frozen message-id archive: the 343 archived rows behind the paper's T figure, 221 of them distinct turns (SHA-256 receipt in paper §3.3) |
 | `scripts/verify_t.sh` | Recounts the frozen archive (343 raw rows) against the stored hash; run it |
 | `scripts/dedup_t.sh` | Removes the 122 compaction-rewrite rows (four single-second bursts) and prints the 221 distinct turns the paper uses |
 | `INCIDENT_LOG.md` | INC-001 through INC-006 and the INC-004 addendum (paper Appendix B) |

@@ -1,4 +1,4 @@
-> **[ARCHIVE, QUARANTINED STAGE OUTPUT. DO NOT CITE.]** Raw worker-stage draft, preserved for provenance only. It contains the FABRICATED worked example withdrawn as INC-004 (see INCIDENT_LOG.md): the "147 briefs / 142-147 / four concurrent workers / 24-hour run" figures have NO instrument record and appear nowhere in the manuscript. The live, corrected text is DRAFT.md §IV.4 (real record: 14/14, hf_stats.tsv)., hub, 2026-10-09 (v1.4.6)
+> **[ARCHIVE, QUARANTINED STAGE OUTPUT. DO NOT CITE.]** Raw worker-stage draft, preserved for provenance only. It contains the FABRICATED worked example withdrawn as INC-004 (see INCIDENT_LOG.md): the "147 briefs / 142-147 / four concurrent workers / 24-hour run" figures have NO instrument record and appear nowhere in the manuscript. The live, corrected text is DRAFT.md §4.4 (real record: 16 exit-zero rows, needle status hub-attested, mandate-compliant at most 11/13; see §3.7)., hub, 2026-10-09 (v1.4.6)
 
 Delegation without verifiable acceptance is delegation without a floor.
     An institution that cannot observe whether a delegated task was accepted

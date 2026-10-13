@@ -1,10 +1,10 @@
 {
-  "frozen": "2026-10-09 (T re-freeze 04:16; stats snapshot 2026-10-08)",
+  "frozen": "2026-10-13 (v1.7; n=16 rows; T re-freeze 2026-10-09 04:16 +04)",
   "source": "hf_stats.tsv+hf_paper_stats.py",
-  "n_dispatches": 14,
-  "phat": "14/14",
-  "phat_cp95": "[0.77, 1.00]",
-  "median_dur_s": 31.5,
+  "n_dispatches": 16,
+  "phat": "16/16 exit-zero completions (needle outcome not logged; hub-attested 12/13 briefs; mandate-compliant <= 11/13)",
+  "phat_cp95": "[0.79, 1.00] (exit-zero rate, pooled over a heterogeneous brief mix)",
+  "median_dur_s": 29.0,
   "dur_range_s": "7-525",
   "alpha_waves": "w1 [0.17,0.19]; w2 0.14; w3(N=6) 0.09; w4(reviews) 0.09, pooled 0.137 (hub-audited wave-level; per-dispatch instrumentation began 2026-10-08)",
   "asymmetry": "2x traffic / 185x artifact (dual denominator, hf_paper_stats.py)",
@@ -63,6 +63,20 @@
       76.2,
       114.9
     ],
-    "instrument_v2": "instrument/hf_dispatch.sh (v2); v1 as run preserved as hf_dispatch_v1_as_run.sh; v2 rows go to hf_stats_v2.tsv"
+    "instrument_v2": "instrument/hf_dispatch.sh (v2); v1 as run preserved as hf_dispatch_v1_as_run.sh; v2 rows go to hf_stats_v2.tsv",
+    "wall_sum_of_maxima": 840
+  },
+  "superseded_v1_2_values": {
+    "n_dispatches": 14,
+    "phat": "14/14",
+    "phat_cp95": "[0.77, 1.00]",
+    "median_dur_s": 31.5
+  },
+  "supplement_v1_7": {
+    "date": "2026-10-13",
+    "table1_wall_total": 840,
+    "inc_007": "860 transcribed from reviewer text; corrected",
+    "inc_008": "v1 needle grep satisfiable by CLI brief echo",
+    "dispatcher": "v2.1 (echo cut, portable lock, o logged, fixture test)"
   }
 }

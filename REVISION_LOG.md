@@ -132,3 +132,21 @@ Hub arithmetic pass, independent of the panel: every cell re-derived exact (alph
 ## ROUND 5 PANEL + v1.4.6 CLEAN SWEEP (2026-10-09)
 
 R5 scores: A 7->**8**, B 7->**8** (pre-commitment honored in reverse: "My round-4 ACCEPT condition is satisfied"; re-verified all 343 ids against the DB predicate at content level), C **8** flat (r4 cap lifted). All three ACCEPT-WITH-MINORS; all named the same 3 minors: count-only verifier, stale snapshot stamping, bookkeeping (part3 banner sibling, wave-label, stale changelog, B typo). C additionally found INC-004 residue in sections/sec_s3c.md (borders MAJOR). v1.4.6 closes all of it: verifier SHA-256 content pin (tamper test: same-count rewrite now FAILS loudly), snapshot frozen-date + 277 superseded-mark, part3 banner demoted (four-round flag), INC-004 quarantine banner (hub re-swept sections/ independently: only s3c affected), wave-label uncollided, changelog current, typo dead.
+
+## v1.6 (2026-10-13): external panel round 1 on v1.5 (four personas, different model family, author's review tooling)
+
+Verdict REVISE, 12 required changes R1–R12 (chair synthesis in logs/review-run-031.md of the review engine). All twelve applied in v1.6: acceptance restated as exit-zero completion with hub-attested needle status and mandate-compliant <= 11/13; T de-duplicated (343 raw, 122 compaction rows, 221 turns) with hash, commit and zones in §3.3; Assumption E (persistence) and P2 (caching) stated and carried into abstract/§8; Proposition 1 with (★ε), Corollary 1 with p*, Lemma 1; §3.4 relabelled Observation with 1/α an upper bound; maturity labels made true per element; provenance audit added as the acceptance apparatus of record; mandate tuple typed; review process described as it was; §6 relabelled conjecture; Table 1 Wall column recomputed, resolver row added, median corrected; four references added.
+
+## v1.7 (2026-10-13): external panel round 2 on v1.6
+
+Verdict REVISE, 10 required changes S1–S10; chair sign-off on the diff suffices. Dispositions:
+- S1 Table 1 total 860 → 840 (INC-007 recorded; panel including chair named as source; scripts/check_table1.sh added to the build).
+- S2 ν defined once as the predicate on the artifact against the specified string; INC-001 is a variant-needle scope violation, not a needle pass, everywhere; §4.2 derivation uses x ∈ δ from assembly; §4.5 names INC-004 alone as the pass.
+- S3 CLI echo stated in §3.7 (INC-008 recorded); "captured after the needle" and "neither admitted" replaced; the round-4 worker-side file write characterised as INC-001 action class with its permission status unrecorded.
+- S4 dispatcher v2.1: echo and exit summary cut before the gate, exec-or-die, non-empty precondition, mkdir lock, o logged as returned bytes, Session parsed from stdout, HERMES_KANBAN_TASK asserted unset; fixture + test in instrument/test/ (passes); labelled "not yet been exercised" twice in the paper.
+- S5 ledger made symmetric in §4.4, §5, §6, §8 (panel catches of INC-003/005/006 named with reviewer and round).
+- S6 Lemma 1 printed in exact form with residue and assumptions; cross-reference repointed to §4.5.
+- S7 symmetric eviction stated; reduced condition and threshold ≈ 0.015 printed.
+- S8 ski-rental identification moved to Proposition 1; online rule replaced by committed-policy bounds.
+- S9 RESULTS.md banner; sec_s3c pointer; snapshot top level regenerated at n = 16; README; verify_t.sh asserts 221; INCIDENT_LOG INC-006 addendum, INC-007, INC-008; this log; DRAFT.md canonical copy is the one in this repository, the author's working copy is synced to it before each commit.
+- S10 wording pass complete; citation transcript committed as reviews/citation_check_2026-10-13.md.

@@ -4,10 +4,13 @@ Regenerates stats_live.md from hf_stats.tsv + state.db. Stdlib only."""
 import os, sqlite3, sys
 from datetime import datetime
 
+import sys
 HOME = os.path.expanduser('~')
-TSV = os.path.join(HOME, '.hermes/scripts/hf_stats.tsv')
-OUT = os.path.join(HOME, 'agentic-institutions-paper/stats_live.md')
-DB = os.path.join(HOME, '.hermes/state.db')
+REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# paths as arguments: TSV [DB [OUT]]; defaults to the repo copy of the TSV; store-dependent stats are skipped without DB
+TSV = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, 'instrument', 'hf_stats.tsv')
+DB = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HOME, '.hermes/state.db')
+OUT = sys.argv[3] if len(sys.argv) > 3 else os.path.join(REPO, 'stats_live.md')
 WORKER_PREFIX = '2026'  # worker sessions are timestamp-named; hub sessions excluded below
 HUB_SESSIONS = {'20260725_131848_6f3bc9c8'}  # this hub's session lineage (update on restart)
 
