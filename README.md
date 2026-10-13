@@ -1,10 +1,10 @@
 # Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors
 
-Companion repository for the paper by Nikola Stojanow (v1.4.6, October 9, 2026).
+Companion repository for the paper by Nikola Stojanow (v1.5, October 13, 2026).
 
-The paper studies institutions for AI agents: machine money, agent organizations
-with mandate/capabilities/constraints/escalation, and the sense-reason-act loop,
-grounded in a live hub-and-worker measurement. One orchestrating hub model
+The paper studies institutions for AI agents: a cost model for delegated cognition
+and the mandate / capability-registry / constraints / escalation anatomy it
+rationalises, grounded in a live hub-and-worker measurement. One orchestrating hub model
 delegated artifact drafting to free-tier worker models, verified every delivery
 against machine-checkable acceptance needles, and logged the whole run. The
 paper's economics (admission ratio alpha, cost asymmetry, breakeven thresholds)
@@ -14,19 +14,19 @@ are computed from the instruments in this repository.
 
 | Path | What it is |
 |---|---|
-| `DRAFT.md` | Full paper source (Markdown), v1.4.6 |
-| `latex/` | Pandoc + tectonic build pipeline (`build.sh`), built `paper.pdf` (20 pp) |
-| `RESULTS.md` | Measured results, Table 1 (delegation waves), findings F1-F5, also shipped as paper Appendix C |
+| `DRAFT.md` | Full paper source (Markdown), v1.5 |
+| `latex/` | Pandoc + tectonic build pipeline (`build.sh`), figure source (`figure.tex`), built `paper.pdf` (14 pp) |
+| `RESULTS.md` | Measured results as recorded during the run: Table 1 (delegation waves), findings F1-F5. The paper's Table 1 and Appendix A derive from it |
 | `instrument/hf_dispatch.sh` | The dispatch script: one-shot worker call with budget alarm, acceptance-needle gate, per-attempt TSV logging |
-| `instrument/hf_stats.tsv` | The instrument table: all 25 dispatch attempts, one row per attempt (n=14 froze the paper's p-hat and duration stats; later rows are review-round dispatches) |
+| `instrument/hf_stats.tsv` | The instrument table: all 26 dispatch attempts, one row per attempt (the paper's frozen snapshot is the first 16 rows; rows 17-26 are review-round dispatches, two of them TIMEOUT) |
 | `instrument/hf_paper_stats.py` | Regenerates the paper's derived stats from the TSV |
 | `data/t_freeze_2026-10-09T0416.csv` | Frozen message-id archive: the 343 qualifying assistant turns behind the paper's T figure (SHA-256 receipt in Section III.3) |
 | `scripts/verify_t.sh` | Recounts the frozen archive against the stored hash; run it |
-| `INCIDENT_LOG.md` | INC-001 through INC-006: mandate drift, verification gaps, withdrawn claims, honest failure record |
+| `INCIDENT_LOG.md` | INC-001 through INC-006 and the INC-004 addendum (paper Appendix B) |
 | `REVISION_LOG.md` | Every reviewer finding and its disposition across five review rounds |
 | `reviews/` | Full reviewer transcripts: three personas (methods, econ, multi-agent systems), five rounds, from 4/10 scores to 8/8/8 |
 | `sections/` | Section-level source files and the assembly log |
-| `figure/stack.svg` | The delegation-stack figure |
+| `figure/stack.svg` | The v1.4.6 ASCII-era figure, superseded by `latex/figure.tex` |
 | `NUMBER_SNAPSHOT.json`, `stats_live.md`, `prior_art_trawl.md`, `novelty_strike.md`, `part3_math.md` | Frozen numbers snapshot, live stats readout, prior-art trawl, novelty audit, math part source |
 
 ## Reproducing the headline numbers

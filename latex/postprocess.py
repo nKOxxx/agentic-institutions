@@ -15,6 +15,7 @@ MAP = {
     '≤': r'$\leq$', '≥': r'$\geq$', '≈': r'$\approx$', '∈': r'$\in$',
     '⊆': r'$\subseteq$', '·': r'$\cdot$', '★': r'$\star$', '§': r'\S{}',
     '₁': r'\textsubscript{1}', '₂': r'\textsubscript{2}',
+    'ν': r'$\nu$', '≪': r'$\ll$', '†': r'\dag{}', '⋆': r'$\star$',
     'p\u0302': r'$\hat{p}$', '«': r'\guillemetleft{}', '»': r'\guillemetright{}',
 }
 # multi-char first (p̂), then single chars
