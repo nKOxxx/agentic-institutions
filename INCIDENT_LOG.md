@@ -119,5 +119,7 @@ de-duplicated counts reported; the de-duplication is labelled an inference from 
   worker emitting anything. Found by the v1.6 panel (reviewer D) by reading the CLI source; confirmed by
   the author against cli.py (query label = full query; _print_exit_summary on stdout).
 - Consequence: needle status for the 26 v1 rows is hub-attested only; the v1 gate attested nothing.
-- Fix (v2.1 dispatcher): the transcript is cut at the exit summary and the echo dropped before the gate;
-  needle must be the last non-empty response line; fixture test in instrument/test/.
+- Fix (v2.2 dispatcher): the worker is invoked on the quiet path (-Q), which prints the response alone and the
+  session id to stderr; line endings are normalised (the interactive path writes CRLF to files, which a
+  hand-written fixture had missed: found by the v1.7 S4 check); needle must be the last non-empty response
+  line; fixtures generated with the same print call, including a CRLF case, in instrument/test/.

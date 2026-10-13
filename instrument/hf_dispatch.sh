@@ -1,19 +1,28 @@
 #!/bin/bash
-# hf_dispatch.sh v2.1 (2026-10-13): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
+# hf_dispatch.sh v2.2 (2026-10-13): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
 # v1 (as run for all 26 rows of hf_stats.tsv) is preserved verbatim as hf_dispatch_v1_as_run.sh.
-# v2/v2.1 answer the 2026-10-13 panel findings (round 1 and round 2):
-#   - the hermes single-query path (-q) echoes the full brief to stdout as "Query: ..." and ends stdout with an
-#     exit summary ("Resume this session with:" ... "Session:" "Duration:" "Messages:"). v1's whole-transcript grep
-#     could therefore be satisfied by the echo. v2.1 cuts the transcript at the exit summary and drops the echo
-#     before any gate or byte count.
-#   - row is written AFTER the gate; verdict is OK / NEEDLE-MISS / TIMEOUT / ERROR; numeric rc logged
-#   - needle must be the last non-empty line of the response; its line position is logged
-#   - timestamps are UTC (date -u) with a Z suffix; per-dispatch stdout and stderr are kept under $HF_OUT_DIR
-#   - b (brief bytes) and o (bytes this script returns into the hub's context) are logged; out_bytes is the raw transcript
-#   - the append is serialised with a portable mkdir lock; perl exec failure is loud; empty output is never OK
-#   - HERMES_KANBAN_TASK must be unset (hermes maps SIGALRM to exit 0 when it is set)
-#   - v2 rows go to hf_stats_v2.tsv; the v1 table is frozen under its snapshot hash
-# Scope is still enforced by instruction in the brief, not by this script (no write allow-list, jail, or tool policy).
+# Column legend of hf_stats_v2.tsv (one line per column):
+#   date_utc        UTC timestamp of the row, Z-suffixed
+#   worker          deepseek | minimax (unknown names are rejected; there is no registry)
+#   brief           basename of the brief file
+#   budget_s        wall-clock alarm in seconds
+#   dur_s           measured wall-clock seconds
+#   out_bytes       bytes of the worker's raw stdout (the quiet path prints the final response only)
+#   msgs            not available on the quiet path; always "n/a" (v1 rows parsed it from the exit summary)
+#   rc              numeric exit status of the worker process (142 = killed by the alarm)
+#   verdict         OK | NEEDLE-MISS | TIMEOUT | ERROR, decided after the gate
+#   needle          hit | miss | none (none when no needle was given)
+#   needle_pos      line of the last needle occurrence / total non-empty response lines
+#   artifact_bytes  bytes of the non-empty response lines, on a hit (ends at the needle line)
+#   brief_bytes     bytes of the brief file (the b term of the cost model)
+#   o_bytes         bytes this script prints to the hub (the o term): response tail + status line
+#   admitted_chars  filled later by hf_admit.sh after hub adjudication
+#   session_id      worker session id, parsed from stderr ("session_id: ...")
+#   key             per-dispatch key; raw stdout is $HF_OUT_DIR/<key>.out, stderr <key>.err
+# Why the quiet path: hermes `chat -q` echoes the full brief to stdout, boxes the response, and appends an exit
+# summary, and its terminal library writes CRLF line endings when stdout is a file; v1's whole-transcript grep could
+# be satisfied by the echo (INC-008). `chat -Q` prints the final response alone with a plain print and the session id
+# to stderr. Line endings are normalised anyway. Scope is still enforced by instruction, not by this script.
 # usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]
 set -u
 BRIEF="${1:?usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]}"
@@ -28,49 +37,51 @@ esac
 STATS="${HF_STATS:-$HOME/.hermes/scripts/hf_stats_v2.tsv}"
 OUT_DIR="${HF_OUT_DIR:-$HOME/.hermes/scripts/hf_out}"; mkdir -p "$OUT_DIR"
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"; KEY="${STAMP}_$(basename "$BRIEF" .md)_$$"
-RAW="$OUT_DIR/$KEY.raw"; RESP="$OUT_DIR/$KEY.resp"; ERR="$OUT_DIR/$KEY.err"
+RAW="$OUT_DIR/$KEY.out"; ERR="$OUT_DIR/$KEY.err"
 BRIEF_B=$(wc -c < "$BRIEF" | tr -d ' ')
 T0=$SECONDS
 perl -e 'alarm shift @ARGV; exec @ARGV or die "exec failed: $!\n"' "$BUDGET" \
-  hermes chat -m "$MODEL" --provider "$PROV" -q "$(cat "$BRIEF")" > "$RAW" 2> "$ERR"
+  hermes chat -m "$MODEL" --provider "$PROV" -Q "$(cat "$BRIEF")" > "$RAW" 2> "$ERR"
 RC=$?
 DUR=$((SECONDS - T0))
 OUT_B=$(wc -c < "$RAW" | tr -d ' ')
-# --- response = transcript minus the CLI's brief echo and minus the exit summary (hermes cli.py: "Query:" line,
-#     then the response panel, then "Resume this session with:" / Session: / Duration: / Messages:)
-awk '
-  /^Resume this session with:/ { exit }
-  /^Query: / && !seen { seen=1; next }
-  { print }
-' "$RAW" | sed -e 's/^[│╭╮╰╯├┤┬┴─ \t]*//' -e 's/[│─ \t]*$//' > "$RESP"
-MSGS=$(grep -o 'Messages:[[:space:]]*[0-9]*' "$RAW" | tail -1 | grep -o '[0-9]*$')
-SESSION=$(grep -o '^Session:[[:space:]]*[A-Za-z0-9_]*' "$RAW" | tail -1 | awk '{print $2}')
+# response = stdout with CR removed and trailing blanks trimmed; non-empty lines only for the gate
+RESP=$(tr -d '\r' < "$RAW" | sed -e 's/[[:blank:]]*$//' | grep -v '^$')
+SESSION=$(grep -o 'session_id:[[:space:]]*[A-Za-z0-9_]*' "$ERR" | tail -1 | awk '{print $2}')
 NEEDLE_STATUS="none"; NEEDLE_POS=""
 if [ -n "$NEEDLE" ]; then
-  LAST=$(grep -v '^$' "$RESP" | tail -1)
-  TOTAL=$(wc -l < "$RESP" | tr -d ' ')
-  POS=$(grep -n -F -- "$NEEDLE" "$RESP" | tail -1 | cut -d: -f1)
+  LAST=$(printf '%s\n' "$RESP" | tail -1)
+  TOTAL=$(printf '%s\n' "$RESP" | grep -c '')
+  POS=$(printf '%s\n' "$RESP" | grep -n -F -- "$NEEDLE" | tail -1 | cut -d: -f1)
   NEEDLE_POS="${POS:-0}/$TOTAL"
   if [ "$LAST" = "$NEEDLE" ]; then NEEDLE_STATUS="hit"; else NEEDLE_STATUS="miss"; fi
 fi
 if   [ "$RC" -eq 142 ]; then VERDICT="TIMEOUT"
-elif [ "$RC" -ne 0 ] || [ ! -s "$RAW" ] || [ -z "$(grep -v "^$" "$RESP" | head -1)" ]; then VERDICT="ERROR"
+elif [ "$RC" -ne 0 ] || [ -z "$RESP" ]; then VERDICT="ERROR"
 elif [ "$NEEDLE_STATUS" = "miss" ]; then VERDICT="NEEDLE-MISS"
 else VERDICT="OK"; fi
 ARTIFACT_B=""
-[ "$NEEDLE_STATUS" = "hit" ] && ARTIFACT_B=$(grep -v '^$' "$RESP" | wc -c | tr -d ' ')
-# --- artifact_bytes above = the echo-free response through its last non-empty line, which on a hit is the needle line
-# --- what this script returns into the hub's context (the o term): the response tail plus the status line
-RETURN=$(grep -v '^$' "$RESP" | tail -25; echo "HF $VERDICT rc=$RC needle=$NEEDLE_STATUS key=$KEY")
+[ "$NEEDLE_STATUS" = "hit" ] && ARTIFACT_B=$(printf '%s\n' "$RESP" | wc -c | tr -d ' ')
+RETURN=$(printf '%s\n' "$RESP" | tail -25; echo "HF $VERDICT rc=$RC needle=$NEEDLE_STATUS key=$KEY")
 O_B=$(printf '%s\n' "$RETURN" | wc -c | tr -d ' ')
-# --- portable lock (mkdir is atomic on POSIX filesystems; flock(1) is absent on macOS)
-LOCK="$STATS.lock"; i=0
-until mkdir "$LOCK" 2>/dev/null; do i=$((i+1)); [ $i -gt 200 ] && { echo "HF FAIL: lock timeout"; exit 2; }; sleep 0.05; done
-trap 'rmdir "$LOCK" 2>/dev/null' EXIT
-[ -s "$STATS" ] || printf 'date_utc\tworker\tbrief\tbudget_s\tdur_s\tout_bytes\tmsgs\trc\tverdict\tneedle\tneedle_pos\tartifact_bytes\tbrief_bytes\to_bytes\tadmitted_chars\tsession_id\tkey\n' >> "$STATS"
-printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' \
-  "$STAMP" "$WORKER" "$(basename "$BRIEF")" "$BUDGET" "$DUR" "$OUT_B" "${MSGS:-?}" "$RC" "$VERDICT" \
-  "$NEEDLE_STATUS" "$NEEDLE_POS" "${ARTIFACT_B:-}" "$BRIEF_B" "$O_B" "" "${SESSION:-}" "$KEY" >> "$STATS"
-rmdir "$LOCK" 2>/dev/null; trap - EXIT
+ROW=$(printf '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' \
+  "$STAMP" "$WORKER" "$(basename "$BRIEF")" "$BUDGET" "$DUR" "$OUT_B" "n/a" "$RC" "$VERDICT" \
+  "$NEEDLE_STATUS" "$NEEDLE_POS" "${ARTIFACT_B:-}" "$BRIEF_B" "$O_B" "" "${SESSION:-}" "$KEY")
+HEADER='date_utc\tworker\tbrief\tbudget_s\tdur_s\tout_bytes\tmsgs\trc\tverdict\tneedle\tneedle_pos\tartifact_bytes\tbrief_bytes\to_bytes\tadmitted_chars\tsession_id\tkey'
+# portable lock (mkdir is atomic; flock(1) is absent on macOS). A stale lock older than the budget is removed.
+LOCK="$STATS.lock"
+if [ -d "$LOCK" ] && [ -n "$(find "$LOCK" -maxdepth 0 -mmin +$(( (BUDGET+59)/60 )) 2>/dev/null)" ]; then rmdir "$LOCK" 2>/dev/null; fi
+i=0
+until mkdir "$LOCK" 2>/dev/null; do
+  i=$((i+1))
+  if [ $i -gt 200 ]; then printf '%s\n' "$ROW" >> "$STATS.pending"; echo "HF WARN: lock $LOCK held >10s; row appended to $STATS.pending"; break; fi
+  sleep 0.05
+done
+if [ $i -le 200 ]; then
+  trap 'rmdir "$LOCK" 2>/dev/null' EXIT
+  [ -s "$STATS" ] || printf "$HEADER\n" >> "$STATS"
+  printf '%s\n' "$ROW" >> "$STATS"
+  rmdir "$LOCK" 2>/dev/null; trap - EXIT
+fi
 printf '%s\n' "$RETURN"
 [ "$VERDICT" = "OK" ] || exit 1
