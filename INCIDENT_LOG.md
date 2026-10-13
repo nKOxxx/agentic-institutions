@@ -105,12 +105,13 @@ de-duplicated counts reported; the de-duplication is labelled an inference from 
 
 ## INC-007 (2026-10-13), reviewer-sourced total transcribed without recomputation [RESOLVED]
 - What: v1.6 Table 1 printed the wall-clock total as 860. The four per-wave maxima (43/109/525/163) sum to
-  840. The 860 was an arithmetic error in a round-1 reviewer's text that the author copied into the table.
+  840. The 860 was an arithmetic error in a round-1 reviewer's text, repeated in the chair's required-change
+  list, that the author copied into the table. Source: the review panel, including its chair.
 - Detection: the same panel, round 2 (reviewers A and C independently).
 - Root cause: INC-006's lesson (a reviewer's number is a provenance lead, not provenance) was not applied
   to a derived cell in the first table of the revision that reported INC-006 as fixed.
-- Fix (v1.7): 840; scripts/check_table1.sh recomputes every Table 1 cell from instrument/hf_stats.tsv and
-  the build fails on mismatch.
+- Fix (v1.7): 840; scripts/check_table1.sh, invoked by latex/build.sh, recomputes every instrument-derived
+  Table 1 cell from instrument/hf_stats.tsv and the build fails on mismatch (hub-audited cells excluded).
 
 ## INC-008 (2026-10-13), v1 needle test satisfiable by the CLI's echo of the brief [RECORDED]
 - What: hermes `chat -q` prints the full brief to stdout ("Query: ...") before the response. Every brief

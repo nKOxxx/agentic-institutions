@@ -140,7 +140,7 @@ Verdict REVISE, 12 required changes R1–R12 (chair synthesis in logs/review-run
 ## v1.7 (2026-10-13): external panel round 2 on v1.6
 
 Verdict REVISE, 10 required changes S1–S10; chair sign-off on the diff suffices. Dispositions:
-- S1 Table 1 total 860 → 840 (INC-007 recorded; panel including chair named as source; scripts/check_table1.sh added to the build).
+- S1 Table 1 total 860 → 840 (INC-007 recorded; panel including chair named as source; scripts/check_table1.sh invoked by latex/build.sh).
 - S2 ν defined once as the predicate on the artifact against the specified string; INC-001 is a variant-needle scope violation, not a needle pass, everywhere; §4.2 derivation uses x ∈ δ from assembly; §4.5 names INC-004 alone as the pass.
 - S3 CLI echo stated in §3.7 (INC-008 recorded); "captured after the needle" and "neither admitted" replaced; the round-4 worker-side file write characterised as INC-001 action class with its permission status unrecorded.
 - S4 dispatcher v2.1: echo and exit summary cut before the gate, exec-or-die, non-empty precondition, mkdir lock, o logged as returned bytes, Session parsed from stdout, HERMES_KANBAN_TASK asserted unset; fixture + test in instrument/test/ (passes); labelled "not yet been exercised" twice in the paper.
@@ -150,3 +150,8 @@ Verdict REVISE, 10 required changes S1–S10; chair sign-off on the diff suffice
 - S8 ski-rental identification moved to Proposition 1; online rule replaced by committed-policy bounds.
 - S9 RESULTS.md banner; sec_s3c pointer; snapshot top level regenerated at n = 16; README; verify_t.sh asserts 221; INCIDENT_LOG INC-006 addendum, INC-007, INC-008; this log; DRAFT.md canonical copy is the one in this repository, the author's working copy is synced to it before each commit.
 - S10 wording pass complete; citation transcript committed as reviews/citation_check_2026-10-13.md.
+
+## v1.7.1 (2026-10-13): chair sign-off residuals
+
+Chair verdict on v1.7: ACCEPT, with four pre-tag fixes and six optional notes, all applied here: check_table1.sh wired into latex/build.sh with the locale pinned, "every instrument-derived cell"; hf_paper_stats.py guards the store block and degrades without state.db; incident counts in §5/§6/§8 reconciled with the seven-entry register and INC-008 added to Appendix B; README page count 19; INCIDENT_LOG INC-007 names the chair; the needle-trailer claim labelled hub-attested; Lemma 1 residue at p = 0.3 noted; v2.1 non-empty precondition applied to the response; access date stated for all web references.
+Note: commit c9aa08e (amended away into 5dbd00a) contained a stats_live.md regenerated at 18:10 against a store that did not hold the hub session (workers: 0); it was reverted before the commit was finalised. The regeneration ran because the stats script had no guard, which the v1.7.1 fix adds.

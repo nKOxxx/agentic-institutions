@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Recompute Table 1 from instrument/hf_stats.tsv and assert DRAFT.md carries the same cells (added after INC-007).
 set -u
+export LC_ALL=en_US.UTF-8
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"; TSV="$ROOT/instrument/hf_stats.tsv"; DRAFT="${1:-$ROOT/DRAFT.md}"
 fail=0
 check(){ grep -q -F -- "$2" "$DRAFT" && echo "ok   $1 = $2" || { echo "FAIL $1: '$2' not in DRAFT.md"; fail=1; }; }

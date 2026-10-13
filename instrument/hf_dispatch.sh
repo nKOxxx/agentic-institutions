@@ -54,7 +54,7 @@ if [ -n "$NEEDLE" ]; then
   if [ "$LAST" = "$NEEDLE" ]; then NEEDLE_STATUS="hit"; else NEEDLE_STATUS="miss"; fi
 fi
 if   [ "$RC" -eq 142 ]; then VERDICT="TIMEOUT"
-elif [ "$RC" -ne 0 ] || [ ! -s "$RAW" ]; then VERDICT="ERROR"
+elif [ "$RC" -ne 0 ] || [ ! -s "$RAW" ] || [ -z "$(grep -v "^$" "$RESP" | head -1)" ]; then VERDICT="ERROR"
 elif [ "$NEEDLE_STATUS" = "miss" ]; then VERDICT="NEEDLE-MISS"
 else VERDICT="OK"; fi
 ARTIFACT_B=""
