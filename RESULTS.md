@@ -7,7 +7,7 @@ All numbers from `~/.hermes/state.db` + `hf_stats.tsv`. [M] = measured,
 
 | Wave | N | produced (chars) | admitted | α | wall |
 |---|---|---|---|---|---|
-| Drafting (outline+related) | 2 | 22,824 | 3,853 | 0.17 | 80s |
+| Drafting (outline+related) | 2 | 22,824 (TSV: 2,835) | 3,853 | 0.17 | 80s |
 | Intro+citations | 2 | 23,440 | 4,447 | 0.19 | 133s |
 | Novelty trawl+strike | 2 | 50,567 | 7,000 | 0.14 | 969s |
 | N=6 body sections | 6 | 40,447 | ~3,500 | ~0.09 | 419s |
