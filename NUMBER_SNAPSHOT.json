@@ -6,7 +6,7 @@
   "phat_cp95": "[0.77, 1.00]",
   "median_dur_s": 31.5,
   "dur_range_s": "7-525",
-  "alpha_waves": "w1 [0.17,0.19]; w2 0.14; w3(N=6) 0.09; w4(reviews) 0.09 \u2014 pooled 0.137 (hub-audited wave-level; per-dispatch instrumentation began 2026-10-08)",
+  "alpha_waves": "w1 [0.17,0.19]; w2 0.14; w3(N=6) 0.09; w4(reviews) 0.09, pooled 0.137 (hub-audited wave-level; per-dispatch instrumentation began 2026-10-08)",
   "asymmetry": "2x traffic / 185x artifact (dual denominator, hf_paper_stats.py)",
   "supplement_v1_3": {
     "date": "2026-10-08",

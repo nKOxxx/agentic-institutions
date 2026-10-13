@@ -11,7 +11,7 @@ if [ "$ARCH" -ne 343 ]; then echo "FAIL: archive != frozen 343"; exit 1; fi
 if command -v sha256sum >/dev/null 2>&1; then HASH=$(sha256sum "$CSV" | cut -d' ' -f1)
 else HASH=$(shasum -a 256 "$CSV" | cut -d' ' -f1); fi
 if [ "$HASH" != "$WANT_HASH" ]; then
-  echo "FAIL: archive content hash mismatch — tamper or wrong file."
+  echo "FAIL: archive content hash mismatch, tamper or wrong file."
   echo "      got      $HASH"
   echo "      expected $WANT_HASH"
   exit 1
