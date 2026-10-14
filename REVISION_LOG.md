@@ -163,3 +163,7 @@ S3 PASS, S4 FAIL: the v2.1 gate missed on output shaped by the CLI's actual libr
 ## v1.7.3 (2026-10-14): first live v2 run on the hub failed before the worker started
 
 `hermes chat -Q "<brief>"` exits 2: -Q is a store-true flag, the brief must still be passed with -q. v2.2's first live dispatch therefore logged an ERROR row (rc 2, 0 bytes, 1 s) with no worker involved; the row and its .out/.err files were removed before the corrected run, since they measure the script, not a worker. Fix: `-Q -q "<brief>"` (dispatcher v2.3). The hub's live T query returned 1,046 rows on 2026-10-14; the paper continues to cite the frozen 343/221.
+
+## v1.7.4 (2026-10-14): first live v2.3 row
+
+Probe brief to DeepSeek: 9 s, 449 bytes, needle hit as the last of two response lines, session id captured; row 1 of instrument/hf_stats_v2.tsv with raw output and stderr retained. §3.7 and §4.4 now say v2 was exercised once; no paper number comes from it.
