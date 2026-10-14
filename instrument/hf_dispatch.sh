@@ -1,5 +1,5 @@
 #!/bin/bash
-# hf_dispatch.sh v2.4 (2026-10-14): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
+# hf_dispatch.sh v2.5 (2026-10-14): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
 # v1 (as run for all 26 rows of hf_stats.tsv) is preserved verbatim as hf_dispatch_v1_as_run.sh.
 # Column legend of hf_stats_v2.tsv (one line per column):
 #   date_utc        UTC timestamp of the row, Z-suffixed
@@ -21,16 +21,19 @@
 #   key             per-dispatch key; raw stdout is $HF_OUT_DIR/<key>.out, stderr <key>.err
 # Row policy: a worker process that exits non-zero after exec is written as a row with verdict ERROR and its
 # .out/.err are kept; a script precondition failure (missing, empty or unreadable brief, HERMES_KANBAN_TASK set,
-# hermes not on PATH, unknown worker) writes no row and exits 2 to the hub. The first live attempt (rc 2,
+# hermes not on PATH, unknown worker, hub arm without its two env vars) writes no row and exits 2 to the hub. The first live attempt (rc 2,
 # 2026-10-14, brief passed to the wrong CLI switch) was removed by hand with its files before this rule existed;
 # see REVISION_LOG v1.7.3.
 # Why the quiet path: hermes `chat -q` echoes the full brief to stdout, boxes the response, and appends an exit
 # summary, and its terminal library writes CRLF line endings when stdout is a file; v1's whole-transcript grep could
 # be satisfied by the echo (INC-008). `chat -Q -q <brief>` prints the final response alone (-Q is a flag; the brief still goes through -q) with a plain print and the session id
 # to stderr. Line endings are normalised anyway. Scope is still enforced by instruction, not by this script.
-# usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]
+# v2.5 adds one worker entry, `hub`, resolved from AB_HUB_MODEL and AB_HUB_PROVIDER, for the inline arm of
+# experiments/ab-2026-10 (the hub's own model drafting the same brief in a fresh session, logged through this gate).
+# No other change from v2.4.
+# usage: hf_dispatch.sh <brief-file> [deepseek|minimax|hub] [needle] [budget_s]
 set -u
-BRIEF="${1:?usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]}"
+BRIEF="${1:?usage: hf_dispatch.sh <brief-file> [deepseek|minimax|hub] [needle] [budget_s]}"
 [ -f "$BRIEF" ] && [ -s "$BRIEF" ] && [ -r "$BRIEF" ] || { echo "HF FAIL: brief missing, empty, unreadable or not a file: $BRIEF"; exit 2; }
 WORKER="${2:-deepseek}"; NEEDLE="${3:-}"; BUDGET="${4:-850}"
 [ -z "${HERMES_KANBAN_TASK:-}" ] || { echo "HF FAIL: HERMES_KANBAN_TASK is set; budget timeouts would exit 0"; exit 2; }
@@ -38,6 +41,8 @@ command -v hermes >/dev/null 2>&1 || { echo "HF FAIL: hermes not on PATH"; exit 
 case "$WORKER" in
   deepseek) MODEL="deepseek-ai/DeepSeek-V4-Flash-0731"; PROV="hyper-deepseek" ;;
   minimax)  MODEL="MiniMaxAI/MiniMax-M2.7";             PROV="hyper-minimax" ;;
+  hub)      [ -n "${AB_HUB_MODEL:-}" ] && [ -n "${AB_HUB_PROVIDER:-}" ] || { echo "HF FAIL: hub arm needs AB_HUB_MODEL and AB_HUB_PROVIDER"; exit 2; }
+            MODEL="$AB_HUB_MODEL"; PROV="$AB_HUB_PROVIDER" ;;
   *) echo "HF FAIL: unknown worker '$WORKER' (no registry; add it here explicitly)"; exit 2 ;;
 esac
 STATS="${HF_STATS:-$HOME/.hermes/scripts/hf_stats_v2.tsv}"

@@ -77,7 +77,7 @@
     "table1_wall_total": 840,
     "inc_007": "860 transcribed from reviewer text; corrected",
     "inc_008": "v1 needle grep satisfiable by CLI brief echo",
-    "dispatcher": "v2.4 (quiet path -Q -q, CR normalised, mkdir lock, pending file, missing-brief check, row policy in header; v2.3 exercised once 2026-10-14, row 1 of hf_stats_v2.tsv)"
+    "dispatcher": "v2.5 (quiet path -Q -q, CR normalised, mkdir lock, pending file, missing-brief check, row policy in header, hub worker entry for experiments/ab-2026-10; v2.3 exercised once 2026-10-14, row 1 of hf_stats_v2.tsv)"
   },
   "supplement_v1_7_7": {
     "date": "2026-10-14",
