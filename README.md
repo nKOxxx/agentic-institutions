@@ -1,6 +1,6 @@
 # Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors
 
-Companion repository for the paper by Nikola Stojanow (v1.7, October 13, 2026).
+Companion repository for the paper by Nikola Stojanow (v1.7.5, October 14, 2026).
 
 The paper studies institutions for AI agents: a cost model for delegated cognition
 and the mandate / capability-registry / constraints / escalation anatomy it
@@ -31,6 +31,7 @@ are computed from the instruments in this repository.
 | `INCIDENT_LOG.md` | INC-001 through INC-006 and the INC-004 addendum (paper Appendix B) |
 | `REVISION_LOG.md` | Every reviewer finding and its disposition across five review rounds |
 | `reviews/` | Full transcripts of the five rounds of hub-dispatched LLM reviewer agents (three personas; rounds 3-5 ran on the same DeepSeek worker as the drafting). Not peer review; the scores inside are uncalibrated self-reports |
+| `briefs/` | The 23 dispatched brief files (every row of the v1 instrument except the first connectivity probe) and the shared round-2 reviewer note. Each ends with the trailer that names its needle |
 | `sections/` | Section-level source files and the assembly log |
 | `figure/stack.svg` | The v1.4.6 ASCII-era figure, superseded by `latex/figure.tex` |
 | `NUMBER_SNAPSHOT.json`, `stats_live.md`, `prior_art_trawl.md`, `novelty_strike.md`, `part3_math.md` | Frozen numbers snapshot, live stats readout, prior-art trawl, novelty audit, math part source |

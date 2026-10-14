@@ -123,3 +123,15 @@ de-duplicated counts reported; the de-duplication is labelled an inference from 
   session id to stderr; line endings are normalised (the interactive path writes CRLF to files, which a
   hand-written fixture had missed: found by the v1.7 S4 check); needle must be the last non-empty response
   line; fixtures generated with the same print call, including a CRLF case, in instrument/test/.
+
+## INC-001 / INC-004 ADDENDA (2026-10-14, briefs recovered)
+The 23 dispatched briefs were recovered and committed to briefs/. They establish: (a) every brief ends with a
+trailer naming its needle, so the v1 whole-transcript test was satisfiable by the CLI echo for every row
+(INC-008 confirmed); (b) the INC-001 worker signed its brief's section label (IV-IMPLICATIONS) instead of
+the specified SECTION-S4-OK; (c) the constraints brief (sec_s3b_brief.md) asked for the 7/7 needle-hit rate
+as the worked example, so the INC-004 fabrication was spontaneous, not induced; (d) the round-4 reviewer
+brief permitted exactly one file write, so the review4_C file write was within mandate; (e) the section
+briefs' filenames, section labels and needles are permuted (hub-side naming), which explains why the
+quarantined fabrication lives in sections/sec_s3c.md though dispatched from sec_s3b_brief.md; (f) the
+intro brief instructed the worker to write "cost-optimal control law" and "the economics re-derive the
+anatomy", so those overclaims were hub-authored.
