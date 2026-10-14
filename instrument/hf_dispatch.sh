@@ -31,7 +31,7 @@
 # usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]
 set -u
 BRIEF="${1:?usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]}"
-[ -f "$BRIEF" ] && [ -s "$BRIEF" ] || { echo "HF FAIL: brief missing, empty or not a file: $BRIEF"; exit 2; }
+[ -f "$BRIEF" ] && [ -s "$BRIEF" ] && [ -r "$BRIEF" ] || { echo "HF FAIL: brief missing, empty, unreadable or not a file: $BRIEF"; exit 2; }
 WORKER="${2:-deepseek}"; NEEDLE="${3:-}"; BUDGET="${4:-850}"
 [ -z "${HERMES_KANBAN_TASK:-}" ] || { echo "HF FAIL: HERMES_KANBAN_TASK is set; budget timeouts would exit 0"; exit 2; }
 command -v hermes >/dev/null 2>&1 || { echo "HF FAIL: hermes not on PATH"; exit 2; }
