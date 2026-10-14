@@ -171,3 +171,5 @@ Probe brief to DeepSeek: 9 s, 449 bytes, needle hit as the last of two response 
 ## v1.7.5 (2026-10-14): briefs recovered and committed
 
 briefs/ added (23 dispatched briefs + review2_common.md; hf_probe2.txt not retained). §3.7 needle-trailer claim verified; round-4 file write characterised as within mandate; brief/needle permutation explained; §5 states INC-004 was spontaneous and names the hub-authored origin of two struck overclaims; strike brief's pre-seeded leads disclosed. Tag v1.7.5 on this commit; §5 cites it.
+
+Note: the first v1.7.5 commit (d25616e) carried the repo-side changes but not the manuscript edits, because the edit script aborted before writing; the tag was moved to the corrected commit minutes later.
