@@ -14,8 +14,8 @@ export AB_HUB_PROVIDER="<its provider name as hermes names it>"
 unset HERMES_KANBAN_TASK
 ```
 
-Record the two values you set in a file `$AB/hub_model.txt` (one line: model, provider), since the CLI logs the model
-only in the .err files.
+Record the two values you set in a file `$AB/hub_model.txt` (one line: model, provider). The CLI's quiet path does not
+log the model anywhere (the .err files carry only the session id), so this file is the only record of the inline arm's model.
 
 ## 1. Dispatch, k = 1..6, arm D then arm I, no retries
 
@@ -26,13 +26,13 @@ for k in 1 2 3 4 5 6; do
 done
 ```
 
-Each call prints the response tail and a status line ending in `key=<key>`. Twelve rows land in
-`$AB/ab_stats_v2.tsv`; raw output in `$AB/out/<key>.out`. If a dispatch fails a precondition it exits 2 and writes
+Each call prints the response tail and a status line ending in `key=<key>`. One row per call lands in
+`$AB/ab_stats_v2.tsv` (the run of record has eighteen: twelve valid and six from placeholder model variables, retained); raw output in `$AB/out/<key>.out`. If a dispatch fails a precondition it exits 2 and writes
 no row; fix the cause and rerun that one call. Do not delete rows.
 
 ## 2. Adjudicate, one row at a time, under PROTOCOL.md's rule
 
-For each of the twelve keys: read `$AB/out/<key>.out`. Decide ACCEPT or REJECT with a reason code (FAB, SCOPE,
+For each valid key: read `$AB/out/<key>.out`. Decide ACCEPT or REJECT with a reason code (FAB, SCOPE,
 NEEDLE, LEN, OTHER). For ACCEPT, copy the sentences you would weave into SUPPLEMENT.md, unedited, into
 `$AB/admitted/<key>.md`, then:
 
@@ -55,4 +55,4 @@ python3 -I $AB/ab_stats.py --write
 git add $AB && git commit -m "ab-2026-10: twelve rows, adjudicated, RESULTS.md generated" && git push
 ```
 
-Commit the data exactly once, after step 2 is complete. The paper's §3.8 is written from RESULTS.md after that.
+Commit the data after step 2 is complete (the run of record committed the rows before adjudication and the adjudication after, a benign split that the revision log names). The paper's §3.8 is written from RESULTS.md after that.

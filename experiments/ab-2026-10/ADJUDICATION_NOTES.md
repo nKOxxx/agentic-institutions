@@ -9,13 +9,27 @@ Dispatch note: the first six `hub` rows (keys ending 77383, 77523, 77676, 77826,
 18:37 UTC) ran with the two environment variables set to their literal placeholders (`<hub model>`,
 `<hub provider>`); the CLI returned "Unknown provider '<hub provider>'" in 1 to 2 seconds, exit 1, and the
 dispatcher wrote ERROR rows as its policy requires. They are an instrument misconfiguration, not six hub
-failures, and are adjudicated REJECT OTHER so that they stay in the table and out of the pairs. The six valid
+failures, and are adjudicated REJECT OTHER to record the outcome; they are out of the pairs because the valid hub rows came
+later and `ab_stats.py` takes the last row per brief and arm (line 25), a rule the protocol does not state; the REJECT
+records the adjudication and does not exclude them, and `scripts/check_ab.py` now asserts the order. The six valid
 hub rows ran at 19:03 to 19:32 UTC on `glm-4.6` via `zai` (`hub_model.txt`). The pairing rule, as implemented in
-`ab_stats.py` from the start, takes the last row per brief and arm.
+`ab_stats.py` from the start, takes the last row per brief and arm. The hub model (`glm-4.6`, provider `zai`) is recorded
+by the operator in `hub_model.txt`; the CLI's `.err` files carry only the session id, contrary to PROTOCOL.md's
+expectation, so the inline arm's model identity is attested while the worker's is fixed at dispatcher line 42.
+RESULTS.md as generated carries neither the model name, the dispatcher version nor the adjudication log that
+PROTOCOL.md's Reporting section named; they are in `hub_model.txt`, the dispatcher header and `ab_adjudication.tsv`.
 
-Verdicts: all twelve valid rows ACCEPT. No draft invented a number, name, date, file, commit or incident. Statements
-that were unsupported by or contrary to the fact sheet were excluded from admission, not grounds for rejection;
-they are listed here so the line between ACCEPT and admission is visible.
+Verdicts: all twelve valid rows ACCEPT under the rule's enumerated clause. No draft invented a number, name, date, file,
+commit or incident. Statements that were unsupported by or contrary to the fact sheet were excluded from admission,
+not grounds for rejection; that reading of rule (2) was fixed after the run, when the drafts had been read, and
+PROTOCOL.md does not contain it. Under the traceability clause read literally the eight drafts listed below with an
+excluded statement would be REJECT FAB; `ab_counterfactual.py` prints the marks under that reading (acceptance 1/6,
+α_D = 0.026, P1 and P2 FAIL). The length rule (900 to 1,400 words, reason code LEN) was also treated as advisory after
+the run: arm-D s2 is 1,515 words and arm-D s6 1,421 by `wc -w` without the needle line; under REJECT LEN on both,
+acceptance is 4/6 and α_D = 0.114, both marks PASS. The protocol designed a self-admission by the hub of its own
+drafts (α_I); the hub did not adjudicate, so α_I is this session's admission of the hub model's drafts and the
+self-admission design was not executed. The excluded statements are listed here so the line between ACCEPT and
+admission is visible.
 
 - ab_s1 D (deepseek): "then fill in the result" (v1 filled nothing in after the row); "quiet-ish mode, but not the
   quietest one available" (not in the sheet).
