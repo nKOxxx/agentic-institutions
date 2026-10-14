@@ -1,5 +1,5 @@
 #!/bin/bash
-# hf_dispatch.sh v2.2 (2026-10-13): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
+# hf_dispatch.sh v2.3 (2026-10-14): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
 # v1 (as run for all 26 rows of hf_stats.tsv) is preserved verbatim as hf_dispatch_v1_as_run.sh.
 # Column legend of hf_stats_v2.tsv (one line per column):
 #   date_utc        UTC timestamp of the row, Z-suffixed
@@ -21,7 +21,7 @@
 #   key             per-dispatch key; raw stdout is $HF_OUT_DIR/<key>.out, stderr <key>.err
 # Why the quiet path: hermes `chat -q` echoes the full brief to stdout, boxes the response, and appends an exit
 # summary, and its terminal library writes CRLF line endings when stdout is a file; v1's whole-transcript grep could
-# be satisfied by the echo (INC-008). `chat -Q` prints the final response alone with a plain print and the session id
+# be satisfied by the echo (INC-008). `chat -Q -q <brief>` prints the final response alone (-Q is a flag; the brief still goes through -q) with a plain print and the session id
 # to stderr. Line endings are normalised anyway. Scope is still enforced by instruction, not by this script.
 # usage: hf_dispatch.sh <brief-file> [deepseek|minimax] [needle] [budget_s]
 set -u
@@ -41,7 +41,7 @@ RAW="$OUT_DIR/$KEY.out"; ERR="$OUT_DIR/$KEY.err"
 BRIEF_B=$(wc -c < "$BRIEF" | tr -d ' ')
 T0=$SECONDS
 perl -e 'alarm shift @ARGV; exec @ARGV or die "exec failed: $!\n"' "$BUDGET" \
-  hermes chat -m "$MODEL" --provider "$PROV" -Q "$(cat "$BRIEF")" > "$RAW" 2> "$ERR"
+  hermes chat -m "$MODEL" --provider "$PROV" -Q -q "$(cat "$BRIEF")" > "$RAW" 2> "$ERR"
 RC=$?
 DUR=$((SECONDS - T0))
 OUT_B=$(wc -c < "$RAW" | tr -d ' ')
