@@ -24,6 +24,10 @@ g = re.search(r"^Proviso on the real o: \(b \+ o\)/S_D = (\d+)/(\d+) = (\d+\.\d+
 g = re.search(r"^Within-arm multiplier M' pooled = S_D/Delta_D = (\d+)/(\d+) = (\d+\.\d+)", cf, re.M); assert g; want("M'", [g.group(3)])
 g = re.search(r"^Variant, literal traceability clause .*: acceptance (\d/6), alpha_D = (\d+)/(\d+) = ([\d.]+)", cf, re.M); assert g; want('literal', [g.group(1), g.group(4)])
 g = re.search(r"^Variant, length rule .*: acceptance (\d/6), alpha_D = (\d+)/(\d+) = ([\d.]+)", cf, re.M); assert g; want('length', [g.group(1), g.group(4)])
+g = re.search(r"^Print-back against the inline draft, o_D > S_I on every pair: (.*)\.$", cf, re.M); assert g
+for pair in g.group(1).split('; '):
+    k, o, _, si = pair.split(); assert int(o) > int(si), pair
+    want('o_D > S_I ' + k, [o, si])
 alphas = [float(x) for x in re.findall(r'^\| ab_s\d \|(?: [^|]* \|){5} ([\d.]+) \|', res, re.M)]; Ms = [float(x) for x in re.findall(r'^\| ab_s\d \|(?: [^|]* \|){7} ([\d.]+) \|', res, re.M)]
 want('alpha range', [f'{min(alphas):.3f}', f'{max(alphas):.3f}']); want('M range', [f'{min(Ms):.2f}', f'{max(Ms):.2f}'])
 # row order: for each brief and arm, every non-OK row must precede the valid row (ab_stats.py takes the last row)
