@@ -119,7 +119,7 @@ de-duplicated counts reported; the de-duplication is labelled an inference from 
   worker emitting anything. Found by the v1.6 panel (reviewer D) by reading the CLI source; confirmed by
   the author against cli.py (query label = full query; _print_exit_summary on stdout).
 - Consequence: needle status for the 26 v1 rows is hub-attested only; the v1 gate attested nothing.
-- Fix (v2.2 dispatcher): the worker is invoked on the quiet path (-Q), which prints the response alone and the
+- Fix (v2.3 dispatcher): the worker is invoked on the quiet path (-Q -q), which prints the response alone and the
   session id to stderr; line endings are normalised (the interactive path writes CRLF to files, which a
   hand-written fixture had missed: found by the v1.7 S4 check); needle must be the last non-empty response
   line; fixtures generated with the same print call, including a CRLF case, in instrument/test/.
@@ -129,9 +129,24 @@ The 23 dispatched briefs were recovered and committed to briefs/. They establish
 trailer naming its needle, so the v1 whole-transcript test was satisfiable by the CLI echo for every row
 (INC-008 confirmed); (b) the INC-001 worker signed its brief's section label (IV-IMPLICATIONS) instead of
 the specified SECTION-S4-OK; (c) the constraints brief (sec_s3b_brief.md) asked for the 7/7 needle-hit rate
-as the worked example, so the INC-004 fabrication was spontaneous, not induced; (d) the round-4 reviewer
+as the worked example and, in its rules line, licensed concrete examples from a system the worker could not
+observe, so the INC-004 figures were the worker's own and the under-specified deliverable the hub's; (d) the round-4 reviewer
 brief permitted exactly one file write, so the review4_C file write was within mandate; (e) the section
 briefs' filenames, section labels and needles are permuted (hub-side naming), which explains why the
 quarantined fabrication lives in sections/sec_s3c.md though dispatched from sec_s3b_brief.md; (f) the
 intro brief instructed the worker to write "cost-optimal control law" and "the economics re-derive the
 anatomy", so those overclaims were hub-authored.
+
+## INC-007 ADDENDUM (2026-10-14, panel round 3)
+Two further panel-sourced sentences were transcribed into v1.7 without checking: a committed-policy bound in
+§3.3 stated as a ratio to the optimum below 1 (from the chair's round-2 required-change list, S8) and an
+abstract clause asserting "same-model" review for two rounds whose model is not recorded (from a reviewer's
+round-2 suggestion adopted by the chair, S10). Both caught by the panel's third round, both against its own
+interest. Fix (v1.7.7): bound restated as max{1, (w/h)/p + alpha}; abstract clause replaced. Lesson unchanged:
+a panel's sentence is a lead to re-derive, not text to transcribe.
+
+## INC-001 ADDENDUM 2 (2026-10-14, panel round 3)
+The 13 drafting briefs carry no action constraint of any kind (grep over briefs/); scope and single-file
+writes were instructed only in the ten review briefs dispatched after INC-001, which record no scope
+incident. v1.6/v1.7 said scope "was a sentence in the brief"; v1.7.7 says it was unstated in the drafting
+briefs and instructed, never enforced, in the review briefs.

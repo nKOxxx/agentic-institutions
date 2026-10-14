@@ -7,7 +7,7 @@
   "median_dur_s": 29.0,
   "dur_range_s": "7-525",
   "alpha_waves": "w1 [0.17,0.19]; w2 0.14; w3(N=6) 0.09; w4(reviews) 0.09, pooled 0.137 (hub-audited wave-level; per-dispatch instrumentation began 2026-10-08)",
-  "asymmetry": "2x traffic / 185x artifact (dual denominator, hf_paper_stats.py)",
+  "asymmetry": "2.3x traffic / 185x artifact (dual denominator, hf_paper_stats.py)",
   "supplement_v1_3": {
     "date": "2026-10-08",
     "note": "wave taxonomy corrected (4 waves, not 3); TSV hash added for drift detection",
@@ -77,6 +77,15 @@
     "table1_wall_total": 840,
     "inc_007": "860 transcribed from reviewer text; corrected",
     "inc_008": "v1 needle grep satisfiable by CLI brief echo",
-    "dispatcher": "v2.1 (echo cut, portable lock, o logged, fixture test)"
+    "dispatcher": "v2.3 (quiet path -Q -q, CR normalised, mkdir lock, pending file; exercised once 2026-10-14, row 1 of hf_stats_v2.tsv)"
+  },
+  "supplement_v1_7_7": {
+    "date": "2026-10-14",
+    "brief_term": "b/S = 0.168 pooled over 12 drafting briefs (19,262 / 114,535 bytes), 0.088-0.382 per brief; rows 1-2 brief > transcript",
+    "p_star_measured_b": 0.022,
+    "grid_factor_with_b": 1.254,
+    "largest_cell_with_b": "T > 150",
+    "multiplier_bound_with_b": "3.3 pooled, 3.0 wave 1",
+    "panel_round_3": "ACCEPT; ten items applied"
   }
 }

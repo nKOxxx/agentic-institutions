@@ -26,7 +26,8 @@ for r in rows:
     by_worker[r[1]] = by_worker.get(r[1], 0) + 1
 
 # Store-derived figures (paper Appendix A F3) need the hub's private state.db. On a clone without it, or with a
-# store that does not hold the hub session, these lines are marked unavailable instead of printing garbage.
+# store that does not hold both the hub session and the worker sessions, these lines are marked unavailable
+# instead of printing a ratio over an empty denominator (v1.7.7; the v1.7.1 guard covered a missing store only).
 hub_chars = wr_total = wr_artifacts = None
 if os.path.isfile(DB):
     db = sqlite3.connect(DB)
@@ -41,7 +42,8 @@ if os.path.isfile(DB):
                 wt += q("SELECT COALESCE(SUM(LENGTH(content)),0) FROM messages WHERE session_id=?", (w,))[0]
                 last = db.execute("SELECT content FROM messages WHERE session_id=? AND role='assistant' ORDER BY id DESC LIMIT 1", (w,)).fetchone()
                 if last: wa += len(last[0])
-            hub_chars, wr_total, wr_artifacts = hc, wt, wa
+            if workers and wt > 0:
+                hub_chars, wr_total, wr_artifacts = hc, wt, wa
     except sqlite3.Error:
         pass
 STORE_NOTE = "unavailable without the hub's store (Appendix A F3 is author-only)"
