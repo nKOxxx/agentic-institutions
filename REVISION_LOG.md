@@ -173,3 +173,7 @@ Probe brief to DeepSeek: 9 s, 449 bytes, needle hit as the last of two response 
 briefs/ added (23 dispatched briefs + review2_common.md; hf_probe2.txt not retained). §3.7 needle-trailer claim verified; round-4 file write characterised as within mandate; brief/needle permutation explained; §5 states INC-004 was spontaneous and names the hub-authored origin of two struck overclaims; strike brief's pre-seeded leads disclosed. Tag v1.7.5 on this commit; §5 cites it.
 
 Note: the first v1.7.5 commit (d25616e) carried the repo-side changes but not the manuscript edits, because the edit script aborted before writing; the tag was moved to the corrected commit minutes later.
+
+## v1.7.6 (2026-10-14): briefs README and method wording
+
+briefs/README.md added: a row-by-row map (TSV row, brief, section, needle, output file) so the permuted section-brief filenames need no decoding. §3.7 points at it. §5 restates the two brief-derived disclosures as audit trail and the novelty strike as a two-stage design (hub probe, then worker strike). Tag v1.7.6; §5 cites it.
