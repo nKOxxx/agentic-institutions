@@ -96,5 +96,17 @@
     "grid_cells_p03_with_b": "74.5 / 99.7 / 150.1",
     "review_briefs": "9 files, 10 dispatches (review4_C.md ran twice, rows 22-23)",
     "panel_round_4": "ACCEPT; eight items applied; chair diff check in place of a fifth round"
+  },
+  "supplement_v1_9": {
+    "date": "2026-10-15",
+    "wave": "experiments/ab-2026-10, pre-registered v1.8.3/v1.8.4, run 2026-10-14 18:34-19:33 UTC, 12 valid rows (6 deepseek, 6 glm-4.6 via zai), 6 misconfigured hub rows retained as ERROR/REJECT OTHER",
+    "alpha_D": "0.165 pooled (7,841/47,602), per pair 0.111-0.194; P1 PASS",
+    "acceptance": "6/6; P2 PASS",
+    "multiplier_M": "0.57 (39,732/69,298), per pair 0.50-0.62; P3 FAIL (o/S = 1.007: dispatcher prints the whole draft back)",
+    "b_over_S": "0.284; P4 PASS", "o_over_S": "1.007 (reported)", "S_I_over_S_D": "0.83; P5 PASS",
+    "p_star": "undefined; proviso (b+o)/S = 1.291 > 1 - alpha = 0.835; P6 FAIL",
+    "alpha_I": "0.218 (hub self-admission)",
+    "counterfactual_status_line_only": "M_cf 1.84, proviso 0.290, p*_cf 0.065 at eps 300 (post hoc, not a prediction)",
+    "source": "experiments/ab-2026-10/RESULTS.md and COUNTERFACTUAL.md, generated; scripts/check_ab.py gates the build"
   }
 }

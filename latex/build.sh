@@ -7,8 +7,9 @@ pandoc ../DRAFT.md -f gfm+implicit_figures -t latex -s --shift-heading-level-by=
   --metadata title="Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors" \
   --metadata author="Nikola Stojanow" \
   --metadata keywords="delegated cognition, agentic institutions, hub-and-worker, context admission, provenance audit, rent-or-buy" \
-  --metadata date="October 14, 2026 (v1.8.4, tag v1.8.4)" -o DRAFT.tex
+  --metadata date="October 15, 2026 (v1.9, tag v1.9)" -o DRAFT.tex
 LC_ALL=en_US.UTF-8 bash ../scripts/check_table1.sh ../DRAFT.md
+python3 -I ../scripts/check_ab.py ../DRAFT.md
 python3 postprocess.py DRAFT.tex paper.tex
 tectonic paper.tex
 echo "OK: $(pdfinfo paper.pdf | grep Pages)"

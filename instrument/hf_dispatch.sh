@@ -3,7 +3,7 @@
 # v1 (as run for all 26 rows of hf_stats.tsv) is preserved verbatim as hf_dispatch_v1_as_run.sh.
 # Column legend of hf_stats_v2.tsv (one line per column):
 #   date_utc        UTC timestamp of the row, Z-suffixed
-#   worker          deepseek | minimax (unknown names are rejected; there is no registry)
+#   worker          deepseek | minimax | hub (unknown names are rejected; there is no registry; hub resolves from env)
 #   brief           basename of the brief file
 #   budget_s        wall-clock alarm in seconds
 #   dur_s           measured wall-clock seconds
