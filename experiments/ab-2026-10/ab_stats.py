@@ -6,7 +6,7 @@ import csv, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 STATS = os.path.join(HERE, 'ab_stats_v2.tsv'); ADJ = os.path.join(HERE, 'ab_adjudication.tsv')
 EPS_DEFAULT = 300  # the paper's estimate, used only if no arm-D row is rejected (stated in the output)
-PRED = {'P1': (0.09, 0.19, 0.05, 0.30), 'P2': 4/6, 'P3': (2.0, 3.7, 1.5), 'P4': (0.10, 0.40, 0.05), 'P5': (0.5, 2.0), 'P6': 0.05}
+PRED = {'P1': (0.09, 0.19, 0.05, 0.30), 'P2': 4/6, 'P3': (2.0, 3.7, 1.5), 'P4': (0.10, 0.40), 'P5': (0.5, 2.0), 'P6': 0.05}
 
 def load(path):
     if not os.path.exists(path): return []
@@ -62,8 +62,8 @@ P(f"- P1 alpha_D in [{lo}, {hi}]: {mark(lo <= alpha <= hi)} (band [{blo}, {bhi}]
 P(f"- P2 p_hat_D >= 4/6: {mark(phat >= PRED['P2'])}; p_hat_D <= 2/6: {'YES, 11/13 representativeness contradicted' if phat <= 2/6 else 'no'}")
 lo, hi, floor = PRED['P3']
 P(f"- P3 M in [{lo}, {hi}]: {mark(lo <= M <= hi)}; M < {floor}: {'YES, section 3.4 bound invalidated' if M < floor else 'no'}")
-lo, hi, ocap = PRED['P4']
-P(f"- P4 b/S_D in [{lo}, {hi}]: {mark(lo <= bS <= hi)}; o/S_D < {ocap}: {mark(oS < ocap)}")
+lo, hi = PRED['P4']
+P(f"- P4 b/S_D in [{lo}, {hi}]: {mark(lo <= bS <= hi)}; o/S_D = {oS:.3f} (reported, no prediction)")
 lo, hi = PRED['P5']
 P(f"- P5 S_I/S_D in [{lo}, {hi}]: {mark(lo <= ratio <= hi)}")
 P(f"- P6 p* < {PRED['P6']}: {mark(pstar < PRED['P6'])}")

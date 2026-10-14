@@ -1,4 +1,4 @@
-TASK: Draft one section of SUPPLEMENT.md for the companion repository of the paper "Agentic Institutions" (Stojanow, 2026). Section title: "Who reviewed what". Length 400 to 700 words. Audience: a reader who wants to reproduce the record. Plain prose, no headings below the title, no bullet lists, no citations, no code blocks.
+TASK: Draft one section of SUPPLEMENT.md for the companion repository of the paper "Agentic Institutions" (Stojanow, 2026). Section title: "Who reviewed what". Length 900 to 1,400 words. Audience: a reader who wants to reproduce the record. Plain prose, no headings below the title, no bullet lists, no citations, no code blocks.
 
 RULES: Use only the fact sheet below. Do not invent any number, name, date, file, commit or incident. Do not restate the fact sheet line by line; write it as a section a reader can follow. If a fact is missing, say what is missing rather than fill it. Do not write any file; return the text only.
 

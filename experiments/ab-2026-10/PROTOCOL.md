@@ -1,8 +1,20 @@
 # Pre-registered wave: inline versus delegated drafting with logged admission
 
 Status: PRE-REGISTERED, no dispatch run. This file, the six briefs, the scripts and the predictions below are
-committed and tagged (v1.8.3) before any row exists. The commit timestamp is the pre-registration date. After the
-run, nothing in this file changes; results go to RESULTS.md beside it and to §3.8 of the paper.
+committed and tagged (v1.8.3, amended at v1.8.4) before any row exists. The commit timestamp is the
+pre-registration date. After the run, nothing in this file changes; results go to RESULTS.md beside it and to §3.8
+of the paper.
+
+Amendment at v1.8.4, before any dispatch: a dry run of `ab_stats.py` on synthetic rows (no real data) showed that
+the v1.8.3 briefs' 400-to-700-word target would make the artifact about the size of its own fact sheet, so b/S
+would sit near 0.5 by design, outside the record's per-brief range of 0.09 to 0.38, and the multiplier would fail
+P3 by construction. The target is now 900 to 1,400 words, which matches the record's section drafts (5 to 11 KB).
+The same dry run showed that o, which the dispatcher fixes at a 25-line tail plus a status line, will be roughly
+2 KB regardless of S; P4's prediction on o/S (below 0.05) had no basis in the record (the only logged o, 512 bytes,
+exceeds its 449-byte response) and is withdrawn: o/S is reported without a prediction. P6 is not adjusted: if the
+dispatcher's failure output makes the realized ε far larger than the paper's 300-character estimate and p* comes
+out above 0.05, that is a finding against the paper's estimate and the paper reports it. The git history shows
+both versions of this file.
 
 ## Why
 
@@ -47,6 +59,11 @@ cost law of §3.2 (the whole inline draft sits in hub context).
 The adjudication is still a judgment. What changes is that it is made per row, under a rule written before the
 data, and logged before the text is used.
 
+One cost this wave does not count, stated now: to adjudicate, the hub reads the whole worker output, and under the
+paper's Assumption E everything the hub reads persists. Δ_D follows the paper's §3.2 model (admitted text, brief,
+dispatcher output and failure residue persist; the adjudication read is treated as evicted, as §3.6's compaction
+model allows). The wave measures the model's terms; it does not test that modelling choice.
+
 ## Quantities (computed by `ab_stats.py`, no hand arithmetic)
 
 Per pair k: S_I = artifact bytes of the inline draft; S_D = artifact bytes of the delegated draft; b = brief bytes;
@@ -65,7 +82,7 @@ arm D. p* = ε̄ / (ε̄ + S̄_D (1 − α_D − (b̄ + ō)/S̄_D)) with ε̄ = 
 - P3 pooled matched multiplier M = ΣS_I / ΣΔ_D ∈ [2.0, 3.7] (the paper's measured-b bound is 3.3 pooled and 3.6 on
   one denominator). M < 1.5 invalidates the §3.4 bound as a statement about this institution and the paper says
   the per-context-budget advantage is not demonstrated.
-- P4 b/S_D pooled ∈ [0.10, 0.40]; o/S_D pooled < 0.05.
+- P4 b/S_D pooled ∈ [0.10, 0.40]. o/S_D is reported with no prediction (amendment above).
 - P5 matching holds: ΣS_I / ΣS_D ∈ [0.5, 2.0]. Outside, the multiplier is reported on S_D with the mismatch stated.
 - P6 p* at realized α_D, b, o and ε̄ is below 0.05.
 

@@ -1,6 +1,6 @@
 # Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors
 
-Companion repository for the paper by Nikola Stojanow (v1.8.3, October 14, 2026).
+Companion repository for the paper by Nikola Stojanow (v1.8.4, October 14, 2026).
 
 The paper studies institutions for AI agents: a cost model for delegated cognition
 and the mandate / capability-registry / constraints / escalation anatomy it
@@ -15,7 +15,7 @@ are computed from the instruments in this repository.
 
 | Path | What it is |
 |---|---|
-| `DRAFT.md` | Full paper source (Markdown), v1.8.3 |
+| `DRAFT.md` | Full paper source (Markdown), v1.8.4 |
 | `latex/` | Pandoc + tectonic build pipeline (`build.sh`), figure source (`figure.tex`), built `paper.pdf` |
 | `RESULTS.md` | Measured results as recorded during the run (v1.4.6), superseded by the paper's Table 1 and Appendix A; kept for provenance with a banner |
 | `experiments/ab-2026-10/` | Pre-registered inline-versus-delegated wave (paper §3.8): PROTOCOL.md with predictions and the adjudication rule, six matched briefs, `ab_admit.sh`, `ab_stats.py`, run sheet. Committed before any dispatch; rows and RESULTS.md arrive with the run |
