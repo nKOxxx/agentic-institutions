@@ -1,13 +1,13 @@
 #!/bin/bash
-# Rebuild paper.pdf from DRAFT.md. Requires: pandoc, tectonic, python3.
+# Rebuild paper.pdf from ../DRAFT.md (v1.5 layout: appendices live inside DRAFT.md; RESULTS.md is the instrument record, not a build input).
+# Requires: pandoc, tectonic, python3, Menlo (mono) available to fontspec. Rebuild the figure first if figure.tex changed: tectonic figure.tex
 set -e
 cd "$(dirname "$0")"
-# assemble build input: DRAFT (minus its own H1 - metadata title covers it) + RESULTS.md as Appendix C
-{ tail -n +2 ../DRAFT.md; printf '\n\n# APPENDIX C, MEASURED RESULTS (verbatim instrument record, measured 2026-10-07)\n\n'; tail -n +2 ../RESULTS.md; } > build_input.md
-pandoc build_input.md -f gfm -t latex -s \
+pandoc ../DRAFT.md -f gfm+implicit_figures -t latex -s --shift-heading-level-by=-1 \
   --metadata title="Agentic Institutions: Mandates, Capabilities, Constraints, and Escalation for Machine Economic Actors" \
   --metadata author="Nikola Stojanow" \
-  --metadata date="October 9, 2026 (v1.4.6)" -o DRAFT.tex
+  --metadata date="October 13, 2026 (v1.7.4)" -o DRAFT.tex
+LC_ALL=en_US.UTF-8 bash ../scripts/check_table1.sh ../DRAFT.md
 python3 postprocess.py DRAFT.tex paper.tex
 tectonic paper.tex
 echo "OK: $(pdfinfo paper.pdf | grep Pages)"

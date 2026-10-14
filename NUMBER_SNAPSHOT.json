@@ -1,10 +1,10 @@
 {
-  "frozen": "2026-10-09 (T re-freeze 04:16; stats snapshot 2026-10-08)",
+  "frozen": "2026-10-13 (v1.7; n=16 rows; T re-freeze 2026-10-09 04:16 +04)",
   "source": "hf_stats.tsv+hf_paper_stats.py",
-  "n_dispatches": 14,
-  "phat": "14/14",
-  "phat_cp95": "[0.77, 1.00]",
-  "median_dur_s": 31.5,
+  "n_dispatches": 16,
+  "phat": "16/16 exit-zero completions (needle outcome not logged; hub-attested 12/13 briefs; mandate-compliant <= 11/13)",
+  "phat_cp95": "[0.79, 1.00] (exit-zero rate, pooled over a heterogeneous brief mix)",
+  "median_dur_s": 29.0,
   "dur_range_s": "7-525",
   "alpha_waves": "w1 [0.17,0.19]; w2 0.14; w3(N=6) 0.09; w4(reviews) 0.09, pooled 0.137 (hub-audited wave-level; per-dispatch instrumentation began 2026-10-08)",
   "asymmetry": "2x traffic / 185x artifact (dual denominator, hf_paper_stats.py)",
@@ -26,5 +26,57 @@
     "t_measurement_note": "store compacts; count walks; the in-repo archive is the frozen basis; see INC-006",
     "t_measurement_archive": "data/t_freeze_2026-10-09T0416.csv",
     "t_measurement_count_at_v14_status": "SUPERSEDED-BY t_measurement_refreeze_value=343 @ 2026-10-09T04:16 (INC-006); retained as historical receipt"
+  },
+  "supplement_v1_6": {
+    "date": "2026-10-13",
+    "note": "external four-reviewer panel (different model family) on v1.5; headline numbers restated to what the public artifacts support",
+    "n_rows_frozen": 16,
+    "briefs": 13,
+    "probes": 3,
+    "exit_zero_completions": "16/16 (verdict column = exit status; needle outcome not logged in v1 rows)",
+    "needle_hit_hub_attested": "12/13 briefs (row 13 = INC-001 variant needle)",
+    "mandate_compliant_first_try": "<= 11/13 (INC-001, INC-004)",
+    "exit_zero_cp95": "[0.79, 1.00] (pooled rate over a heterogeneous brief mix; i.i.d. not satisfied)",
+    "median_dur_s_n16": 29.0,
+    "median_dur_s_n14": 31.5,
+    "dur_range_s_n16": "7-525",
+    "live_rows_2026_10_09": 26,
+    "live_exit_zero": "24/26 (two TIMEOUT on review4_C, budget exhaustion)",
+    "alpha_waves_hub_audited": "w1 0.17 (denominator disputed: hub 22,824 vs instrument 2,835); w2 0.19; w3 0.14; w4 0.087; pooled 0.137; no admitted count is instrument-logged",
+    "wall_max_s_per_wave": [
+      43,
+      109,
+      525,
+      163
+    ],
+    "t_freeze_commit": "cd46a7e",
+    "t_freeze_at": "2026-10-09 04:16:35 +04 (00:16 UTC)",
+    "t_archive_sha256": "5572cf45f6c551739a4e7ed5afabebaf45f40deae28c27b85f0eafcd55eb4258",
+    "t_raw_rows": 343,
+    "t_bulk_rows_same_second": 122,
+    "t_distinct_turns": 221,
+    "t_script": "scripts/dedup_t.sh",
+    "t_anchor_note": "SQL anchor '2026-10-07 13:18:00' is read as UTC; the event was 13:18 local (+04) = 09:18 UTC; all 7 Oct rows evicted by freeze so both anchors select the same set",
+    "p_star_free_lane": "~0.018 (eps~300, S~20000, alpha=0.17, overhead unmeasured)",
+    "breakeven_alpha_0137_p03": [
+      56.9,
+      76.2,
+      114.9
+    ],
+    "instrument_v2": "instrument/hf_dispatch.sh (v2); v1 as run preserved as hf_dispatch_v1_as_run.sh; v2 rows go to hf_stats_v2.tsv",
+    "wall_sum_of_maxima": 840
+  },
+  "superseded_v1_2_values": {
+    "n_dispatches": 14,
+    "phat": "14/14",
+    "phat_cp95": "[0.77, 1.00]",
+    "median_dur_s": 31.5
+  },
+  "supplement_v1_7": {
+    "date": "2026-10-13",
+    "table1_wall_total": 840,
+    "inc_007": "860 transcribed from reviewer text; corrected",
+    "inc_008": "v1 needle grep satisfiable by CLI brief echo",
+    "dispatcher": "v2.1 (echo cut, portable lock, o logged, fixture test)"
   }
 }

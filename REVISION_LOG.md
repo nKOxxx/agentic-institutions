@@ -132,3 +132,38 @@ Hub arithmetic pass, independent of the panel: every cell re-derived exact (alph
 ## ROUND 5 PANEL + v1.4.6 CLEAN SWEEP (2026-10-09)
 
 R5 scores: A 7->**8**, B 7->**8** (pre-commitment honored in reverse: "My round-4 ACCEPT condition is satisfied"; re-verified all 343 ids against the DB predicate at content level), C **8** flat (r4 cap lifted). All three ACCEPT-WITH-MINORS; all named the same 3 minors: count-only verifier, stale snapshot stamping, bookkeeping (part3 banner sibling, wave-label, stale changelog, B typo). C additionally found INC-004 residue in sections/sec_s3c.md (borders MAJOR). v1.4.6 closes all of it: verifier SHA-256 content pin (tamper test: same-count rewrite now FAILS loudly), snapshot frozen-date + 277 superseded-mark, part3 banner demoted (four-round flag), INC-004 quarantine banner (hub re-swept sections/ independently: only s3c affected), wave-label uncollided, changelog current, typo dead.
+
+## v1.6 (2026-10-13): external panel round 1 on v1.5 (four personas, different model family, author's review tooling)
+
+Verdict REVISE, 12 required changes R1–R12 (chair synthesis in logs/review-run-031.md of the review engine). All twelve applied in v1.6: acceptance restated as exit-zero completion with hub-attested needle status and mandate-compliant <= 11/13; T de-duplicated (343 raw, 122 compaction rows, 221 turns) with hash, commit and zones in §3.3; Assumption E (persistence) and P2 (caching) stated and carried into abstract/§8; Proposition 1 with (★ε), Corollary 1 with p*, Lemma 1; §3.4 relabelled Observation with 1/α an upper bound; maturity labels made true per element; provenance audit added as the acceptance apparatus of record; mandate tuple typed; review process described as it was; §6 relabelled conjecture; Table 1 Wall column recomputed, resolver row added, median corrected; four references added.
+
+## v1.7 (2026-10-13): external panel round 2 on v1.6
+
+Verdict REVISE, 10 required changes S1–S10; chair sign-off on the diff suffices. Dispositions:
+- S1 Table 1 total 860 → 840 (INC-007 recorded; panel including chair named as source; scripts/check_table1.sh invoked by latex/build.sh).
+- S2 ν defined once as the predicate on the artifact against the specified string; INC-001 is a variant-needle scope violation, not a needle pass, everywhere; §4.2 derivation uses x ∈ δ from assembly; §4.5 names INC-004 alone as the pass.
+- S3 CLI echo stated in §3.7 (INC-008 recorded); "captured after the needle" and "neither admitted" replaced; the round-4 worker-side file write characterised as INC-001 action class with its permission status unrecorded.
+- S4 dispatcher v2.1: echo and exit summary cut before the gate, exec-or-die, non-empty precondition, mkdir lock, o logged as returned bytes, Session parsed from stdout, HERMES_KANBAN_TASK asserted unset; fixture + test in instrument/test/ (passes); labelled "not yet been exercised" twice in the paper.
+- S5 ledger made symmetric in §4.4, §5, §6, §8 (panel catches of INC-003/005/006 named with reviewer and round).
+- S6 Lemma 1 printed in exact form with residue and assumptions; cross-reference repointed to §4.5.
+- S7 symmetric eviction stated; reduced condition and threshold ≈ 0.015 printed.
+- S8 ski-rental identification moved to Proposition 1; online rule replaced by committed-policy bounds.
+- S9 RESULTS.md banner; sec_s3c pointer; snapshot top level regenerated at n = 16; README; verify_t.sh asserts 221; INCIDENT_LOG INC-006 addendum, INC-007, INC-008; this log; DRAFT.md canonical copy is the one in this repository, the author's working copy is synced to it before each commit.
+- S10 wording pass complete; citation transcript committed as reviews/citation_check_2026-10-13.md.
+
+## v1.7.1 (2026-10-13): chair sign-off residuals
+
+Chair verdict on v1.7: ACCEPT, with four pre-tag fixes and six optional notes, all applied here: check_table1.sh wired into latex/build.sh with the locale pinned, "every instrument-derived cell"; hf_paper_stats.py guards the store block and degrades without state.db; incident counts in §5/§6/§8 reconciled with the seven-entry register and INC-008 added to Appendix B; README page count 19; INCIDENT_LOG INC-007 names the chair; the needle-trailer claim labelled hub-attested; Lemma 1 residue at p = 0.3 noted; v2.1 non-empty precondition applied to the response; access date stated for all web references.
+Note: commit c9aa08e (amended away into 5dbd00a) contained a stats_live.md regenerated at 18:10 against a store that did not hold the hub session (workers: 0); it was reverted before the commit was finalised. The regeneration ran because the stats script had no guard, which the v1.7.1 fix adds.
+
+## v1.7.2 (2026-10-13): James Whitfield's S3/S4 check
+
+S3 PASS, S4 FAIL: the v2.1 gate missed on output shaped by the CLI's actual libraries (prompt_toolkit writes CRLF when stdout is a file) and the hand-written fixture could not see it; the echo cut removed only the first echo line. Fix: dispatcher v2.2 uses the quiet path (-Q: response only, session id on stderr), normalises CR, uses [[:blank:]] instead of \t in sed classes (BSD sed), keeps a row in a pending file on lock timeout, removes stale locks older than the budget; hf_admit.sh fails unless exactly one row matches; fixtures generated by instrument/test/gen_fixtures.py with a CRLF case and a leading-'t' line. Paper: §3.7 and §4.4 describe the quiet path instead of an echo cut; §3.7 reports the TIMEOUT rows' transcript bytes (17,507 / 21,035) and explains the v1 artifact column; the round-4 file-write sentence cites the post-INC-001 single-file-write regime. Still not exercised against a live worker; labels retained.
+
+## v1.7.3 (2026-10-14): first live v2 run on the hub failed before the worker started
+
+`hermes chat -Q "<brief>"` exits 2: -Q is a store-true flag, the brief must still be passed with -q. v2.2's first live dispatch therefore logged an ERROR row (rc 2, 0 bytes, 1 s) with no worker involved; the row and its .out/.err files were removed before the corrected run, since they measure the script, not a worker. Fix: `-Q -q "<brief>"` (dispatcher v2.3). The hub's live T query returned 1,046 rows on 2026-10-14; the paper continues to cite the frozen 343/221.
+
+## v1.7.4 (2026-10-14): first live v2.3 row
+
+Probe brief to DeepSeek: 9 s, 449 bytes, needle hit as the last of two response lines, session id captured; row 1 of instrument/hf_stats_v2.tsv with raw output and stderr retained. §3.7 and §4.4 now say v2 was exercised once; no paper number comes from it.

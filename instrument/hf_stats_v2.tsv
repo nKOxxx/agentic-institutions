@@ -1,0 +1,2 @@
+date_utc	worker	brief	budget_s	dur_s	out_bytes	msgs	rc	verdict	needle	needle_pos	artifact_bytes	brief_bytes	o_bytes	admitted_chars	session_id	key
+20261014T055409Z	deepseek	probe_v2_brief.md	120	9	449	n/a	0	OK	hit	2/2	448	87	512		20261014_095410_c558bb	20261014T055409Z_probe_v2_brief_33235

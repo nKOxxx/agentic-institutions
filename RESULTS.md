@@ -1,3 +1,5 @@
+> **SUPERSEDED (2026-10-13).** This is the measured-results file as it stood at v1.4.6. The paper's Table 1 and Appendix A (DRAFT.md v1.7) supersede it: the Wall column here (80/133/969/419/1,601) was replaced by per-wave maxima from the instrument (43/109/525/163, sum 840); "p-hat 7/7 / 14/14" is restated as 16/16 exit-zero completions with needle status hub-attested; "α stable at ~1/6" is withdrawn in favour of a hub-audited range [0.09, 0.19]. Kept for provenance only.
+
 # RESULTS, measured 2026-10-07 (single hub, one day of operation). F1/F4 corrected v1.3 after round-2 review; Table 1/F2/F3 frozen v1.1. RESULTS is revision-controlled from v1.4 (paper dir under git; commit 4f7b8e8 carries the F2 wave label + F1 provenance note).
 
 All numbers from `~/.hermes/state.db` + `hf_stats.tsv`. [M] = measured,
