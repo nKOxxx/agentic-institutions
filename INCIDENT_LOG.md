@@ -126,8 +126,9 @@ de-duplicated counts reported; the de-duplication is labelled an inference from 
 
 ## INC-001 / INC-004 ADDENDA (2026-10-14, briefs recovered)
 The 23 dispatched briefs were recovered and committed to briefs/. They establish: (a) every brief ends with a
-trailer naming its needle, so the v1 whole-transcript test was satisfiable by the CLI echo for every row
-(INC-008 confirmed); (b) the INC-001 worker signed its brief's section label (IV-IMPLICATIONS) instead of
+trailer naming its needle, so the v1 whole-transcript test was satisfiable by the CLI echo for rows 7–26, the rows the
+committed v1 script wrote (INC-008 confirmed; rows 1–6 came from an earlier script version and rows 1–2 logged
+fewer bytes than their briefs); (b) the INC-001 worker signed its brief's section label (IV-IMPLICATIONS) instead of
 the specified SECTION-S4-OK; (c) the constraints brief (sec_s3b_brief.md) asked for the 7/7 needle-hit rate
 as the worked example and, in its rules line, licensed concrete examples from a system the worker could not
 observe, so the INC-004 figures were the worker's own and the under-specified deliverable the hub's; (d) the round-4 reviewer
@@ -147,6 +148,34 @@ a panel's sentence is a lead to re-derive, not text to transcribe.
 
 ## INC-001 ADDENDUM 2 (2026-10-14, panel round 3)
 The 13 drafting briefs carry no action constraint of any kind (grep over briefs/); scope and single-file
-writes were instructed only in the ten review briefs dispatched after INC-001, which record no scope
-incident. v1.6/v1.7 said scope "was a sentence in the brief"; v1.7.7 says it was unstated in the drafting
+writes were instructed only in the nine review briefs (ten dispatches) after INC-001, which record no write
+to the paper tree outside the permitted file; three round-5 workers copied the repository to /tmp to
+tamper-test the verifier, outside the briefs' literal text and invisible to the hub's tree diff, self-reported
+and not treated as incidents (panel round 4). v1.6/v1.7 said scope "was a sentence in the brief"; v1.7.7 says it was unstated in the drafting
 briefs and instructed, never enforced, in the review briefs.
+
+## INC-003 ADDENDUM (2026-10-14, panel round 4)
+REVISION_LOG v1.7.7 asserted a dispatcher-header row-policy sentence and a "v2.4" version label that the
+committed file at cd5174d did not carry; briefs/README.md pointed a reader at the missing sentence; the
+review panel's brief to its fourth round repeated the log's claim as fact. Caught by three reviewers
+independently, each by opening the file. Same class as INC-003: a post-state asserted from the fix list, not
+from the diff. Fix (v1.7.8): sentence added, version string made one string across header, README and
+snapshot, `[ -f ] && [ -s ]` replaces `[ -r ]`. Rule: every REVISION_LOG line is checked against `git diff`
+before the tag.
+
+## INC-007 ADDENDUM 2 (2026-10-14, panel round 4)
+Four more panel-sourced sentences in v1.7.7, source named by the panel itself:
+- Reviewer Morrow, round-3 K2, carried by the chair as item 2: "0.09–0.38 per brief" over the twelve
+  drafting briefs, a range true of ten (rows 1–2 give 1.16 and 1.21); and "3.3 pooled (3.0 at wave 1)"
+  pairing a hub-audited α with an instrument-denominated pooled b/S without saying so. Arithmetic right,
+  set and pairing unstated. Caught by Morrow, round 4, against her own text.
+- Reviewer Morrow, round-3 K3 fix text, carried as item 10: "'6×' … a theorem of that variant and withdrawn
+  under (★ε)", when 1/α is live in the abstract and §3.4 and only the lifespan reading was withdrawn.
+- Reviewer Whitfield, round-3 H1, carried as item 1: "the ten review briefs": nine files, ten dispatches.
+- The chair, round-3 item 1: "record no scope incident (n = 10)", written from this log without the
+  round-5 transcripts, which record three /tmp writes outside the one permitted file. Caught by Okafor and
+  Whitfield, round 4.
+Fix (v1.7.8): every b/S names its denominator; the "6×" sentence restated; "nine review briefs (ten
+dispatches)"; the n sentence carries its detection basis. Lesson, extended: the panel's own recomputation of
+its numbers is not the author's; the author re-derives from the files every time, ranges and denominators
+included.

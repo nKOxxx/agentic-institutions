@@ -77,7 +77,7 @@
     "table1_wall_total": 840,
     "inc_007": "860 transcribed from reviewer text; corrected",
     "inc_008": "v1 needle grep satisfiable by CLI brief echo",
-    "dispatcher": "v2.3 (quiet path -Q -q, CR normalised, mkdir lock, pending file; exercised once 2026-10-14, row 1 of hf_stats_v2.tsv)"
+    "dispatcher": "v2.4 (quiet path -Q -q, CR normalised, mkdir lock, pending file, missing-brief check, row policy in header; v2.3 exercised once 2026-10-14, row 1 of hf_stats_v2.tsv)"
   },
   "supplement_v1_7_7": {
     "date": "2026-10-14",
@@ -87,5 +87,14 @@
     "largest_cell_with_b": "T > 150",
     "multiplier_bound_with_b": "3.3 pooled, 3.0 wave 1",
     "panel_round_3": "ACCEPT; ten items applied"
+  },
+  "supplement_v1_7_8": {
+    "date": "2026-10-14",
+    "brief_term_denominators": "instrument pooled 19,262/114,535 = 0.168 (rows 1-2 included); rows 1-2 excluded 15,906/111,700 = 0.142; hub-audited pooled 19,262/137,278 = 0.140; wave 1 on its own hub-audited denominator 3,356/22,824 = 0.147; per-brief range 0.088-0.382 is over the ten rows with transcript > brief, rows 1-2 give 1.16 and 1.21",
+    "multiplier_bound_pairings": "3.3 (alpha hub-audited 0.137, b/S instrument 0.168); 3.6 (both hub-audited); 3.0 (wave-1 alpha 0.169, pooled b/S); 3.2 (wave 1 own denominator)",
+    "p_star_pairings": "0.022 (alpha 0.17, b/S 0.17); 0.021 (b/S 0.14); 0.020 (pooled alpha 0.137, hub-audited b/S)",
+    "grid_cells_p03_with_b": "74.5 / 99.7 / 150.1",
+    "review_briefs": "9 files, 10 dispatches (review4_C.md ran twice, rows 22-23)",
+    "panel_round_4": "ACCEPT; eight items applied; chair diff check in place of a fifth round"
   }
 }

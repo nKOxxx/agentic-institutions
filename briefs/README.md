@@ -27,7 +27,7 @@ The hub named worker outputs by needle, not by brief filename, and the six secti
 
 `review2_common.md` is the shared note prepended to the round-2 reviewer briefs; round 1 and 2 reviews were run outside the instrument and their individual briefs were not retained.
 
-Three things a reader can check here directly: the constraints brief (row 10) asked for the 7/7 needle-hit rate as its worked example and, in its rules line, allowed "concrete examples from a live hub-and-worker system" the worker could not observe, so the INC-004 figures were the worker's own and the licence was the hub's; the round-4 briefs permit exactly one file write each; and the introduction brief (row 3) contains the phrasings "cost-optimal control law" and "the economics re-derive the anatomy" that the external panel later struck from the manuscript. The strike brief (row 6) hands the worker ten candidate papers from the hub's own probe; the strike's job was to confirm, extend, and rate them, not to find them from nothing.
+Three things a reader can check here directly: the constraints brief (row 10) asked for the 7/7 needle-hit rate as its worked example and, in its rules line, allowed "concrete examples from a live hub-and-worker system" the worker could not observe, so the INC-004 figures were the worker's own and the licence was the hub's; the round-4 briefs permit exactly one file write each; and the introduction brief (row 3) contains the phrasings "cost-optimal control law" and "the economics re-derive the anatomy" that the second panel later struck from the manuscript. The strike brief (row 6) hands the worker ten candidate papers from the hub's own probe; the strike's job was to confirm, extend, and rate them, not to find them from nothing.
 
 ## v2 table (instrument/hf_stats_v2.tsv)
 
@@ -35,4 +35,4 @@ Three things a reader can check here directly: the constraints brief (row 10) as
 |---|---|---|---|---|
 | 1 | probe_v2_brief.md | Live probe of dispatcher v2.3 (2026-10-14) | PROBE-V2-OK | instrument/hf_out/20261014T055409Z_probe_v2_brief_33235.out / .err |
 
-`probe_v2_brief.md` was not retained by the hub; it is reconstructed here byte-for-byte from the `printf` command that created it, and its size (87 bytes) matches the row's `brief_bytes`. The first live attempt (rc 2, wrong CLI switch) was removed by hand before any retention rule existed; see REVISION_LOG v1.7.3 and the dispatcher header.
+`probe_v2_brief.md` was not retained by the hub; it is reconstructed here from the author's record of the `printf` command that created it (the command is not retained; hub-attested); its size (87 bytes) matches the row's `brief_bytes` and its content is consistent with the retained response. The file carries no in-file marker because one would break that byte check; this row is the marker. The first live attempt (rc 2, wrong CLI switch) was removed by hand before any retention rule existed; see REVISION_LOG v1.7.3 and the dispatcher header.
