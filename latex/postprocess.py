@@ -17,7 +17,7 @@ MAP = {
     '₁': r'\textsubscript{1}', '₂': r'\textsubscript{2}',
     'ν': r'$\nu$', '≪': r'$\ll$', '†': r'\dag{}', '⋆': r'{\ttfamily\symbol{"2605}}', '‡': r'\ddag{}',
     'ℝ': r'$\mathbb{R}$', '∉': r'$\notin$', '⇒': r'$\Rightarrow$', 'Δ': r'$\Delta$', '³': r'\textsuperscript{3}', '∗': r'$\ast$', '∑': r'$\sum$', 'φ': r'$\varphi$',
-    'p\u0302': r'$\hat{p}$', '«': r'\guillemetleft{}', '»': r'\guillemetright{}',
+    '′': r"$'$", 'p\u0302': r'$\hat{p}$', '«': r'\guillemetleft{}', '»': r'\guillemetright{}',
 }
 # multi-char first (p̂), then single chars
 def fix(seg):
