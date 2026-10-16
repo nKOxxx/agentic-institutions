@@ -223,3 +223,5 @@ Post-tag note on the v1.9.1 entry (2026-10-15, chair diff check, no re-tag): edi
 ## v1.9.2 (2026-10-15): one glyph
 
 The prime in M′ (§3.8, added at v1.9.1) is U+2032, which the body font (Latin Modern) does not carry; the v1.9.1 PDF printed a missing-glyph box at that one site, so the within-arm multiplier was indistinguishable from the matched M in the published PDF. `latex/postprocess.py` now maps U+2032 to a math prime. Found while preparing the arXiv source bundle (the build log's "missing character" warning). §5 cites tag v1.9.2; README and build.sh version strings; paper.pdf rebuilt. No number, mark or sentence changed.
+
+Post-tag note (2026-10-16): the paper was published on Zenodo as v1.9.2, DOI 10.5281/zenodo.23392762, file md5 8bbb6d4fff75d6bbdc0b19029033b9e0 (text identical to latex/paper.pdf at v1.9.2; the PDFs differ in bytes because they were built separately three seconds apart). README names the DOI. No tag moved; the manuscript is unchanged.

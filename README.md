@@ -2,6 +2,8 @@
 
 Companion repository for the paper by Nikola Stojanow (v1.9.2, October 15, 2026).
 
+Published record (v1.9.2): https://doi.org/10.5281/zenodo.23392762 (Zenodo, CC BY 4.0). The record links back to this repository at tag v1.9.2.
+
 The paper studies institutions for AI agents: a cost model for delegated cognition
 and the mandate / capability-registry / constraints / escalation anatomy it
 rationalises, grounded in a live hub-and-worker measurement. One orchestrating hub model
