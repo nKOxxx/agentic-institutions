@@ -23,7 +23,8 @@ def want_in(label, vals, where, wname):
 for key, pat in [('alpha_D', r'alpha_D = (\d+)/(\d+) = ([\d.]+)'), ('p_hat', r'p_hat_D = (\d+)/(\d+)'), ('M', r'M = (\d+)/(\d+) = ([\d.]+)'),
                  ('b/S', r'b/S_D = ([\d.]+)'), ('o/S', r'o/S_D = ([\d.]+)'), ('S_I/S_D', r'S_I/S_D = ([\d.]+)'), ('alpha_I', r'alpha_I = (\d+)/(\d+) = ([\d.]+)')]:
     g = re.search(pat, pooled); assert g, key
-    want_in(key, list(g.groups()), pooled_sentence if key != 'p_hat' else sec, 'pooled sentence' if key != 'p_hat' else 'section')
+    if key == 'p_hat': want_in(key, [f'{g.group(1)}/{g.group(2)}'], pooled_sentence, 'pooled sentence')
+    else: want_in(key, list(g.groups()), pooled_sentence, 'pooled sentence')
 g = re.search(r"^Pooled: M_cf = (\d+)/(\d+) = ([\d.]+); M'_cf = .*? = ([\d.]+); proviso \(b \+ o_cf\)/S_D = ([\d.]+) against 1 - alpha_D = ([\d.]+); p\*_cf .* is ([\d.]+)\.", cf, re.M); assert g, 'cf pooled'
 want('cf', list(g.groups()))
 g = re.search(r"^Proviso on the real o: \(b \+ o\)/S_D = (\d+)/(\d+) = (\d+\.\d+)", cf, re.M); assert g; want('proviso', [g.group(3)])
