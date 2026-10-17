@@ -20,6 +20,6 @@ fi
 echo "PASS: archive == frozen 343 (row count + SHA-256 content verified)"
 DISTINCT=$(bash "$ROOT/scripts/dedup_t.sh" "$CSV" | awk -F": *" '/distinct turns/{print $2}')
 [ "$DISTINCT" = "221" ] && echo "PASS: distinct turns == 221" || { echo "FAIL: distinct turns = $DISTINCT (expected 221)"; exit 1; }
-DB="$HOME/.hermes/state.db"
+DB="${HOME:-/nonexistent}/.hermes/state.db"
 LIVE=$(sqlite3 "$DB" "SELECT COUNT(*) FROM messages WHERE session_id='20260725_131848_6f3bc9c8' AND role='assistant' AND timestamp >= strftime('%s','2026-10-07 13:18:00')" 2>/dev/null || echo unavailable)
 echo "live store      : $LIVE (walks by design: compaction evicts + turns accrue; see paper §3.3 and INC-006; 0 on any host without the hub's store)"

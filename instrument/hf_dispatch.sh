@@ -1,6 +1,6 @@
 #!/bin/bash
-# hf_dispatch.sh v2.5 (2026-10-14): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
-# v1 (as run for all 26 rows of hf_stats.tsv) is preserved verbatim as hf_dispatch_v1_as_run.sh.
+# hf_dispatch.sh v2.6 (2026-10-17): one-shot free-lane worker dispatch with an instrumented, needle-gated row.
+# v1 (the lineage retained on 13 October 2026; established as the writer of rows 15 to 26 of hf_stats.tsv) is preserved as hf_dispatch_v1_as_run.sh.
 # Column legend of hf_stats_v2.tsv (one line per column):
 #   date_utc        UTC timestamp of the row, Z-suffixed
 #   worker          deepseek | minimax | hub (unknown names are rejected; there is no registry; hub resolves from env)
@@ -31,6 +31,8 @@
 # v2.5 adds one worker entry, `hub`, resolved from AB_HUB_MODEL and AB_HUB_PROVIDER, for the inline arm of
 # experiments/ab-2026-10 (the hub's own model drafting the same brief in a fresh session, logged through this gate).
 # No other change from v2.4.
+# v2.6 (after the wave; v2.5 is the version that ran it): the hub entry rejects placeholder values containing '<', and
+# the CR-stripping pipeline runs under LC_ALL=C so an invalid byte cannot truncate the response silently.
 # usage: hf_dispatch.sh <brief-file> [deepseek|minimax|hub] [needle] [budget_s]
 set -u
 BRIEF="${1:?usage: hf_dispatch.sh <brief-file> [deepseek|minimax|hub] [needle] [budget_s]}"
@@ -42,6 +44,7 @@ case "$WORKER" in
   deepseek) MODEL="deepseek-ai/DeepSeek-V4-Flash-0731"; PROV="hyper-deepseek" ;;
   minimax)  MODEL="MiniMaxAI/MiniMax-M2.7";             PROV="hyper-minimax" ;;
   hub)      [ -n "${AB_HUB_MODEL:-}" ] && [ -n "${AB_HUB_PROVIDER:-}" ] || { echo "HF FAIL: hub arm needs AB_HUB_MODEL and AB_HUB_PROVIDER"; exit 2; }
+            case "$AB_HUB_MODEL$AB_HUB_PROVIDER" in *"<"*) echo "HF FAIL: hub arm variables still hold placeholders"; exit 2 ;; esac
             MODEL="$AB_HUB_MODEL"; PROV="$AB_HUB_PROVIDER" ;;
   *) echo "HF FAIL: unknown worker '$WORKER' (no registry; add it here explicitly)"; exit 2 ;;
 esac
@@ -57,7 +60,7 @@ RC=$?
 DUR=$((SECONDS - T0))
 OUT_B=$(wc -c < "$RAW" | tr -d ' ')
 # response = stdout with CR removed and trailing blanks trimmed; non-empty lines only for the gate
-RESP=$(tr -d '\r' < "$RAW" | sed -e 's/[[:blank:]]*$//' | grep -v '^$')
+RESP=$(LC_ALL=C tr -d '\r' < "$RAW" | LC_ALL=C sed -e 's/[[:blank:]]*$//' | grep -v '^$')
 SESSION=$(grep -o 'session_id:[[:space:]]*[A-Za-z0-9_]*' "$ERR" | tail -1 | awk '{print $2}')
 NEEDLE_STATUS="none"; NEEDLE_POS=""
 if [ -n "$NEEDLE" ]; then

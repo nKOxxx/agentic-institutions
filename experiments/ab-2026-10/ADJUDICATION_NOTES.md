@@ -58,3 +58,10 @@ admission is visible.
 
 Two readings of the sheets that both arms got wrong in the same way (s6, the turn count) are a fault of the
 sheet's wording, recorded here against the author.
+
+Dated note (2026-10-17, not an edit of the lines above): the verdict sentence "No draft invented a number, name, date,
+file, commit or incident" is contradicted by this file's own exclusion list, which labels two arm-D statements
+"(invented reason)" and "(invented)" and records two counts the sheets do not carry ("twenty-three anonymous files";
+"24 of the 26 briefs"). Eight drafts carry at least one such statement. The paper (v1.10, §3.8) now says so. The
+adjudicator was not blind to arm. The verbatim-substring check script is now committed beside this file as
+`ab_adj.py` (it was run from outside the repository on 14 October).

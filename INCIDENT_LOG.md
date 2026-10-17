@@ -31,7 +31,7 @@
 ## INC-003 (2026-10-08), verification gate verified presence, not absence [RESOLVED]
 - What: the 75x correction pass asserted the NEW figure existed (185x) but never
   asserted absence of the OLD figure document-wide, and the abstract replace had
-  silently no-op'd on a line-wrap mismatch. Three external reviewers caught the
+  silently no-op'd on a line-wrap mismatch. Three LLM reviewer agents caught the
   stale 75x within hours; the hub's own gate had passed it.
 - Root cause: one-sided postconditions + Python .replace() silent no-match.
 - Fix (v1.2): every revision replace asserts pre-state AND post-state
@@ -179,3 +179,46 @@ Fix (v1.7.8): every b/S names its denominator; the "6×" sentence restated; "nin
 dispatches)"; the n sentence carries its detection basis. Lesson, extended: the panel's own recomputation of
 its numbers is not the author's; the author re-derives from the files every time, ranges and denominators
 included.
+
+## INC-006 ADDENDUM (2026-10-17, cold-read round 7)
+The entry above says the 13:18 anchor "was carried from a round-3 reviewer footnote" and that "this time the number
+came from a reviewer". Neither is supported by the public record: no round-1, 2 or 3 reviewer file contains 13:18
+or 277; reviewer B's round-3 footnote (reviews/reviewer_B_econ_r3.md lines 270 to 272) anchors a different count at
+11:58 and reports 296; the 13:18 anchor is row 13's dispatch time (the INC-001 dispatch) and first appears in the
+hub's own v1.4 query. The 277 is the hub's frozen output of its own query. The lesson line stands for the general
+case; its "came from a reviewer" clause is withdrawn. The paper carried the footnote attribution from v1.5 to v1.9.2
+(abstract-adjacent sites in §1.4, §4.6, §5 and Appendix B), transcribed from this entry by the second panel's chair
+and never checked against the reviewer files. Corrected in v1.10.
+
+## INC-001 ADDENDUM 3 (2026-10-17, cold-read round 7)
+Addendum 2 says the three round-5 /tmp copies were "outside the briefs' literal text". The briefs instructed the
+copy: briefs/review5_{A,B,C}.md line 17, task T3(c), "TAMPER TEST: copy the repo to /tmp, delete or alter one CSV
+row, rerun verify_t.sh", in the same file as line 24, "You may write ONLY your one review file". The mandate was
+self-contradictory; the workers followed the task outside the paper tree and reported it. The n = 10 record shows a
+write restriction on the paper tree holding on a benign task as far as a tree diff can see, and nothing about
+instruction-only scope holding by its letter. The sentence was written by the second panel's chair in round 4 and
+transcribed into §4 without opening line 17 of a file the chair had open at line 22. Corrected in v1.10.
+
+## INC-004 ADDENDUM 2 (2026-10-17)
+The addendum of 9 October says "no archive text altered". Commit 24b508e (12 October, typographic normalisation of
+em-dashes across 31 files) touched sections/sec_s3c.md and every file under reviews/; the pre-edit text is in git
+history (`git diff 24b508e^ 24b508e`). The quarantine banner and the fabricated figures are unchanged in substance.
+
+## INC-007 ADDENDUM 3 (2026-10-17, cold-read round 7)
+Four more panel-sourced or panel-kept sentences stood in the published v1.9.2, each falsified by one grep against
+the repository, each available to the panel from files it had open at the time:
+- "a write the briefs' literal text did not permit" (§4; chair, round 4): the briefs instructed it (INC-001 addendum 3).
+- "carried the query's anchor from a reviewer footnote" (§1.4, §4.6, §5, Appendix B; chair's round-3 wording pass,
+  transcribed from the INC-006 entry): no reviewer file carries it (INC-006 addendum).
+- "a confabulated receipt" (§5; reviewer Okafor, round 3, adopted at 13baf01, carried by the chair): the record shows
+  a query that did not reproduce on a store that compacts, nothing more.
+- "none invented a number, name, date, file, commit or incident" (§3.8; the adjudicator's own verdict line, kept by
+  the chair in round 6 against Okafor's A1): the adjudication notes, lines below it, label two statements invented.
+Also missed by six warm rounds and found by the cold round: §5 said five panel rounds when six had run; two of the
+third referee's dispatches have no instrument row; Table 1's "Produced" includes the echoed brief; the build gate
+passed a flipped PASS/FAIL mark; Lemma 1 at the ladder's cap gives p* = 0.09, not 0.02. Lesson, third form: warm
+diff rounds verify that a required sentence was applied, not that it is true; a cold reader with no required-change
+list can only open the file. Rule from v1.10: before any deposited tag, one cold read of the whole paper and
+repository by reviewers with no access to earlier rounds; the chair's own sentences named in every brief; every
+sentence in §4, §5 and Appendix B that names a party carries a file pointer. Reviewer and chair names in this log
+are LLM personas of the author's review tooling (Anthropic Claude), not people.

@@ -30,6 +30,27 @@ for pair in g.group(1).split('; '):
     want('o_D > S_I ' + k, [o, si])
 alphas = [float(x) for x in re.findall(r'^\| ab_s\d \|(?: [^|]* \|){5} ([\d.]+) \|', res, re.M)]; Ms = [float(x) for x in re.findall(r'^\| ab_s\d \|(?: [^|]* \|){7} ([\d.]+) \|', res, re.M)]
 want('alpha range', [f'{min(alphas):.3f}', f'{max(alphas):.3f}']); want('M range', [f'{min(Ms):.2f}', f'{max(Ms):.2f}'])
+# the six marks: RESULTS.md's "- Pn ...: PASS/FAIL" against section 3.8's "Pn, ...: PASS/FAIL"
+for n in range(1, 7):
+    g = re.search(rf'^- P{n} [^:]*: (PASS|FAIL)', res, re.M); assert g, f'P{n} mark in RESULTS'
+    h = re.search(rf'P{n}, .{{0,70}}?: (PASS|FAIL)', sec); ok = bool(h) and h.group(1) == g.group(1)
+    print(f'{"ok  " if ok else "MISS"} mark P{n} {g.group(1)}'); fail += (not ok)
+# the per-pair table: eight numeric cells per pair, section 3.8 (with thousands separators) against RESULTS.md
+rt = {m.group(1): m.group(2).split(' | ') for m in re.finditer(r'^\| (ab_s\d) \| (.*?) \|$', res, re.M)}
+st = {m.group(1): m.group(2).split(' | ') for m in re.finditer(r'^\| (s\d) \| (.*?) \|$', sec, re.M)}
+for k, cells in rt.items():
+    sk = k.replace('ab_', ''); bad = []
+    if sk not in st: bad = ['row missing']
+    else:
+        for i, c in enumerate(cells[:8]):
+            want_c = fmt(c) if c.isdigit() else c
+            if i >= len(st[sk]) or st[sk][i] != want_c: bad.append(f'col{i}: {st[sk][i] if i < len(st[sk]) else "?"} != {want_c}')
+    print(f'{"ok  " if not bad else "MISS"} pair {sk} ' + ('; '.join(bad) if bad else '8 cells')); fail += bool(bad)
+# the abstract's wave figures: pooled M and the acceptance count must appear in the abstract line
+abstract = draft.split('\n')[4]
+gM = re.search(r'M = \d+/\d+ = ([\d.]+)', pooled).group(1); gA = re.search(r'p_hat_D = (\d+)/(\d+)', pooled)
+for label, v in [('abstract M', gM), ('abstract acceptance', f'{gA.group(1)} of {gA.group(2)}')]:
+    ok = v in abstract; print(f'{"ok  " if ok else "MISS"} {label} {v}'); fail += (not ok)
 # row order: for each brief and arm, every non-OK row must precede the valid row (ab_stats.py takes the last row)
 rows = list(csv.DictReader(open(os.path.join(AB, 'ab_stats_v2.tsv'), encoding='utf-8'), delimiter='\t'))
 last = {}; bad = 0

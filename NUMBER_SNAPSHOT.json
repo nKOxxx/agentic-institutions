@@ -97,6 +97,16 @@
     "review_briefs": "9 files, 10 dispatches (review4_C.md ran twice, rows 22-23)",
     "panel_round_4": "ACCEPT; eight items applied; chair diff check in place of a fifth round"
   },
+  "supplement_v1_10": {
+    "date": "2026-10-17",
+    "tsv_sha256_full_26_rows": "7f45e6ae146b7e8ae16b349bb408b0b645019244121a9f2e0f938cabc318ed32",
+    "cold_read_round_7": "MAJOR REVISION on published v1.9.2; eleven sentences false of the record corrected, see REVISION_LOG v1.10 and INCIDENT_LOG addenda of 2026-10-17",
+    "p_star_by_retry_cap": "R=1 0.22, R=2 0.12, R=3 0.09, R=5 0.06, R=10 0.04, R=50 0.025, unbounded 0.022 (w=0, S=20,000, alpha=0.17, eps=300, b/S=0.168); b=0: 0.018 at every R",
+    "p_star_by_artifact_size": "25,284 (wave 3) 0.018; 11,440 (pooled) 0.038; 9,545 (instrument pooled) 0.045; 6,741 (wave 4) 0.063",
+    "table1_brief_echo": "wave 4 5,364/40,441 = 13.3% (established); wave 2 4,898/20,692 = 23.7% and wave 3 5,644/50,567 = 11.2% if the earlier script echoed likewise",
+    "counterfactual_uniform_eviction": "A_I/Delta_cf 0.40; A_I/(A_D+status) 1.06; A_I/A_D 1.106",
+    "symmetric_alpha": "(0.218-0.165)(1+T) = 1 at T = 17.9"
+  },
   "supplement_v1_9": {
     "date": "2026-10-15",
     "wave": "experiments/ab-2026-10, pre-registered v1.8.3/v1.8.4, dispatched 2026-10-14 18:34-19:33 UTC, last finished about 19:37, 12 valid rows (6 deepseek, 6 glm-4.6 via zai), 6 misconfigured hub rows retained as ERROR/REJECT OTHER",
