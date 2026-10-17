@@ -1,0 +1,47 @@
+{
+ "source": "gh api users/nKOxxx/events/public, retrieved 2026-10-17; GitHub-side created_at of each PushEvent to nKOxxx/agentic-institutions",
+ "events": [
+  {
+   "created_at": "2026-10-14T18:22:26Z",
+   "type": "PushEvent",
+   "ref": "refs/heads/main",
+   "head": "245d4d85832b59f472fb7995d4b1e58f50afb445",
+   "before": "d64605c86c5e964d15046cfe06030e22d64b405e"
+  },
+  {
+   "created_at": "2026-10-14T18:24:11Z",
+   "type": "PushEvent",
+   "ref": "refs/heads/main",
+   "head": "99c859de9b7021eccef24582a969f33d2b4f5484",
+   "before": "245d4d85832b59f472fb7995d4b1e58f50afb445"
+  },
+  {
+   "created_at": "2026-10-14T18:24:25Z",
+   "type": "PushEvent",
+   "ref": "refs/heads/main",
+   "head": "340fb1f121297ca528e3ed315179dd8b7afb30b6",
+   "before": "99c859de9b7021eccef24582a969f33d2b4f5484"
+  },
+  {
+   "created_at": "2026-10-14T18:33:48Z",
+   "type": "PushEvent",
+   "ref": "refs/heads/main",
+   "head": "56c06dff9efdf9f450339b5efe52ec42d5207234",
+   "before": "340fb1f121297ca528e3ed315179dd8b7afb30b6"
+  },
+  {
+   "created_at": "2026-10-14T20:16:42Z",
+   "type": "PushEvent",
+   "ref": "refs/heads/main",
+   "head": "746de7cf3e1ca73ecf1e8c6fd8647f8f8dc31df2",
+   "before": "56c06dff9efdf9f450339b5efe52ec42d5207234"
+  },
+  {
+   "created_at": "2026-10-14T20:22:32Z",
+   "type": "PushEvent",
+   "ref": "refs/heads/main",
+   "head": "346c3c10faa0253826f2e904bb2de23bf2ea1bf5",
+   "before": "746de7cf3e1ca73ecf1e8c6fd8647f8f8dc31df2"
+  }
+ ]
+}

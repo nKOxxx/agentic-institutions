@@ -23,3 +23,6 @@ Method: each arXiv identifier fetched from arxiv.org/abs/<id> and the title/auth
 | 34 | doi:10.1007/BF01762111 | Competitive Snoopy Caching. Karlin, Manasse, Rudolph, Sleator. Algorithmica 3:79–119, 1988 | yes |
 
 Not re-verified beyond URL resolution during drafting: 1–7, 14 (specifications, EIPs, documentation sites). Last accessed 13 October 2026.
+
+---
+Note appended 17 October 2026 (v1.10.1), not an edit of the transcript above: the method line says each arXiv identifier was fetched; the table marks eight entries as checked by title as well-known identifiers, not fetched. The paper's 11 fetched / 8 by-title split is the table's, not the method line's.

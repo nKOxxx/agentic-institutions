@@ -53,6 +53,18 @@ t = t.replace(r'\end{verbatim}', r'\end{Verbatim}')
 t = t.replace(r'\begin{longtable}[]{@{}lll@{}}',
               r'\begin{longtable}[]{@{}p{0.22\textwidth}p{0.38\textwidth}p{0.32\textwidth}@{}}')
 
+# the checker table of section 5 (six columns, long cells): paragraph columns, small type, tight column sep
+_ct = re.search(r'\\begin\{longtable\}\[\]\{@\{\}llllll@\{\}\}\n\\toprule\\noalign\{\}\nChecker & Model', t)
+if _ct:
+    _spec = r'{\small\setlength{\tabcolsep}{3pt}\begin{longtable}[]{@{}>{\raggedright\arraybackslash}p{0.12\textwidth}>{\raggedright\arraybackslash}p{0.20\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.11\textwidth}>{\raggedright\arraybackslash}p{0.15\textwidth}@{}}'
+    _end = t.index(r'\end{longtable}', _ct.start()) + len(r'\end{longtable}')
+    _body = t[_ct.start() + len(r'\begin{longtable}[]{@{}llllll@{}}'):_end]
+    # long file names in narrow cells: let them break after / and _
+    _body = re.sub(r'\\texttt\{[^}]*\}', lambda m: m.group(0).replace('/', '/\\allowbreak{}').replace('\\_', '\\_\\allowbreak{}'), _body)
+    t = t[:_ct.start()] + _spec + _body + '}' + t[_end:]
+else:
+    print('WARN: checker table not found; layout rule not applied')
+
 open(DST, 'w').write(t)
 # verify no stray unicode outside verbatim
 body = re.sub(r'\\begin\{[Vv]erbatim\}[\[]?.*?\\end\{[Vv]erbatim\}', '', t, flags=re.S)
