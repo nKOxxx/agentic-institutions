@@ -126,8 +126,8 @@ de-duplicated counts reported; the de-duplication is labelled an inference from 
 
 ## INC-001 / INC-004 ADDENDA (2026-10-14, briefs recovered)
 The 23 dispatched briefs were recovered and committed to briefs/. They establish: (a) every brief ends with a
-trailer naming its needle, so the v1 whole-transcript test was satisfiable by the CLI echo for rows 7–26, the rows the
-committed v1 script wrote (INC-008 confirmed; rows 1–6 came from an earlier script version and rows 1–2 logged
+trailer naming its needle, so the v1 whole-transcript test was satisfiable by the CLI echo for rows 7–26, written on the
+CLI path the committed v1 script uses (that script is established for rows 15–26; INC-008 confirmed; rows 1–6 came from an earlier script version and rows 1–2 logged
 fewer bytes than their briefs); (b) the INC-001 worker signed its brief's section label (IV-IMPLICATIONS) instead of
 the specified SECTION-S4-OK; (c) the constraints brief (sec_s3b_brief.md) asked for the 7/7 needle-hit rate
 as the worked example and, in its rules line, licensed concrete examples from a system the worker could not
@@ -184,11 +184,11 @@ included.
 The entry above says the 13:18 anchor "was carried from a round-3 reviewer footnote" and that "this time the number
 came from a reviewer". Neither is supported by the public record: no round-1, 2 or 3 reviewer file contains 13:18
 or 277; reviewer B's round-3 footnote (reviews/reviewer_B_econ_r3.md lines 270 to 272) anchors a different count at
-11:58 and reports 296; the 13:18 anchor is row 13's dispatch time (the INC-001 dispatch) and first appears in the
+11:58 and reports 296; the 13:18 anchor is row 13's append time (the INC-001 worker's completion; launch about 13:15:51) and first appears in the
 hub's own v1.4 query. The 277 is the hub's frozen output of its own query. The lesson line stands for the general
-case; its "came from a reviewer" clause is withdrawn. The paper carried the footnote attribution from v1.5 to v1.9.2
-(abstract-adjacent sites in §1.4, §4.6, §5 and Appendix B), transcribed from this entry by the second panel's chair
-and never checked against the reviewer files. Corrected in v1.10.
+case; its "came from a reviewer" clause is withdrawn. The footnote attribution appeared once in the hub's own text at v1.4.2 (8cabbcf; gone by
+v1.4.3), then at four sites (§1.4, §4.6, §5, Appendix B) from v1.7.7 (cd5174d, the second panel chair's round-3
+wording pass, transcribed from this entry) to v1.9.2, never checked against the reviewer files. Corrected in v1.10.
 
 ## INC-001 ADDENDUM 3 (2026-10-17, cold-read round 7)
 Addendum 2 says the three round-5 /tmp copies were "outside the briefs' literal text". The briefs instructed the
@@ -210,7 +210,7 @@ the repository, each available to the panel from files it had open at the time:
 - "a write the briefs' literal text did not permit" (§4; chair, round 4): the briefs instructed it (INC-001 addendum 3).
 - "carried the query's anchor from a reviewer footnote" (§1.4, §4.6, §5, Appendix B; chair's round-3 wording pass,
   transcribed from the INC-006 entry): no reviewer file carries it (INC-006 addendum).
-- "a confabulated receipt" (§5; reviewer Okafor, round 3, adopted at 13baf01, carried by the chair): the record shows
+- "a confabulated receipt" (§5; reviewer Okafor, second panel round 1, 13 October, adopted at 13baf01, v1.6, carried by the chair): the record shows
   a query that did not reproduce on a store that compacts, nothing more.
 - "none invented a number, name, date, file, commit or incident" (§3.8; the adjudicator's own verdict line, kept by
   the chair in round 6 against Okafor's A1): the adjudication notes, lines below it, label two statements invented.

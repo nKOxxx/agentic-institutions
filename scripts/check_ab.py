@@ -15,9 +15,15 @@ def want(label, vals):
     for v in vals:
         s = fmt(v); ok = s in sec; print(f'{"ok  " if ok else "MISS"} {label} {s}'); fail += (not ok)
 pooled = re.search(r'^Pooled: (.*)$', res, re.M).group(1)
+ps = re.search(r'Pooled over the six pairs: [^\n]*', sec); pooled_sentence = ps.group(0) if ps else ''
+def want_in(label, vals, where, wname):
+    global fail
+    for v in vals:
+        s_ = fmt(v); ok = s_ in where; print(f'{"ok  " if ok else "MISS"} {label} {s_} in {wname}'); fail += (not ok)
 for key, pat in [('alpha_D', r'alpha_D = (\d+)/(\d+) = ([\d.]+)'), ('p_hat', r'p_hat_D = (\d+)/(\d+)'), ('M', r'M = (\d+)/(\d+) = ([\d.]+)'),
                  ('b/S', r'b/S_D = ([\d.]+)'), ('o/S', r'o/S_D = ([\d.]+)'), ('S_I/S_D', r'S_I/S_D = ([\d.]+)'), ('alpha_I', r'alpha_I = (\d+)/(\d+) = ([\d.]+)')]:
-    g = re.search(pat, pooled); assert g, key; want(key, list(g.groups()))
+    g = re.search(pat, pooled); assert g, key
+    want_in(key, list(g.groups()), pooled_sentence if key != 'p_hat' else sec, 'pooled sentence' if key != 'p_hat' else 'section')
 g = re.search(r"^Pooled: M_cf = (\d+)/(\d+) = ([\d.]+); M'_cf = .*? = ([\d.]+); proviso \(b \+ o_cf\)/S_D = ([\d.]+) against 1 - alpha_D = ([\d.]+); p\*_cf .* is ([\d.]+)\.", cf, re.M); assert g, 'cf pooled'
 want('cf', list(g.groups()))
 g = re.search(r"^Proviso on the real o: \(b \+ o\)/S_D = (\d+)/(\d+) = (\d+\.\d+)", cf, re.M); assert g; want('proviso', [g.group(3)])
@@ -49,7 +55,9 @@ for k, cells in rt.items():
 # the abstract's wave figures: pooled M and the acceptance count must appear in the abstract line
 abstract = draft.split('\n')[4]
 gM = re.search(r'M = \d+/\d+ = ([\d.]+)', pooled).group(1); gA = re.search(r'p_hat_D = (\d+)/(\d+)', pooled)
-for label, v in [('abstract M', gM), ('abstract acceptance', f'{gA.group(1)} of {gA.group(2)}')]:
+gAl = re.search(r'alpha_D = \d+/\d+ = ([\d.]+)', pooled).group(1)
+gLit = re.search(r"^Variant, literal traceability clause .*: acceptance (\d)/6", cf, re.M).group(1)
+for label, v in [('abstract M', gM), ('abstract acceptance', f'{gA.group(1)} of {gA.group(2)}'), ('abstract alpha_D', gAl), ('abstract literal acceptance', f'{gLit} of 6')]:
     ok = v in abstract; print(f'{"ok  " if ok else "MISS"} {label} {v}'); fail += (not ok)
 # row order: for each brief and arm, every non-OK row must precede the valid row (ab_stats.py takes the last row)
 rows = list(csv.DictReader(open(os.path.join(AB, 'ab_stats_v2.tsv'), encoding='utf-8'), delimiter='\t'))
