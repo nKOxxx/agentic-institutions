@@ -2,7 +2,7 @@
 
 Companion repository for the paper by Nikola Stojanow (v1.10, October 17, 2026).
 
-Published record: https://doi.org/10.5281/zenodo.23392762 (Zenodo, CC BY 4.0; v1.9.2 deposited 15 October 2026; v1.10 to follow as a new version with a repository snapshot). The v1.9.2 deposit is text-identical to `latex/paper.pdf` at that tag and not byte-identical; the v1.10 deposit is to carry a repository snapshot. Tag v1.7.4 points at b0e3968 on origin (moved there on 14 October to include the citing sentence; the move is recorded here, not in the v1.7.4 log entry); a clone made before the move shows 4cda661.
+Published record: https://doi.org/10.5281/zenodo.23392761 (Zenodo concept DOI, resolves to the latest version; CC BY 4.0). Versions: v1.10, https://doi.org/10.5281/zenodo.23433330, deposited 17 October 2026 with `paper.pdf` (md5 9a0de46d63aef579877012e87ed4ee39, byte-identical to `latex/paper.pdf` at tag v1.10) and the repository snapshot `agentic-institutions-v1.10.zip` (md5 c7c3dbdc8569dc1bbed40bc8db61b189, `git archive` of the tag); v1.9.2, https://doi.org/10.5281/zenodo.23392762, deposited 15 October 2026, PDF text-identical to `latex/paper.pdf` at that tag and not byte-identical, no snapshot. Tag v1.7.4 points at b0e3968 on origin (moved there on 14 October to include the citing sentence; the move is recorded here, not in the v1.7.4 log entry); a clone made before the move shows 4cda661.
 
 The paper studies institutions for AI agents: a cost model for delegated cognition
 and the mandate / capability-registry / constraints / escalation anatomy it
